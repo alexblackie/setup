@@ -1,0 +1,6 @@
+---
+- dnf: name="docker" state="present"
+  become: true
+
+- service: name="docker" enabled="yes" state="started"
+  become: true

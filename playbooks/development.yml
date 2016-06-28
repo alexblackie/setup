@@ -1,0 +1,23 @@
+---
+- name: "temp directory for storing source code archives of compiled warez"
+  file: path="{{home}}/src" state="directory"
+
+- dnf: name="{{item}}" state="latest"
+  become: true
+  with_items:
+    - git
+    - tmux
+    - vim
+    - zsh
+    - the_silver_searcher
+    - "@C Development Tools and Libraries"
+    - pass
+
+- user: name="{{user}}" shell="/bin/zsh"
+  become: true
+
+- git: repo="https://github.com/jhawthorn/fzy.git" dest="{{home}}/src/fzy"
+- shell: "make && make install"
+  become: true
+  args:
+    chdir: "{{home}}/src/fzy"

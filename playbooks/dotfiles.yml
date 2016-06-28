@@ -1,0 +1,9 @@
+---
+- file: path="{{home}}/bin" state="directory"
+
+- git: repo="git@github.com:alexblackie/dotfiles.git" dest="{{home}}/.dotfiles" accept_hostkey=True update=no
+
+- shell: "make && make install && make dconf"
+  args:
+    chdir: "{{home}}/.dotfiles"
+    creates: "{{home}}/.zshrc"

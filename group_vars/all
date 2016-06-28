@@ -1,0 +1,4 @@
+---
+user: alex
+group: alex
+home: /home/{{user}}

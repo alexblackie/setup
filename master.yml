@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  tasks:
+    - include: playbooks/system.yml
+    - include: playbooks/development.yml
+    - include: playbooks/dotfiles.yml
+    - include: playbooks/docker.yml
+    - include: playbooks/desktop.yml
