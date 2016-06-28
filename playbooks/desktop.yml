@@ -10,3 +10,4 @@
   become: true
 
 - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+- command: gsettings set org.gnome.desktop.interface clock-show-date true
