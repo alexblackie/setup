@@ -21,3 +21,7 @@
   become: true
   args:
     chdir: "{{home}}/src/fzy"
+
+- name: "disable gross vim defaults"
+  copy: dest="/etc/vimrc" content=""
+  become: true
