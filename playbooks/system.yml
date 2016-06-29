@@ -6,3 +6,15 @@
 - name: "enable fastest mirror dnf plugin"
   lineinfile: line="fastestmirror=1" dest="/etc/dnf/dnf.conf"
   become: true
+
+- name: "enable rpmfusion free"
+  dnf: name="http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-24.noarch.rpm" state="present"
+  become: true
+
+- name: "enable rpmfusion non-free"
+  dnf: name="http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm" state="present"
+  become: true
+
+- name: "install exfat utils for camera SD cards"
+  dnf: name="fuse-exfat" state="present"
+  become: true
