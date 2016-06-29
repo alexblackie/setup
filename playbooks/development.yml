@@ -12,6 +12,7 @@
     - the_silver_searcher
     - "@C Development Tools and Libraries"
     - pass
+    - optipng
 
 - pip: name="awscli" state="present"
   become: true
