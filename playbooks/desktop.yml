@@ -5,6 +5,11 @@
     - terminus-fonts
     - gnome-tweak-tool
     - gimp
+    - gstreamer-plugins-good
+    - gstreamer-plugins-bad
+    - gstreamer-plugins-bad-free
+    - gstreamer-plugins-ugly
+    - gstreamer1-plugins-ugly
 
 - dnf: name="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" state="present"
   become: true
