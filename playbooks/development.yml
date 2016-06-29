@@ -13,6 +13,9 @@
     - "@C Development Tools and Libraries"
     - pass
 
+- pip: name="awscli" state="present"
+  become: true
+
 - user: name="{{user}}" shell="/bin/zsh"
   become: true
 
