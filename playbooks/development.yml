@@ -13,6 +13,7 @@
     - "@C Development Tools and Libraries"
     - pass
     - optipng
+    - htop
 
 - pip: name="awscli" state="present"
   become: true
