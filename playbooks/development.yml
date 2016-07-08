@@ -14,6 +14,7 @@
     - pass
     - optipng
     - htop
+    - java-1.8.0-openjdk
 
 - pip: name="awscli" state="present"
   become: true
