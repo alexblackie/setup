@@ -15,6 +15,7 @@
     - optipng
     - htop
     - java-1.8.0-openjdk
+    - python-pygments
 
 - pip: name="awscli" state="present"
   become: true
