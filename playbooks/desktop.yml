@@ -13,6 +13,11 @@
     - ffmpeg
     - powertop
 
+- template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
+  become: true
+- dnf: name="lollypop" state="present"
+  become: true
+
 - dnf: name="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" state="present"
   become: true
 
