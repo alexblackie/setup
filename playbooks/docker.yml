@@ -2,5 +2,11 @@
 - dnf: name="docker" state="present"
   become: true
 
+- group: name="docker"
+  become: true
+
+- user: name="{{user}}" groups="docker" append="yes"
+  become: true
+
 - service: name="docker" enabled="yes" state="started"
   become: true
