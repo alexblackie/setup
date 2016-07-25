@@ -17,6 +17,7 @@
     - java-1.8.0-openjdk
     - python-pygments
     - nmap
+    - postgresql
 
 - pip: name="awscli" state="present"
   become: true
