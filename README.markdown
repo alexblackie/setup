@@ -10,6 +10,8 @@ decided to put together a set of Ansible playbooks to set everything up for me.
 
 ## Prerequisites
 
+These playbooks are built to support the latest release of Fedora Workstation.
+
 Automation isn't _perfect_, so there are a couple things that need to be
 installed manually first. I usually install all updates, install these packages,
 then reboot and run the Ansible.
