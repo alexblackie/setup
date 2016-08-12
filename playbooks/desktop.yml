@@ -24,6 +24,7 @@
     - lxappearance
     - pavucontrol
     - xbacklight
+    - scrot
 
 - service: name="gdm" enabled="no"
   become: true

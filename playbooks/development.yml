@@ -18,6 +18,7 @@
     - python-pygments
     - nmap
     - postgresql
+    - ImageMagick
 
 - pip: name="awscli" state="present"
   become: true
