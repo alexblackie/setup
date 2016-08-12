@@ -23,6 +23,7 @@
     - feh
     - lxappearance
     - pavucontrol
+    - xbacklight
 
 - service: name="gdm" enabled="no"
   become: true
