@@ -3,15 +3,26 @@
   become: true
   with_items:
     - terminus-fonts
-    - gnome-tweak-tool
     - gimp
     - gstreamer-plugins-good
     - gstreamer-plugins-bad
     - gstreamer-plugins-bad-free
     - gstreamer-plugins-ugly
     - gstreamer1-plugins-ugly
+    - fontconfig-devel
+    - libX11-devel
+    - libXft-devel
     - ffmpeg
     - powertop
+    - i3
+    - i3status
+    - i3lock
+    - feh
+    - lxappearance
+    - pavucontrol
+
+- service: name="gdm" enabled="no"
+  become: true
 
 - template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
   become: true
@@ -25,3 +36,11 @@
 - command: gsettings set org.gnome.desktop.interface clock-show-date true
 - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
 - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+
+- file: path="{{home}}/src" state="directory"
+- git: repo="https://github.com/alexblackie/st.git" update="yes" dest="{{home}}/src/st"
+- shell: make && make install
+  args:
+    chdir: "{{home}}/src/st"
+    creates: /usr/local/bin/st
+  become: true
