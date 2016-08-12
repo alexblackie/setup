@@ -4,11 +4,14 @@
   with_items:
     - terminus-fonts
     - gimp
-    - gstreamer-plugins-good
-    - gstreamer-plugins-bad
-    - gstreamer-plugins-bad-free
-    - gstreamer-plugins-ugly
-    - gstreamer1-plugins-ugly
+    - flac-devel
+    - libvorbis-devel
+    - ffmpeg-compat-devel
+    - pulseaudio-libs-devel
+    - libcue-devel
+    - alsa-lib-devel
+    - faad2-devel
+    - libmad-devel
     - fontconfig-devel
     - libX11-devel
     - libXft-devel
@@ -22,11 +25,6 @@
     - pavucontrol
 
 - service: name="gdm" enabled="no"
-  become: true
-
-- template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
-  become: true
-- dnf: name="lollypop" state="present"
   become: true
 
 - dnf: name="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" state="present"
@@ -43,4 +41,11 @@
   args:
     chdir: "{{home}}/src/st"
     creates: /usr/local/bin/st
+  become: true
+
+- git: repo="https://github.com/cmus/cmus.git" update="yes" dest="{{home}}/src/cmus"
+- shell: ./configure CONFIG_MAD=y CONFIG_OPUS=n CONFIG_ROAR=n CONFIG_JACK=n && make && make install
+  args:
+    chdir: "{{home}}/src/cmus"
+    creates: /usr/local/bin/cmus
   become: true
