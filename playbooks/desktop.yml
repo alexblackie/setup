@@ -38,7 +38,7 @@
 - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
 - file: path="{{home}}/src" state="directory"
-- git: repo="https://github.com/alexblackie/st.git" update="yes" dest="{{home}}/src/st"
+- git: repo="https://git.blackieops.com/alexblackie/st" update="yes" dest="{{home}}/src/st"
 - shell: make && make install
   args:
     chdir: "{{home}}/src/st"
