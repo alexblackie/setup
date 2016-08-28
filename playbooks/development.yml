@@ -19,6 +19,7 @@
     - nmap
     - postgresql
     - ImageMagick
+    - perf
 
 - pip: name="awscli" state="present"
   become: true
