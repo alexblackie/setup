@@ -247,6 +247,7 @@
   with_items:
     - terminus-fonts
     - gimp
+    - ncurses-devel
     - flac-devel
     - libvorbis-devel
     - ffmpeg-compat-devel
