@@ -12,6 +12,7 @@
     - gstreamer1-plugins-ugly
     - ffmpeg
     - powertop
+    - levien-inconsolata-fonts
 
 - template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
   become: true
