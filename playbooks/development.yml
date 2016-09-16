@@ -24,6 +24,15 @@
 - pip: name="awscli" state="present"
   become: true
 
+- shell: curl -Ls https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-126.0.0-linux-x86_64.tar.gz | tar xz && \
+    mv ./google-cloud-sdk ~/bin/gcloudsdk
+  args:
+    chdir: "{{home}}/src"
+    creates: "{{home}}/bin/gcloudsdk"
+
+- file: path="{{home}}/.env" state="touch"
+- lineinfile: line="export PATH=$HOME/bin/gcloudsdk/bin:$PATH" dest="{{home}}/.env"
+
 - user: name="{{user}}" shell="/bin/zsh"
   become: true
 
