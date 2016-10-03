@@ -21,6 +21,8 @@
     - ImageMagick
     - perf
     - dstat
+    - redhat-rpm-config
+    - postgresql-devel
 
 - pip: name="awscli" state="present"
   become: true
