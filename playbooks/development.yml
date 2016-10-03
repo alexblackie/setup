@@ -23,6 +23,8 @@
     - dstat
     - redhat-rpm-config
     - postgresql-devel
+    - python3-devel
+    - python2-virtualenv
 
 - pip: name="awscli" state="present"
   become: true
