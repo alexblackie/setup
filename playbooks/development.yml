@@ -2,6 +2,9 @@
 - name: "temp directory for storing source code archives of compiled warez"
   file: path="{{home}}/src" state="directory"
 
+- name: "local bin directory"
+  file: path="{{home}}/bin" state="directory"
+
 - dnf: name="{{item}}" state="latest"
   become: true
   with_items:
