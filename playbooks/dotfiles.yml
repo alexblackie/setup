@@ -6,4 +6,4 @@
 - shell: "make && make install && make dconf"
   args:
     chdir: "{{home}}/.dotfiles"
-    creates: "{{home}}/.zshrc"
+    creates: "{{home}}/.commonrc"
