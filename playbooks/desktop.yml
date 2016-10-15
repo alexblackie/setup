@@ -37,7 +37,7 @@
 - name: "system ruby for gextension"
   dnf: name="ruby" state="latest"
   become: true
-- git: repo="https://git.blackieops.com/alexblackie/gextension" dest="{{home}}/.gextension" accept_hostkey=True update=no
+- git: repo="https://github.com/alexblackie/gextension" dest="{{home}}/.gextension" accept_hostkey=True update=no
 - name: "install GNOME extensions"
   shell: "./gextension install {{item}}"
   args:
