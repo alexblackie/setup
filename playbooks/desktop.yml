@@ -13,6 +13,7 @@
     - ffmpeg
     - powertop
     - levien-inconsolata-fonts
+    - virt-viewer
 
 - template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
   become: true
