@@ -28,8 +28,11 @@
     - python3-devel
     - python2-virtualenv
 
-- pip: name="awscli" state="present"
+- pip: name="{{item}}" state="present"
   become: true
+  with_items:
+    - awscli
+    - httpstat
 
 - shell: curl -Ls https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-126.0.0-linux-x86_64.tar.gz | tar xz && \
     mv ./google-cloud-sdk ~/bin/gcloudsdk
