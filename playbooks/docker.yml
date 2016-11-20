@@ -1,6 +1,9 @@
 ---
-- dnf: name="docker" state="present"
+- dnf: name="{{item}}" state="present"
   become: true
+  with_items:
+    - docker
+    - docker-compose
 
 - group: name="docker"
   become: true
