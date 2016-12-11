@@ -24,6 +24,9 @@
 - dnf: name="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" state="present"
   become: true
 
+- dnf: name="https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm" state="present"
+  become: true
+
 - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 - command: gsettings set org.gnome.desktop.interface clock-show-date true
 - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
