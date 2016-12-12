@@ -8,11 +8,11 @@
   become: true
 
 - name: "enable rpmfusion free"
-  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-24.noarch.rpm" state="present"
+  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{fedora_release}}.noarch.rpm" state="present"
   become: true
 
 - name: "enable rpmfusion non-free"
-  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-24.noarch.rpm" state="present"
+  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm" state="present"
   become: true
 
 - name: "install exfat utils for camera SD cards"
