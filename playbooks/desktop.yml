@@ -3,6 +3,7 @@
   become: true
   with_items:
     - terminus-fonts
+    - xorg-x11-fonts-misc
     - gnome-tweak-tool
     - gimp
     - gstreamer-plugins-good
