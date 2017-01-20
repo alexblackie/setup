@@ -17,6 +17,13 @@
     - levien-inconsolata-fonts
     - virt-viewer
     - redshift-gtk
+    - i3
+    - i3status
+    - i3lock
+    - feh
+    - xterm
+    - pavucontrol
+    - xbacklight
 
 - template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
   become: true
