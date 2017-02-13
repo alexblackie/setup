@@ -13,7 +13,7 @@
 
 - name: "enable rpmfusion non-free"
   dnf:
-    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm"
+    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
     state: present
   become: true
 
