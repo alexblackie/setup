@@ -1,12 +1,13 @@
 # Bootstart
 
-I reinstall my operating system more than any sane person ever should. As a
-consequence, I have become very good at regularly backing up my data and
-manually setting up my development environment.
+Setting up computers is a pain if you're like me and reinstall your OS on a
+regular basis. Additionally, keeping track of all the random things you install
+over time is a challenge and can lead to frustration later on as you attempt to
+get things running again and can't remember that one thing you installed last
+time to make it work...
 
-However, I've become tired of setting up my computer so often. Instead of
-solving the real problem by just not reinstalling my OS so damn often, I instead
-decided to put together a set of Ansible playbooks to set everything up for me.
+I solved this by authoring a handleful of Ansible playbooks to automate the
+provisioning of my desktop machines, which you are now looking at.
 
 ## Prerequisites
 
@@ -19,6 +20,18 @@ then reboot and run the Ansible.
 - `ansible`
 - `libselinux-python`
 - `python2-dnf`
+
+## Running
+
+This is a pretty standard Ansible project, so running is quite simple:
+
+```
+$ ansible-playbook master.yml
+```
+
+If you don't already have passwordless `sudo` configured, you may need to prime
+it beforehand as root access is required for some playbooks (it will `become`
+when necessary).
 
 ## License
 
