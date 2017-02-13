@@ -19,6 +19,7 @@
     - levien-inconsolata-fonts
     - virt-viewer
     - redshift-gtk
+    - fuse-exfat
 
 - template:
     src: lollypop.repo.j2

@@ -23,12 +23,6 @@
     state: present
   become: true
 
-- name: "install exfat utils for camera SD cards"
-  dnf:
-    name: fuse-exfat
-    state: present
-  become: true
-
 - name: "enable sshd"
   service:
     name: sshd
