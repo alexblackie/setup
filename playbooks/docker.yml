@@ -1,23 +1,25 @@
 ---
-- dnf:
-    name: "{{item}}"
-    state: present
-  become: true
-  with_items:
-    - docker
-    - docker-compose
+- hosts: localhost
+  tasks:
+    - dnf:
+        name: "{{item}}"
+        state: present
+      become: true
+      with_items:
+        - docker
+        - docker-compose
 
-- group: name="docker"
-  become: true
+    - group: name="docker"
+      become: true
 
-- user:
-    name: "{{user}}"
-    groups: docker
-    append: yes
-  become: true
+    - user:
+        name: "{{user}}"
+        groups: docker
+        append: yes
+      become: true
 
-- service:
-    name: docker
-    enabled: yes
-    state: started
-  become: true
+    - service:
+        name: docker
+        enabled: yes
+        state: started
+      become: true

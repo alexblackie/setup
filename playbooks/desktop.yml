@@ -1,65 +1,67 @@
 ---
-- dnf:
-    name: "{{item}}"
-    state: latest
-  become: true
-  with_items:
-    - terminus-fonts
-    - xorg-x11-fonts-misc
-    - adobe-source-code-pro-fonts
-    - gnome-tweak-tool
-    - gimp
-    - gstreamer-plugins-good
-    - gstreamer-plugins-bad
-    - gstreamer-plugins-bad-free
-    - gstreamer-plugins-ugly
-    - gstreamer1-plugins-ugly
-    - ffmpeg
-    - powertop
-    - levien-inconsolata-fonts
-    - virt-viewer
-    - redshift-gtk
-    - fuse-exfat
+- hosts: localhost
+  tasks:
+    - dnf:
+        name: "{{item}}"
+        state: latest
+      become: true
+      with_items:
+        - terminus-fonts
+        - xorg-x11-fonts-misc
+        - adobe-source-code-pro-fonts
+        - gnome-tweak-tool
+        - gimp
+        - gstreamer-plugins-good
+        - gstreamer-plugins-bad
+        - gstreamer-plugins-bad-free
+        - gstreamer-plugins-ugly
+        - gstreamer1-plugins-ugly
+        - ffmpeg
+        - powertop
+        - levien-inconsolata-fonts
+        - virt-viewer
+        - redshift-gtk
+        - fuse-exfat
 
-- template:
-    src: lollypop.repo.j2
-    dest: /etc/yum.repos.d/lollypop.repo
-  become: true
-- dnf:
-    name: lollypop
-    state: present
-  become: true
+    - template:
+        src: lollypop.repo.j2
+        dest: /etc/yum.repos.d/lollypop.repo
+      become: true
+    - dnf:
+        name: lollypop
+        state: present
+      become: true
 
-- dnf:
-    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    state: present
-  become: true
+    - dnf:
+        name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+        state: present
+      become: true
 
-- dnf:
-    name: https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm
-    state: present
-  become: true
+    - dnf:
+        name: https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm
+        state: present
+      become: true
 
-- command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
-- command: gsettings set org.gnome.desktop.interface clock-show-date true
-- command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
-- command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+    - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+    - command: gsettings set org.gnome.desktop.interface clock-show-date true
+    - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+    - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
-- name: "system ruby for gextension"
-  dnf:
-    name: ruby
-    state: latest
-  become: true
-- git:
-    repo: https://github.com/alexblackie/gextension.git
-    dest: "{{home}}/.gextension"
-    accept_hostkey: yes
-    update: no
-- name: "install GNOME extensions"
-  shell: "./gextension install {{item}}"
-  args:
-    chdir: "{{home}}/.gextension"
-  with_items:
-    - sound-output-device-chooser@kgshank.net
-    - dash-to-dock@micxgx.gmail.com
-    - caffeine@patapon.info
+    - name: "system ruby for gextension"
+      dnf:
+        name: ruby
+        state: latest
+      become: true
+    - git:
+        repo: https://github.com/alexblackie/gextension.git
+        dest: "{{home}}/.gextension"
+        accept_hostkey: yes
+        update: no
+    - name: "install GNOME extensions"
+      shell: "./gextension install {{item}}"
+      args:
+        chdir: "{{home}}/.gextension"
+      with_items:
+        - sound-output-device-chooser@kgshank.net
+        - dash-to-dock@micxgx.gmail.com
+        - caffeine@patapon.info

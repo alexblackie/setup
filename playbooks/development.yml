@@ -1,70 +1,72 @@
 ---
-- name: "temp directory for storing source code archives of compiled warez"
-  file:
-    path: "{{home}}/src"
-    state: directory
+- hosts: localhost
+  tasks:
+    - name: "temp directory for storing source code archives of compiled warez"
+      file:
+        path: "{{home}}/src"
+        state: directory
 
-- name: "local bin directory"
-  file:
-    path: "{{home}}/bin"
-    state: directory
+    - name: "local bin directory"
+      file:
+        path: "{{home}}/bin"
+        state: directory
 
-- dnf:
-    name: "{{item}}"
-    state: latest
-  become: true
-  with_items:
-    - git
-    - tmux
-    - vim
-    - the_silver_searcher
-    - "@C Development Tools and Libraries"
-    - pass
-    - optipng
-    - htop
-    - java-1.8.0-openjdk
-    - python-pygments
-    - nmap
-    - postgresql
-    - ImageMagick
-    - perf
-    - dstat
-    - redhat-rpm-config
-    - postgresql-devel
-    - python3-devel
-    - python2-virtualenv
+    - dnf:
+        name: "{{item}}"
+        state: latest
+      become: true
+      with_items:
+        - git
+        - tmux
+        - vim
+        - the_silver_searcher
+        - "@C Development Tools and Libraries"
+        - pass
+        - optipng
+        - htop
+        - java-1.8.0-openjdk
+        - python-pygments
+        - nmap
+        - postgresql
+        - ImageMagick
+        - perf
+        - dstat
+        - redhat-rpm-config
+        - postgresql-devel
+        - python3-devel
+        - python2-virtualenv
 
-- pip:
-    name: "{{item}}"
-    state: present
-  become: true
-  with_items:
-    - awscli
-    - httpstat
+    - pip:
+        name: "{{item}}"
+        state: present
+      become: true
+      with_items:
+        - awscli
+        - httpstat
 
-- shell: curl -Ls https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-126.0.0-linux-x86_64.tar.gz | tar xz && \
-    mv ./google-cloud-sdk ~/bin/gcloudsdk
-  args:
-    chdir: "{{home}}/src"
-    creates: "{{home}}/bin/gcloudsdk"
+    - shell: curl -Ls https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-126.0.0-linux-x86_64.tar.gz | tar xz && \
+        mv ./google-cloud-sdk ~/bin/gcloudsdk
+      args:
+        chdir: "{{home}}/src"
+        creates: "{{home}}/bin/gcloudsdk"
 
-- file:
-    path: "{{home}}/.env"
-    state: touch
-- lineinfile:
-    line: export PATH=$HOME/bin/gcloudsdk/bin:$PATH
-    dest: "{{home}}/.env"
+    - file:
+        path: "{{home}}/.env"
+        state: touch
+    - lineinfile:
+        line: export PATH=$HOME/bin/gcloudsdk/bin:$PATH
+        dest: "{{home}}/.env"
 
-- git:
-    repo: https://github.com/jhawthorn/fzy.git
-    dest: "{{home}}/src/fzy"
-- shell: "make && make install"
-  become: true
-  args:
-    chdir: "{{home}}/src/fzy"
+    - git:
+        repo: https://github.com/jhawthorn/fzy.git
+        dest: "{{home}}/src/fzy"
+    - shell: "make && make install"
+      become: true
+      args:
+        chdir: "{{home}}/src/fzy"
 
-- name: "disable gross vim defaults"
-  copy:
-    dest: /etc/vimrc
-    content: ""
-  become: true
+    - name: "disable gross vim defaults"
+      copy:
+        dest: /etc/vimrc
+        content: ""
+      become: true
