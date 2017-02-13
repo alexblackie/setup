@@ -6,3 +6,4 @@
     - include: playbooks/dotfiles.yml
     - include: playbooks/docker.yml
     - include: playbooks/desktop.yml
+    - include: playbooks/vpns.yml

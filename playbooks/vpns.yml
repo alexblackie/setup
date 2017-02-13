@@ -1,0 +1,21 @@
+---
+- name: "Install OpenVPN config for YYJ-1"
+  template:
+    src: NetworkManager-yyj-1.j2
+    dest: "/etc/NetworkManager/system-connections/BlackieOps YYJ-1"
+  become: true
+
+- name: "Install OpenVPN config for YYJ-2"
+  template:
+    src: NetworkManager-yyj-2.j2
+    dest: "/etc/NetworkManager/system-connections/BlackieOps YYJ-2"
+  become: true
+
+- name: "Change permissions on NM config so it reads it"
+  file:
+    path: "/etc/NetworkManager/system-connections/{{item}}"
+    mode: 0400
+  become: true
+  with_items:
+    - BlackieOps YYJ-1
+    - BlackieOps YYJ-2
