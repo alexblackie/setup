@@ -1,5 +1,7 @@
 ---
-- dnf: name="{{item}}" state="latest"
+- dnf:
+    name: "{{item}}"
+    state: latest
   become: true
   with_items:
     - terminus-fonts
@@ -18,15 +20,23 @@
     - virt-viewer
     - redshift-gtk
 
-- template: src="lollypop.repo.j2" dest="/etc/yum.repos.d/lollypop.repo"
+- template:
+    src: lollypop.repo.j2
+    dest: /etc/yum.repos.d/lollypop.repo
   become: true
-- dnf: name="lollypop" state="present"
+- dnf:
+    name: lollypop
+    state: present
   become: true
 
-- dnf: name="https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm" state="present"
+- dnf:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
   become: true
 
-- dnf: name="https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm" state="present"
+- dnf:
+    name: https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm
+    state: present
   become: true
 
 - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
@@ -35,16 +45,26 @@
 - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
 
 - name: "Install OpenVPN profiles"
-  template: src="NetworkManager-yyj-1.j2" dest="/etc/NetworkManager/system-connections/BlackieOps YYJ-1"
+  template:
+    src: NetworkManager-yyj-1.j2
+    dest: "/etc/NetworkManager/system-connections/BlackieOps YYJ-1"
   become: true
 - name: "Change permissions on NM config so it reads it"
-  file: path="/etc/NetworkManager/system-connections/BlackieOps YYJ-1" mode="0400"
+  file:
+    path: "/etc/NetworkManager/system-connections/BlackieOps YYJ-1"
+    mode: 0400
   become: true
 
 - name: "system ruby for gextension"
-  dnf: name="ruby" state="latest"
+  dnf:
+    name: ruby
+    state: latest
   become: true
-- git: repo="https://github.com/alexblackie/gextension" dest="{{home}}/.gextension" accept_hostkey=True update=no
+- git:
+    repo: https://github.com/alexblackie/gextension.git
+    dest: "{{home}}/.gextension"
+    accept_hostkey: yes
+    update: no
 - name: "install GNOME extensions"
   shell: "./gextension install {{item}}"
   args:

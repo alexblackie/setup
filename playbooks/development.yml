@@ -1,11 +1,17 @@
 ---
 - name: "temp directory for storing source code archives of compiled warez"
-  file: path="{{home}}/src" state="directory"
+  file:
+    path: "{{home}}/src"
+    state: directory
 
 - name: "local bin directory"
-  file: path="{{home}}/bin" state="directory"
+  file:
+    path: "{{home}}/bin"
+    state: directory
 
-- dnf: name="{{item}}" state="latest"
+- dnf:
+    name: "{{item}}"
+    state: latest
   become: true
   with_items:
     - git
@@ -28,7 +34,9 @@
     - python3-devel
     - python2-virtualenv
 
-- pip: name="{{item}}" state="present"
+- pip:
+    name: "{{item}}"
+    state: present
   become: true
   with_items:
     - awscli
@@ -40,15 +48,23 @@
     chdir: "{{home}}/src"
     creates: "{{home}}/bin/gcloudsdk"
 
-- file: path="{{home}}/.env" state="touch"
-- lineinfile: line="export PATH=$HOME/bin/gcloudsdk/bin:$PATH" dest="{{home}}/.env"
+- file:
+    path: "{{home}}/.env"
+    state: touch
+- lineinfile:
+    line: export PATH=$HOME/bin/gcloudsdk/bin:$PATH
+    dest: "{{home}}/.env"
 
-- git: repo="https://github.com/jhawthorn/fzy.git" dest="{{home}}/src/fzy"
+- git:
+    repo: https://github.com/jhawthorn/fzy.git
+    dest: "{{home}}/src/fzy"
 - shell: "make && make install"
   become: true
   args:
     chdir: "{{home}}/src/fzy"
 
 - name: "disable gross vim defaults"
-  copy: dest="/etc/vimrc" content=""
+  copy:
+    dest: /etc/vimrc
+    content: ""
   become: true

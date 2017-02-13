@@ -1,5 +1,7 @@
 ---
-- dnf: name="{{item}}" state="present"
+- dnf:
+    name: "{{item}}"
+    state: present
   become: true
   with_items:
     - docker
@@ -8,8 +10,14 @@
 - group: name="docker"
   become: true
 
-- user: name="{{user}}" groups="docker" append="yes"
+- user:
+    name: "{{user}}"
+    groups: docker
+    append: yes
   become: true
 
-- service: name="docker" enabled="yes" state="started"
+- service:
+    name: docker
+    enabled: yes
+    state: started
   become: true

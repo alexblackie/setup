@@ -1,24 +1,37 @@
 ---
 - name: "no password on sudo for wheels"
-  template: src=sudoers.j2 dest=/etc/sudoers
+  template:
+    src: sudoers.j2
+    dest: /etc/sudoers
   become: true
 
 - name: "enable fastest mirror dnf plugin"
-  lineinfile: line="fastestmirror=1" dest="/etc/dnf/dnf.conf"
+  lineinfile:
+    line: fastestmirror=1
+    dest: /etc/dnf/dnf.conf
   become: true
 
 - name: "enable rpmfusion free"
-  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{fedora_release}}.noarch.rpm" state="present"
+  dnf:
+    name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{fedora_release}}.noarch.rpm
+    state: present
   become: true
 
 - name: "enable rpmfusion non-free"
-  dnf: name="http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm" state="present"
+  dnf:
+    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm"
+    state: present
   become: true
 
 - name: "install exfat utils for camera SD cards"
-  dnf: name="fuse-exfat" state="present"
+  dnf:
+    name: fuse-exfat
+    state: present
   become: true
 
 - name: "enable sshd"
-  service: name="sshd" state="started" enabled="yes"
+  service:
+    name: sshd
+    state: started
+    enabled: yes
   become: true
