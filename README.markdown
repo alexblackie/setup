@@ -1,4 +1,4 @@
-# Bootstart
+# Bootstart [![Build Status](https://ci.blackieops.com/buildStatus/icon?job=bootstart-syntax-check)](https://ci.blackieops.com/job/bootstart-syntax-check)
 
 Setting up computers is a pain if you're like me and reinstall your OS on a
 regular basis. Additionally, keeping track of all the random things you install
