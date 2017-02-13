@@ -1,10 +1,4 @@
 ---
-- name: "no password on sudo for wheels"
-  template:
-    src: sudoers.j2
-    dest: /etc/sudoers
-  become: true
-
 - name: "enable fastest mirror dnf plugin"
   lineinfile:
     line: fastestmirror=1
