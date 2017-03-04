@@ -42,6 +42,26 @@
         state: present
       become: true
 
+    - name: Add VSCode signing key
+      become: true
+      rpm_key:
+        key: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+    - name: Add VSCode yum repo
+      become: true
+      yum_repository:
+        name: vscode
+        description: Visual Studio Code
+        baseurl: https://packages.microsoft.com/yumrepos/vscode
+        enabled: yes
+        gpgcheck: 1
+        gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    - name: Install VSCode
+      become: true
+      dnf:
+        name: code
+        state: latest
+
     - name: Install securedata script for mounting SD card
       become: true
       template:
