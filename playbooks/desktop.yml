@@ -42,6 +42,12 @@
         state: present
       become: true
 
+    - name: Install securedata script for mounting SD card
+      become: true
+      template:
+        src: securedata
+        dest: /usr/local/bin/securedata
+
     - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
     - command: gsettings set org.gnome.desktop.interface clock-show-date true
     - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
