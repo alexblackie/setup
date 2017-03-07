@@ -35,6 +35,7 @@
         - postgresql-devel
         - python3-devel
         - python2-virtualenv
+        - rpm-build
 
     - pip:
         name: "{{item}}"
