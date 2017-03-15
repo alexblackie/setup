@@ -36,6 +36,7 @@
         - python3-devel
         - python2-virtualenv
         - rpm-build
+        - yum-utils
 
     - pip:
         name: "{{item}}"
