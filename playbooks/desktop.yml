@@ -67,6 +67,7 @@
       template:
         src: securedata
         dest: /usr/local/bin/securedata
+        mode: 0755
 
     - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
     - command: gsettings set org.gnome.desktop.interface clock-show-date true
