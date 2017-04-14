@@ -75,3 +75,9 @@
         dest: /etc/vimrc
         content: ""
       become: true
+
+    - name: "disable stupid ls colors"
+      copy:
+        dest: /etc/profile.d/colorls.sh
+        content: ""
+      become: true
