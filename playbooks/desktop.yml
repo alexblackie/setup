@@ -37,11 +37,6 @@
         state: present
       become: true
 
-    - dnf:
-        name: https://downloads.slack-edge.com/linux_releases/slack-2.3.3-0.1.fc21.x86_64.rpm
-        state: present
-      become: true
-
     - name: Add VSCode signing key
       become: true
       rpm_key:
