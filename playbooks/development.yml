@@ -1,6 +1,18 @@
 ---
 - hosts: localhost
   tasks:
+
+    # -------------------------------------------------------------------------
+    # External playbooks
+    # -------------------------------------------------------------------------
+
+    - include: development/postgresql.yml
+
+
+    # -------------------------------------------------------------------------
+    # Inline setup
+    # -------------------------------------------------------------------------
+
     - name: "temp directory for storing source code archives of compiled warez"
       file:
         path: "{{home}}/src"
@@ -32,7 +44,6 @@
         - perf
         - dstat
         - redhat-rpm-config
-        - postgresql-devel
         - python3-devel
         - python2-virtualenv
         - rpm-build
