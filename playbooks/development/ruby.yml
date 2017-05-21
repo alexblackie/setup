@@ -1,0 +1,26 @@
+---
+
+- name: "Add chruby and ruby-install copr repos"
+  command: dnf copr enable -y postmodern/{{ item }}
+  become: true
+  args:
+    creates: /etc/yum.repos.d/_copr_postmodern-{{ item }}.repo
+  with_items:
+    - ruby-install
+    - chruby
+
+- name: "Install chruby and ruby-install"
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - ruby-install
+    - chruby
+
+- name: "Install rubbies"
+  command: ruby-install ruby {{ item }}
+  args:
+    creates: "{{ home }}/.rubies/ruby-{{ item }}/bin/ruby"
+  with_items:
+    - 2.4.1
