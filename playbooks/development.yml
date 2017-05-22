@@ -55,12 +55,6 @@
         - awscli
         - httpstat
 
-    - shell: curl -Ls https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-126.0.0-linux-x86_64.tar.gz | tar xz && \
-        mv ./google-cloud-sdk ~/bin/gcloudsdk
-      args:
-        chdir: "{{home}}/src"
-        creates: "{{home}}/bin/gcloudsdk"
-
     - shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
       args:
         creates: "{{home}}/bin/heroku"
@@ -69,7 +63,7 @@
         path: "{{home}}/.env"
         state: touch
     - lineinfile:
-        line: export PATH=$HOME/bin/gcloudsdk/bin:$HOME/bin/heroku/bin:$PATH
+        line: export PATH=$HOME/bin/heroku/bin:$PATH
         dest: "{{home}}/.env"
 
     - git:
