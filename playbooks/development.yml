@@ -39,14 +39,11 @@
         - optipng
         - htop
         - java-1.8.0-openjdk
-        - python-pygments
         - nmap
         - ImageMagick
         - perf
         - dstat
         - redhat-rpm-config
-        - python3-devel
-        - python2-virtualenv
         - rpm-build
 
     - pip:
