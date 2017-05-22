@@ -6,6 +6,7 @@
     state: latest
   with_items:
     - python-psycopg2
+    - postgresql
     - postgresql-devel
     - postgresql-server
     - postgresql-contrib
