@@ -1,0 +1,7 @@
+---
+
+- name: "Install Erlang"
+  dnf:
+    name: erlang
+    state: latest
+  become: true
