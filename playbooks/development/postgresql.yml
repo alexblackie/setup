@@ -17,6 +17,13 @@
     creates: /var/lib/pgsql/data/pg_hba.conf
   become: true
 
+- name: "Enable and start postresql"
+  service:
+    name: postgresql
+    enabled: yes
+    state: started
+  become: true
+
 - name: "Add superuser role for default user"
   postgresql_user:
     name: "{{ user }}"
@@ -24,10 +31,3 @@
     state: present
   become: true
   become_user: postgres
-
-- name: "Enable and start postresql"
-  service:
-    name: postgresql
-    enabled: yes
-    state: started
-  become: true
