@@ -1,0 +1,14 @@
+---
+
+- name: "Install redis"
+  dnf:
+    name: redis
+    state: present
+  become: true
+
+- name: "Enable and start redis"
+  service:
+    name: redis
+    state: started
+    enabled: yes
+  become: true

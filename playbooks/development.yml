@@ -7,6 +7,7 @@
     # -------------------------------------------------------------------------
 
     - include: development/postgresql.yml
+    - include: development/redis.yml
     - include: development/ruby.yml
     - include: development/erlang.yml
     - include: development/fedora-overrides.yml
