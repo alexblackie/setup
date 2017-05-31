@@ -35,6 +35,16 @@
         state: present
       become: true
 
+    - unarchive:
+        remote_src: yes
+        src: https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2
+        dest: /usr/local/
+      become: true
+    - template:
+        src: sublime_text.desktop
+        dest: /usr/share/applications/sublime_text.desktop
+      become: true
+
     - name: Install securedata script for mounting SD card
       become: true
       template:

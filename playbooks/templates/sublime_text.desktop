@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sublime Text
+GenericName=Text Editor
+Comment=Sophisticated text editor for code, markup and prose
+Exec=/usr/local/sublime_text_3/sublime_text %F
+Terminal=false
+MimeType=text/plain;
+Icon=/usr/local/sublime_text_3/Icon/256x256/sublime-text.png
+Categories=TextEditor;Development;
+StartupNotify=true
+Actions=Window;Document;
