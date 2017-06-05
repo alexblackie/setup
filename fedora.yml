@@ -1,0 +1,8 @@
+---
+# This is just a manifest file that includes all the real playbooks.
+- include: playbooks/system-fedora.yml
+- include: playbooks/development-fedora.yml
+- include: playbooks/docker-fedora.yml
+- include: playbooks/desktop-fedora.yml
+- include: playbooks/dotfiles.yml
+- include: playbooks/vpns.yml

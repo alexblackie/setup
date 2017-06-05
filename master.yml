@@ -1,8 +1,0 @@
----
-# This is just a manifest file that includes all the real playbooks.
-- include: playbooks/system.yml
-- include: playbooks/development.yml
-- include: playbooks/dotfiles.yml
-- include: playbooks/docker.yml
-- include: playbooks/desktop.yml
-- include: playbooks/vpns.yml
