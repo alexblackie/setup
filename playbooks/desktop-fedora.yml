@@ -1,6 +1,15 @@
 ---
 - hosts: localhost
   tasks:
+
+    - name: "system ruby for gextension"
+      dnf:
+        name: ruby
+        state: latest
+      become: true
+
+    - include: shared_tasks/desktop.yml
+
     - dnf:
         name: "{{item}}"
         state: latest
@@ -34,44 +43,3 @@
         name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
         state: present
       become: true
-
-    - unarchive:
-        remote_src: yes
-        src: https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2
-        dest: /usr/local/
-      become: true
-    - template:
-        src: sublime_text.desktop
-        dest: /usr/share/applications/sublime_text.desktop
-      become: true
-
-    - name: Install securedata script for mounting SD card
-      become: true
-      template:
-        src: securedata
-        dest: /usr/local/bin/securedata
-        mode: 0755
-
-    - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
-    - command: gsettings set org.gnome.desktop.interface clock-show-date true
-    - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
-    - command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
-
-    - name: "system ruby for gextension"
-      dnf:
-        name: ruby
-        state: latest
-      become: true
-    - git:
-        repo: https://github.com/alexblackie/gextension.git
-        dest: "{{home}}/.gextension"
-        accept_hostkey: yes
-        update: no
-    - name: "install GNOME extensions"
-      shell: "./gextension install {{item}}"
-      args:
-        chdir: "{{home}}/.gextension"
-      with_items:
-        - sound-output-device-chooser@kgshank.net
-        - dash-to-dock@micxgx.gmail.com
-        - caffeine@patapon.info

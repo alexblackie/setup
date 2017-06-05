@@ -1,5 +1,6 @@
 ---
 # This is just a manifest file that includes all the real playbooks.
+# This playbook is only for Fedora-based systems.
 - include: playbooks/system-fedora.yml
 - include: playbooks/development-fedora.yml
 - include: playbooks/docker-fedora.yml

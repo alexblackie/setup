@@ -1,9 +1,0 @@
----
-
-- name: "Install python and some libs"
-  dnf:
-    name: "{{ item }}"
-  with_items:
-    - python3-devel
-    - python2-virtualenv
-    - python-pygments

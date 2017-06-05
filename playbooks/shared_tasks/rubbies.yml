@@ -1,0 +1,7 @@
+---
+- name: "Install rubbies"
+  command: ruby-install ruby {{ item }}
+  args:
+    creates: "{{ home }}/.rubies/ruby-{{ item }}/bin/ruby"
+  with_items:
+    - 2.4.1

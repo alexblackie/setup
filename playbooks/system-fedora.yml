@@ -19,9 +19,4 @@
         state: present
       become: true
 
-    - name: "enable sshd"
-      service:
-        name: sshd
-        state: started
-        enabled: yes
-      become: true
+    - include: shared_tasks/system.yml

@@ -1,0 +1,37 @@
+---
+- name: "temp directory for storing source code archives of compiled warez"
+  file:
+    path: "{{home}}/src"
+    state: directory
+
+- name: "local bin directory"
+  file:
+    path: "{{home}}/bin"
+    state: directory
+
+- pip:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - awscli
+    - httpstat
+
+- shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
+  args:
+    creates: "{{home}}/bin/heroku"
+
+- file:
+    path: "{{home}}/.env"
+    state: touch
+- lineinfile:
+    line: export PATH=$HOME/bin/heroku/bin:$PATH
+    dest: "{{home}}/.env"
+
+- git:
+    repo: https://github.com/jhawthorn/fzy.git
+    dest: "{{home}}/src/fzy"
+- shell: "make && make install"
+  become: true
+  args:
+    chdir: "{{home}}/src/fzy"
