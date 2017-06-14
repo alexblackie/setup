@@ -6,8 +6,6 @@
     # General config
     # -------------------------------------------------------------------------
 
-    - include: shared_tasks/development.yml
-
     - name: "disable gross vim defaults"
       copy:
         dest: /etc/vimrc
@@ -42,6 +40,9 @@
         - rpm-build
         - rust
         - cargo
+        - python-devel
+
+    - include: shared_tasks/development.yml
 
 
     # -------------------------------------------------------------------------
