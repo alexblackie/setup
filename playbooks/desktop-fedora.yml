@@ -10,6 +10,16 @@
 
     - include: shared_tasks/desktop.yml
 
+    - name: "Add Sublime Text 3 repo"
+      yum_repository:
+        name: "sublime-text"
+        description: "Sublime Text Dev Channel"
+        baseurl: https://download.sublimetext.com/rpm/dev/x86_64
+        enabled: yes
+        gpgcheck: yes
+        gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+      become: true
+
     - dnf:
         name: "{{item}}"
         state: latest
@@ -29,6 +39,7 @@
         - powertop
         - virt-viewer
         - fuse-exfat
+        - sublime-text
 
     - template:
         src: lollypop.repo.j2
