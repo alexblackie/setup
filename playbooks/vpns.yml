@@ -19,5 +19,4 @@
         mode: 0400
       become: true
       with_items:
-        - BlackieOps YYJ-1
         - BlackieOps YYJ-2
