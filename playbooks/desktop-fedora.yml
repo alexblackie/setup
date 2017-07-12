@@ -4,9 +4,12 @@
 
     - name: "system ruby for gextension"
       dnf:
-        name: ruby
+        name: "{{ item }}"
         state: latest
       become: true
+      with_items:
+        - ruby
+        - rubygem-json
 
     - include: shared_tasks/desktop.yml
 

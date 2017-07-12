@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
   tasks:
-    - dnf:
+    - name: "Install docker"
+      dnf:
         name: "{{item}}"
         state: present
       become: true

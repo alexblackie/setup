@@ -18,7 +18,10 @@
         content: ""
       become: true
 
-    - dnf:
+    # For some reason, dnf doesn't like installing groups here, so we've
+    # included "C development tools and libraries" manually...
+    - name: "Install some development tools and libraries"
+      dnf:
         name: "{{item}}"
         state: latest
       become: true
@@ -27,7 +30,6 @@
         - tmux
         - vim
         - the_silver_searcher
-        - "@C Development Tools and Libraries"
         - pass
         - optipng
         - htop
@@ -38,9 +40,20 @@
         - dstat
         - redhat-rpm-config
         - rpm-build
-        - rust
-        - cargo
         - python-devel
+        - autoconf
+        - automake
+        - binutils
+        - bison
+        - flex
+        - gcc
+        - gcc-c++
+        - gdb
+        - glibc-devel
+        - libtool
+        - make
+        - pkgconfig
+        - strace
 
     - include: shared_tasks/development.yml
 
@@ -114,24 +127,6 @@
     # -------------------------------------------------------------------------
     # Ruby
     # -------------------------------------------------------------------------
-
-    - name: "Add chruby and ruby-install copr repos"
-      command: dnf copr enable -y postmodern/{{ item }}
-      become: true
-      args:
-        creates: /etc/yum.repos.d/_copr_postmodern-{{ item }}.repo
-      with_items:
-        - ruby-install
-        - chruby
-
-    - name: "Install chruby and ruby-install"
-      dnf:
-        name: "{{ item }}"
-        state: latest
-      become: true
-      with_items:
-        - ruby-install
-        - chruby
 
     - include: shared_tasks/rubbies.yml
 

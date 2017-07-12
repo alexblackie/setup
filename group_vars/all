@@ -2,4 +2,4 @@
 user: ablackie
 group: ablackie
 home: /home/{{user}}
-fedora_release: 25
+fedora_release: 26
