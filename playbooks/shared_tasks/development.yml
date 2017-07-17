@@ -16,7 +16,6 @@
   with_items:
     - awscli
     - httpstat
-    - python-openstackclient
 
 - shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
   args:
