@@ -47,6 +47,7 @@
         - ffmpeg
         - powertop
         - virt-viewer
+        - virt-manager
         - fuse-exfat
         - sublime-text
 
