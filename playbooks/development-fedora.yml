@@ -54,6 +54,7 @@
         - make
         - pkgconfig
         - strace
+        - ruby-devel
 
     - include: shared_tasks/development.yml
 
