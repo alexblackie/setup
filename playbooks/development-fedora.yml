@@ -55,6 +55,7 @@
         - pkgconfig
         - strace
         - ruby-devel
+        - nodejs
 
     - include: shared_tasks/development.yml
 
