@@ -34,6 +34,7 @@
         - optipng
         - htop
         - java-1.8.0-openjdk
+        - java-1.8.0-openjdk-devel
         - nmap
         - ImageMagick
         - perf
