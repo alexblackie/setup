@@ -23,7 +23,7 @@
       yum_repository:
         name: "sublime-text"
         description: "Sublime Text Dev Channel"
-        baseurl: https://download.sublimetext.com/rpm/dev/x86_64
+        baseurl: https://download.sublimetext.com/rpm/stable/x86_64
         enabled: yes
         gpgcheck: yes
         gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
@@ -45,6 +45,7 @@
         - gstreamer-plugins-ugly
         - gstreamer1-plugins-ugly
         - ffmpeg
+        - mpv
         - powertop
         - virt-viewer
         - virt-manager
