@@ -53,6 +53,7 @@
         - glibc-devel
         - libtool
         - make
+        - maven
         - pkgconfig
         - strace
         - ruby-devel
