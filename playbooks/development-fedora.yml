@@ -59,6 +59,8 @@
         - ruby-devel
         - nodejs
         - sqlite-devel
+        - rust
+        - cargo
 
     - include: shared_tasks/development.yml
 
