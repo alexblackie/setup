@@ -7,6 +7,23 @@
     dest: /usr/local/bin/securedata
     mode: 0755
 
+- name: Clone Vimix theme
+  git:
+    repo: https://github.com/vinceliuice/vimix-gtk-themes.git
+    dest: "{{ home }}/src/vimix"
+    update: no
+    accept_hostkey: yes
+- name: Install vimix theme
+  command: ./Install
+  become: yes
+  args:
+    creates: /usr/share/themes/Vimix-Dark
+    chdir: "{{ home }}/src/vimix"
+- name: Enable vimix gtk theme
+  command: gsettings set org.gnome.desktop.interface gtk-theme VimixDark-Doder
+- name: Enable vimix window theme
+  command: gsettings set org.gnome.desktop.wm.preferences theme VimixDark-Doder
+
 - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 - command: gsettings set org.gnome.desktop.interface clock-show-date true
 - command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true

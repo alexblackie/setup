@@ -51,6 +51,8 @@
         - virt-manager
         - fuse-exfat
         - sublime-text
+        - glib2-devel
+        - gtk2-engines
 
     - template:
         src: lollypop.repo.j2
