@@ -13,16 +13,30 @@
     dest: "{{ home }}/src/vimix"
     update: no
     accept_hostkey: yes
+- name: Clone Vimix icons
+  git:
+    repo: https://github.com/vinceliuice/vimix-icon-theme.git
+    dest: "{{ home }}/src/vimix-icons"
+    update: no
+    accept_hostkey: yes
 - name: Install vimix theme
   command: ./Install
   become: yes
   args:
     creates: /usr/share/themes/Vimix-Dark
     chdir: "{{ home }}/src/vimix"
+- name: Install vimix icon theme
+  command: cp -a Vimix Paper-Vimix /usr/share/icons/
+  become: yes
+  args:
+    creates: /usr/share/icons/Vimix
+    chdir: "{{ home }}/src/vimix-icons"
 - name: Enable vimix gtk theme
   command: gsettings set org.gnome.desktop.interface gtk-theme VimixDark-Doder
 - name: Enable vimix window theme
   command: gsettings set org.gnome.desktop.wm.preferences theme VimixDark-Doder
+- name: Enable vimix icon theme
+  command: gsettings set org.gnome.desktop.interface icon-theme Vimix
 
 - command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 - command: gsettings set org.gnome.desktop.interface clock-show-date true
