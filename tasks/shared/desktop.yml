@@ -1,12 +1,5 @@
 ---
 
-- name: Install securedata script for mounting SD card
-  become: true
-  template:
-    src: securedata
-    dest: /usr/local/bin/securedata
-    mode: 0755
-
 - name: Clone Vimix theme
   git:
     repo: https://github.com/vinceliuice/vimix-gtk-themes.git
