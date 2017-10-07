@@ -1,0 +1,11 @@
+---
+- name: "Install docker"
+  dnf:
+    name: "{{item}}"
+    state: present
+  become: true
+  with_items:
+    - docker
+    - docker-compose
+
+- import_tasks: ../shared/docker.yml

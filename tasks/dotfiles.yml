@@ -1,0 +1,15 @@
+---
+- file:
+    path: "{{home}}/bin"
+    state: directory
+
+- git:
+    repo: https://github.com/alexblackie/dotfiles.git
+    dest: "{{home}}/.dotfiles"
+    accept_hostkey: yes
+    update: no
+
+- shell: "make && make install && make dconf"
+  args:
+    chdir: "{{home}}/.dotfiles"
+    creates: "{{home}}/.commonrc"

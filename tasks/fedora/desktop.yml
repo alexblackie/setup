@@ -1,0 +1,67 @@
+---
+
+- name: "system ruby for gextension"
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  become: true
+  with_items:
+    - ruby
+    - rubygem-json
+
+- import_tasks: ../shared/desktop.yml
+
+- name: "Install keybase"
+  dnf:
+    name: https://prerelease.keybase.io/keybase_amd64.rpm
+    state: present
+  become: true
+
+- name: "Add Sublime Text 3 repo"
+  yum_repository:
+    name: "sublime-text"
+    description: "Sublime Text Dev Channel"
+    baseurl: https://download.sublimetext.com/rpm/stable/x86_64
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+  become: true
+
+- dnf:
+    name: "{{item}}"
+    state: latest
+  become: true
+  with_items:
+    - terminus-fonts
+    - xorg-x11-fonts-misc
+    - adobe-source-code-pro-fonts
+    - gnome-tweak-tool
+    - gimp
+    - gstreamer-plugins-good
+    - gstreamer-plugins-bad
+    - gstreamer-plugins-bad-free
+    - gstreamer-plugins-ugly
+    - gstreamer1-plugins-ugly
+    - ffmpeg
+    - mpv
+    - powertop
+    - virt-viewer
+    - virt-manager
+    - fuse-exfat
+    - sublime-text
+    - glib2-devel
+    - gtk2-engines
+
+- template:
+    src: lollypop.repo.j2
+    dest: /etc/yum.repos.d/lollypop.repo
+  become: true
+- dnf:
+    name: lollypop
+    state: present
+  become: true
+
+- dnf:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
+  become: true

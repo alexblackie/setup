@@ -1,9 +1,10 @@
 ---
-# This is just a manifest file that includes all the real playbooks.
-# This playbook is only for Fedora-based systems.
-- include: playbooks/system-fedora.yml
-- include: playbooks/development-fedora.yml
-- include: playbooks/docker-fedora.yml
-- include: playbooks/desktop-fedora.yml
-- include: playbooks/dotfiles.yml
-- include: playbooks/vpns.yml
+- hosts: localhost
+  tasks:
+    - include_tasks: tasks/fedora/system.yml
+    - include_tasks: tasks/fedora/development.yml
+    - include_tasks: tasks/fedora/docker.yml
+    - include_tasks: tasks/fedora/desktop.yml
+    - include_tasks: tasks/fedora/vpns.yml
+
+    - include_tasks: tasks/dotfiles.yml
