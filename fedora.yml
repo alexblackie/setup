@@ -5,6 +5,4 @@
     - include_tasks: tasks/fedora/development.yml
     - include_tasks: tasks/fedora/docker.yml
     - include_tasks: tasks/fedora/desktop.yml
-    - include_tasks: tasks/fedora/vpns.yml
-
     - include_tasks: tasks/dotfiles.yml
