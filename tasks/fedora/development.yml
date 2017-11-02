@@ -93,8 +93,16 @@
 - name: "Initialize PostgreSQL data directory"
   command: "postgresql-setup --initdb --unit postgresql"
   args:
-    creates: /var/lib/pgsql/data/pg_hba.conf
+    creates: /var/lib/pgsql/data/postgresql.conf
   become: true
+
+- name: "Add custom pg_hba.conf to allow password auth"
+  template:
+    src: pg_hba.conf.j2
+    dest: /var/lib/pgsql/data/pg_hba.conf
+  become: yes
+  notify:
+    - restart postgresql
 
 - name: "Enable and start postresql"
   service:
