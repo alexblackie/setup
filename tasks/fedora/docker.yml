@@ -3,7 +3,7 @@
   dnf:
     name: "{{item}}"
     state: present
-  become: true
+  become: yes
   with_items:
     - docker
     - docker-compose

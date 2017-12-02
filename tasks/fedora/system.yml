@@ -3,18 +3,18 @@
   lineinfile:
     line: fastestmirror=1
     dest: /etc/dnf/dnf.conf
-  become: true
+  become: yes
 
 - name: "enable rpmfusion free"
   dnf:
     name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{fedora_release}}.noarch.rpm
     state: present
-  become: true
+  become: yes
 
 - name: "enable rpmfusion non-free"
   dnf:
     name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
     state: present
-  become: true
+  become: yes
 
 - import_tasks: ../shared/system.yml

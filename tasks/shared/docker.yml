@@ -1,15 +1,18 @@
 ---
-- group: name="docker"
-  become: true
+- name: "Ensure presence of docker group"
+  group: name="docker"
+  become: yes
 
-- user:
-    name: "{{user}}"
+- name: "Add local user to docker group"
+  user:
+    name: "{{ user }}"
     groups: docker
     append: yes
-  become: true
+  become: yes
 
-- service:
+- name: "Enable and start docker"
+  service:
     name: docker
     enabled: yes
     state: started
-  become: true
+  become: yes

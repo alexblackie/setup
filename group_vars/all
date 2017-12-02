@@ -1,5 +1,0 @@
----
-user: ablackie
-group: ablackie
-home: /home/{{user}}
-fedora_release: 26

@@ -1,15 +1,18 @@
 ---
-- file:
-    path: "{{home}}/bin"
+- name: "Ensure presence of local bin directory"
+  file:
+    path: "{{ home }}/bin"
     state: directory
 
-- git:
+- name: "Clone Dotfiles"
+  git:
     repo: https://github.com/alexblackie/dotfiles.git
-    dest: "{{home}}/.dotfiles"
+    dest: "{{ home }}/.dotfiles"
     accept_hostkey: yes
     update: no
 
-- shell: "make && make install && make dconf"
+- name: "Install dotfiles"
+  shell: "make && make install && make dconf"
   args:
-    chdir: "{{home}}/.dotfiles"
-    creates: "{{home}}/.commonrc"
+    chdir: "{{ home }}/.dotfiles"
+    creates: "{{ home }}/.commonrc"

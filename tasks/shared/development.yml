@@ -1,37 +1,43 @@
 ---
 - name: "temp directory for storing source code archives of compiled warez"
   file:
-    path: "{{home}}/src"
+    path: "{{ home }}/src"
     state: directory
 
 - name: "local bin directory"
   file:
-    path: "{{home}}/bin"
+    path: "{{ home }}/bin"
     state: directory
 
-- pip:
-    name: "{{item}}"
+- name: "Install some python tools"
+  pip:
+    name: "{{ item }}"
     state: present
-  become: true
+  become: yes
   with_items:
     - awscli
     - httpstat
 
-- shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
+- name: "Install the heroku-cli"
+  shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
   args:
-    creates: "{{home}}/bin/heroku"
+    creates: "{{ home }}/bin/heroku"
 
-- file:
-    path: "{{home}}/.env"
+- name: "Create user env file"
+  file:
+    path: "{{ home }}/.env"
     state: touch
-- lineinfile:
+- name: "Add Heroku CLI to PATH"
+  lineinfile:
     line: export PATH=$HOME/bin/heroku/bin:$PATH
-    dest: "{{home}}/.env"
+    dest: "{{ home }}/.env"
 
-- git:
+- name: "Clone fzy"
+  git:
     repo: https://github.com/jhawthorn/fzy.git
-    dest: "{{home}}/src/fzy"
-- shell: "make && make install"
+    dest: "{{ home }}/src/fzy"
+- name: "Compile and install fzy"
+  shell: "make && make install"
   become: true
   args:
-    chdir: "{{home}}/src/fzy"
+    chdir: "{{ home }}/src/fzy"
