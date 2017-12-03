@@ -1,5 +1,7 @@
 ---
 - hosts: localhost
+  handlers:
+    - include_tasks: handlers/main.yml
   tasks:
     - include_tasks: tasks/fedora/system.yml
     - include_tasks: tasks/fedora/development.yml
