@@ -1,0 +1,26 @@
+---
+
+- name: "Remap capslock to escape"
+  command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+- name: "Show date in top panel clock"
+  command: gsettings set org.gnome.desktop.interface clock-show-date true
+- name: "Allow resizing windows with super+right-click-drag"
+  command: gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+- name: "Show all window controls"
+  command: gsettings set org.gnome.desktop.wm.preferences button-layout ":minimize,maximize,close"
+
+- name: "Install gextension"
+  git:
+    repo: https://github.com/alexblackie/gextension.git
+    dest: "{{home}}/.gextension"
+    accept_hostkey: yes
+    update: no
+- name: Install GNOME extensions"
+  shell: "./gextension install {{item}}"
+  args:
+    chdir: "{{home}}/.gextension"
+  with_items:
+    - sound-output-device-chooser@kgshank.net
+    - dash-to-dock@micxgx.gmail.com
+    - caffeine@patapon.info
+    - impatience@gfxmonk.net
