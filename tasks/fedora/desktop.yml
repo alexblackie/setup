@@ -52,6 +52,7 @@
     - sublime-text
     - glib2-devel
     - gtk2-engines
+    - breeze-gtk
 
 - name: "Install Google Chromne"
   dnf:

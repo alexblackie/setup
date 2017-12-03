@@ -1,5 +1,10 @@
 ---
 
+- name: Enable breeze gtk theme
+  command: gsettings set org.gnome.desktop.interface gtk-theme Breeze
+- name: Enable breeze window theme
+  command: gsettings set org.gnome.desktop.wm.preferences theme Breeze
+
 - name: "Remap capslock to escape"
   command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 - name: "Show date in top panel clock"
