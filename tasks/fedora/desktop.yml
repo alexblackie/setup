@@ -30,8 +30,6 @@
   with_items:
     - ruby
     - rubygem-json
-    - terminus-fonts
-    - xorg-x11-fonts-misc
     - adobe-source-code-pro-fonts
     - gnome-tweak-tool
     - gimp
@@ -45,9 +43,6 @@
     - virt-manager
     - fuse-exfat
     - sublime-text
-    - glib2-devel
-    - gtk2-engines
-    - breeze-gtk
 
 - name: "Install Google Chromne"
   dnf:
