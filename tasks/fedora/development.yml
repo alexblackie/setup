@@ -29,6 +29,7 @@
     - vim
     - the_silver_searcher
     - pass
+    - pwgen
     - optipng
     - htop
     - java-1.8.0-openjdk
