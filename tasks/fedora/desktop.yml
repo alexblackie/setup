@@ -43,6 +43,7 @@
     - virt-manager
     - fuse-exfat
     - sublime-text
+    - youtube-dl
 
 - name: "Install Google Chromne"
   dnf:
