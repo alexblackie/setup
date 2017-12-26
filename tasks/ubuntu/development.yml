@@ -1,0 +1,122 @@
+---
+
+# -------------------------------------------------------------------------
+# General config
+# -------------------------------------------------------------------------
+
+- name: "Install some development tools and libraries"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
+    - git
+    - tmux
+    - vim
+    - silversearcher-ag
+    - pass
+    - pwgen
+    - optipng
+    - htop
+    - default-jre
+    - nmap
+    - imagemagick
+    - dstat
+    - python-dev
+    - python-pip
+    - build-essential
+    - maven
+    - strace
+    - ruby-dev
+    - nodejs
+    - libsqlite3-dev
+
+- import_tasks: ../shared/development.yml
+
+
+# -------------------------------------------------------------------------
+# Erlang
+# -------------------------------------------------------------------------
+
+- name: "Install Erlang"
+  apt:
+    name: erlang
+    state: latest
+  become: yes
+
+
+# -------------------------------------------------------------------------
+# PostgreSQL
+# -------------------------------------------------------------------------
+
+- name: "Install postgresql server and client libs"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python-psycopg2
+    - postgresql
+    - postgresql-client
+    - postgresql-contrib
+    - libpq-dev
+  become: yes
+
+- name: "Add custom pg_hba.conf to allow password auth"
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/9.5/main/pg_hba.conf
+  become: yes
+  notify:
+    - restart postgresql
+
+- name: "Enable and start postresql"
+  service:
+    name: postgresql
+    enabled: yes
+    state: started
+  become: yes
+
+- name: "Add superuser role for default user"
+  postgresql_user:
+    name: "{{ user }}"
+    role_attr_flags: SUPERUSER,LOGIN
+    state: present
+  become: yes
+  become_user: postgres
+
+
+# -------------------------------------------------------------------------
+# Redis
+# -------------------------------------------------------------------------
+- name: "Install redis"
+  apt:
+    name: redis-server
+    state: present
+  become: yes
+
+- name: "Enable and start redis"
+  service:
+    name: redis
+    state: started
+    enabled: yes
+  become: yes
+
+
+# -------------------------------------------------------------------------
+# Ruby
+# -------------------------------------------------------------------------
+
+- import_tasks: ../shared/rubbies.yml
+
+
+# -------------------------------------------------------------------------
+# Python
+# -------------------------------------------------------------------------
+
+- name: "Install python and some libs"
+  apt:
+    name: "{{ item }}"
+  with_items:
+    - virtualenv
+    - python-pygments
+  become: yes

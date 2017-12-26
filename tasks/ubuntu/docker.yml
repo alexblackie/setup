@@ -1,0 +1,11 @@
+---
+- name: "Install docker"
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - docker
+    - docker-compose
+
+- import_tasks: ../shared/docker.yml
