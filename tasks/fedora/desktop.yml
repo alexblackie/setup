@@ -28,6 +28,7 @@
     state: latest
   become: yes
   with_items:
+    - arc-theme
     - ruby
     - rubygem-json
     - adobe-source-code-pro-fonts

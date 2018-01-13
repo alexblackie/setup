@@ -1,5 +1,10 @@
 ---
 
+- name: Enable arc gtk theme
+  command: gsettings set org.gnome.desktop.interface gtk-theme Arc-Darker
+- name: Enable arc window theme
+  command: gsettings set org.gnome.desktop.wm.preferences theme Arc-Darker
+
 - name: "Remap capslock to escape"
   command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
 - name: "Show date in top panel clock"
