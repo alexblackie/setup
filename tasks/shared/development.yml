@@ -23,6 +23,14 @@
   args:
     creates: "{{ home }}/bin/heroku"
 
+
+- name: "Install Terraform"
+  unarchive:
+    src: https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
+    dest: "{{ home }}/bin/"
+    remote_src: yes
+  creates: "{{ home }}/bin/terraform"
+
 - name: "Create user env file"
   file:
     path: "{{ home }}/.env"
