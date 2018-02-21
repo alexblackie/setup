@@ -1,0 +1,10 @@
+---
+- name: "Install docker"
+  yum:
+    name: "{{item}}"
+    state: present
+  become: yes
+  with_items:
+    - docker
+
+- import_tasks: ../shared/docker.yml

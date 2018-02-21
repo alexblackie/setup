@@ -1,0 +1,15 @@
+---
+
+- name: "enable rpmfusion free"
+  yum:
+    name: https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
+    state: present
+  become: yes
+
+- name: "enable rpmfusion non-free"
+  yum:
+    name: https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm
+    state: present
+  become: yes
+
+- import_tasks: ../shared/system.yml

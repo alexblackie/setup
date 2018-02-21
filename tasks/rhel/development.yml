@@ -1,0 +1,151 @@
+---
+
+# -------------------------------------------------------------------------
+# General config
+# -------------------------------------------------------------------------
+
+- name: "disable gross vim defaults"
+  copy:
+    dest: /etc/vimrc
+    content: ""
+  become: yes
+
+- name: "disable stupid ls colors"
+  copy:
+    dest: /etc/profile.d/colorls.sh
+    content: ""
+  become: yes
+
+# For some reason, yum doesn't like installing groups here, so we've
+# included "C development tools and libraries" manually...
+- name: "Install some development tools and libraries"
+  yum:
+    name: "{{item}}"
+    state: latest
+  become: yes
+  with_items:
+    - git
+    - tmux
+    - vim
+    - the_silver_searcher
+    - pass
+    - pwgen
+    - optipng
+    - htop
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - nmap
+    - ImageMagick
+    - perf
+    - dstat
+    - redhat-rpm-config
+    - rpm-build
+    - python-devel
+    - autoconf
+    - automake
+    - binutils
+    - bison
+    - flex
+    - gcc
+    - gcc-c++
+    - gdb
+    - glibc-devel
+    - libtool
+    - make
+    - maven
+    - pkgconfig
+    - strace
+    - ruby-devel
+    - nodejs
+    - sqlite-devel
+    - python-virtualenv
+    - python-pip
+    - python-pygments
+
+- import_tasks: ../shared/development.yml
+
+# -------------------------------------------------------------------------
+# Erlang
+# -------------------------------------------------------------------------
+
+- name: "Install Erlang"
+  yum:
+    name: https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_20.2.2-1~centos~7_amd64.rpm
+    state: latest
+  become: yes
+
+
+# -------------------------------------------------------------------------
+# PostgreSQL
+# -------------------------------------------------------------------------
+
+- name: Add PostgreSQL repository
+  yum:
+    name: https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm
+    state: present
+  become: yes
+
+- name: Install PostgreSQL
+  yum:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - postgresql96
+    - postgresql96-server
+    - postgresql96-contrib
+    - postgresql96-devel
+    - python-psycopg2
+
+- name: "Initialize PostgreSQL data directory"
+  command: /usr/pgsql-9.6/bin/postgresql96-setup initdb
+  args:
+    creates: /var/lib/pgsql/9.6/data/postgresql.conf
+  become: yes
+
+- name: "Add custom pg_hba.conf to allow password auth"
+  template:
+    src: pg_hba.conf.j2
+    dest: /var/lib/pgsql/9.6/data/pg_hba.conf
+  become: yes
+  notify:
+    - restart postgresql
+
+- name: "Enable and start postresql"
+  service:
+    name: postgresql-9.6
+    enabled: yes
+    state: started
+  become: yes
+
+- name: "Add superuser role for default user"
+  postgresql_user:
+    name: "{{ user }}"
+    role_attr_flags: SUPERUSER,LOGIN
+    state: present
+  become: yes
+  become_user: postgres
+
+
+# -------------------------------------------------------------------------
+# Redis
+# -------------------------------------------------------------------------
+- name: "Install redis"
+  yum:
+    name: redis
+    state: present
+  become: yes
+
+- name: "Enable and start redis"
+  service:
+    name: redis
+    state: started
+    enabled: yes
+  become: yes
+
+
+# -------------------------------------------------------------------------
+# Ruby
+# -------------------------------------------------------------------------
+
+- import_tasks: ../shared/rubbies.yml

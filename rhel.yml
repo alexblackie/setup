@@ -1,0 +1,19 @@
+---
+
+# Unfortunately since Ansible is not in the default collections, you will need
+# to manually enable EPEL before you can run this. Luckily, it's easy.
+#
+#       subscription-manager repos --enable rhel-7-workstation-optional-rpms
+#       subscription-manager repos --enable rhel-7-workstation-extras-rpms
+#       yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+#
+
+- hosts: localhost
+  handlers:
+    - import_tasks: handlers/main.yml
+  tasks:
+    - include_tasks: tasks/rhel/system.yml
+    - include_tasks: tasks/rhel/development.yml
+    - include_tasks: tasks/rhel/docker.yml
+    - include_tasks: tasks/rhel/desktop.yml
+    - include_tasks: tasks/dotfiles.yml
