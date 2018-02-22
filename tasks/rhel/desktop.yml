@@ -35,6 +35,7 @@
     - youtube-dl
     - rhythmbox
     - gstreamer1-plugins-bad-freeworld
+    - redshift-gtk
 
 - name: Install Lollypop
   command: flatpak install --assumeyes --from https://flathub.org/repo/appstream/org.gnome.Lollypop.flatpakref
