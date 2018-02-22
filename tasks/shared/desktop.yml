@@ -5,8 +5,8 @@
 - name: Enable arc window theme
   command: gsettings set org.gnome.desktop.wm.preferences theme Arc-Darker
 
-- name: "Remap capslock to escape"
-  command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape']"
+- name: "Remap capslock to escape and set compose key"
+  command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'compose:rctrl']"
 - name: "Show date in top panel clock"
   command: gsettings set org.gnome.desktop.interface clock-show-date true
 - name: "Allow resizing windows with super+right-click-drag"
