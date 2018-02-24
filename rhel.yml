@@ -12,8 +12,7 @@
   vars:
     is_rhel: yes
   roles:
+    - common_config
     - desktop
     - development_workstation
     - docker
-  tasks:
-    - include_tasks: tasks/rhel/system.yml

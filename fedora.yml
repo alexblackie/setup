@@ -5,8 +5,7 @@
     is_fedora: yes
   roles:
     - yum_compat
+    - common_config
     - desktop
     - development_workstation
     - docker
-  tasks:
-    - include_tasks: tasks/fedora/system.yml
