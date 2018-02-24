@@ -2,8 +2,10 @@
 
 - name: Install the heroku-cli
   become: yes
-  shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC /usr/local
-  args:
+  unarchive:
+    src: https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz
+    dest: /usr/local
+    remote_src: yes
     creates: /usr/local/heroku/bin/heroku
 
 - name: Install Terraform
