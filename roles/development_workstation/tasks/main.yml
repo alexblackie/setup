@@ -59,9 +59,6 @@
     - ruby-devel
     - nodejs
     - sqlite-devel
-    - python-virtualenv
-    - python-pip
-    - python-pygments
 
 - import_tasks: postgresql_rhel.yml
   when: is_rhel is defined
