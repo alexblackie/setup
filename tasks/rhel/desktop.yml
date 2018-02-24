@@ -37,18 +37,6 @@
     - gstreamer1-plugins-bad-freeworld
     - redshift-gtk
 
-- name: Install Lollypop
-  command: flatpak install --assumeyes --from https://flathub.org/repo/appstream/org.gnome.Lollypop.flatpakref
-  become: yes
-  args:
-    creates: /var/lib/flatpak/app/org.gnome.Lollypop
-
-- name: Make lollypop available to GNOME overview
-  command: ln -s /var/lib/flatpak/exports/share/applications/org.gnome.Lollypop.desktop /usr/share/applications/org.gnome.Lollypop.desktop
-  become: yes
-  args:
-    creates: /usr/share/applications/org.gnome.Lollypop.desktop
-
 - name: "Install Google Chromne"
   yum:
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm

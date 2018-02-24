@@ -16,12 +16,6 @@
     gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
   become: yes
 
-- name: "Add lollypop repo"
-  template:
-    src: lollypop.repo.j2
-    dest: /etc/yum.repos.d/lollypop.repo
-  become: yes
-
 - name: "Install various desktop apps and tools"
   dnf:
     name: "{{item}}"
@@ -38,7 +32,6 @@
     - firefox
     - ffmpeg
     - mpv
-    - lollypop
     - powertop
     - virt-viewer
     - virt-manager
