@@ -16,6 +16,7 @@
     - fuse-exfat
 
 - name: Install workstation CLI tools
+  become: yes
   yum:
     name: "{{ item }}"
     state: present

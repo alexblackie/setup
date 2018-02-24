@@ -11,6 +11,7 @@
   become: yes
 
 - name: Install Sublime Text
+  become: yes
   yum:
     name: sublime-text
     state: present

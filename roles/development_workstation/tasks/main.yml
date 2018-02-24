@@ -54,6 +54,7 @@
     - sqlite-devel
 
 - name: Install system visibility tools
+  become: yes
   yum:
     name: "{{ item }}"
     state: present
