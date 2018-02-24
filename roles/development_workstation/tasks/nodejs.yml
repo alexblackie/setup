@@ -1,6 +1,7 @@
 ---
 
 - name: Install nodejs and tools
+  become: true
   yum:
     name: "{{ item }}"
     state: present
