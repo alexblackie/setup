@@ -49,14 +49,11 @@
     - pwgen
     - optipng
     - htop
-    - java-1.8.0-openjdk
-    - java-1.8.0-openjdk-devel
     - ImageMagick
     - perf
     - dstat
     - redhat-rpm-config
     - rpm-build
-    - maven
     - pkgconfig
     - strace
     - ruby-devel
@@ -73,6 +70,7 @@
 
 - import_tasks: ruby.yml
 - import_tasks: erlang.yml
+- import_tasks: java.yml
 
 - import_tasks: cloud_trash.yml
 - import_tasks: fzy.yml
