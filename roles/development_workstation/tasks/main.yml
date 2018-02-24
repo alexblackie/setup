@@ -22,8 +22,20 @@
     path: "{{ home }}/bin"
     state: directory
 
-# For some reason, yum doesn't like installing groups here, so we've
-# included "C development tools and libraries" manually...
+- name: Install C toolchain
+  become: yes
+  dnf:
+    name: "@C Development Tools and Libraries"
+    state: present
+  when: is_fedora is defined
+
+- name: Install C toolchain
+  become: yes
+  yum:
+    name: "@Development Tools"
+    state: present
+  when: is_rhel is defined
+
 - name: "Install some development tools and libraries"
   yum:
     name: "{{item}}"
@@ -44,18 +56,6 @@
     - dstat
     - redhat-rpm-config
     - rpm-build
-    - python-devel
-    - autoconf
-    - automake
-    - binutils
-    - bison
-    - flex
-    - gcc
-    - gcc-c++
-    - gdb
-    - glibc-devel
-    - libtool
-    - make
     - maven
     - pkgconfig
     - strace
