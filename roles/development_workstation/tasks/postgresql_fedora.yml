@@ -1,0 +1,42 @@
+---
+
+- name: Install postgresql server and client libs
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - python-psycopg2
+    - postgresql
+    - postgresql-devel
+    - postgresql-server
+    - postgresql-contrib
+  become: yes
+
+- name: Initialize PostgreSQL data directory
+  command: postgresql-setup --initdb --unit postgresql
+  args:
+    creates: /var/lib/pgsql/data/postgresql.conf
+  become: yes
+
+- name: Add custom pg_hba.conf to allow password auth
+  template:
+    src: pg_hba.conf.j2
+    dest: /var/lib/pgsql/data/pg_hba.conf
+  become: yes
+  notify:
+    - restart postgresql
+
+- name: Enable and start postresql
+  service:
+    name: postgresql
+    enabled: yes
+    state: started
+  become: yes
+
+- name: Add superuser role for default user
+  postgresql_user:
+    name: "{{ user }}"
+    role_attr_flags: SUPERUSER,LOGIN
+    state: present
+  become: yes
+  become_user: postgres

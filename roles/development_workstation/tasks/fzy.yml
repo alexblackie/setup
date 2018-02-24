@@ -1,0 +1,12 @@
+---
+
+- name: Clone fzy
+  git:
+    repo: https://github.com/jhawthorn/fzy.git
+    dest: "{{ home }}/src/fzy"
+
+- name: Compile and install fzy
+  shell: make && make install
+  become: true
+  args:
+    chdir: "{{ home }}/src/fzy"

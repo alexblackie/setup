@@ -1,0 +1,78 @@
+---
+
+- name: disable gross vim defaults
+  copy:
+    dest: /etc/vimrc
+    content: ""
+  become: yes
+
+- name: disable stupid ls colors
+  copy:
+    dest: /etc/profile.d/colorls.sh
+    content: ""
+  become: yes
+
+- name: Create directory for third-party software sources
+  file:
+    path: "{{ home }}/src"
+    state: directory
+
+- name: Create local bin directory
+  file:
+    path: "{{ home }}/bin"
+    state: directory
+
+# For some reason, yum doesn't like installing groups here, so we've
+# included "C development tools and libraries" manually...
+- name: "Install some development tools and libraries"
+  yum:
+    name: "{{item}}"
+    state: latest
+  become: yes
+  with_items:
+    - git
+    - tmux
+    - vim
+    - the_silver_searcher
+    - pwgen
+    - optipng
+    - htop
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - ImageMagick
+    - perf
+    - dstat
+    - redhat-rpm-config
+    - rpm-build
+    - python-devel
+    - autoconf
+    - automake
+    - binutils
+    - bison
+    - flex
+    - gcc
+    - gcc-c++
+    - gdb
+    - glibc-devel
+    - libtool
+    - make
+    - maven
+    - pkgconfig
+    - strace
+    - ruby-devel
+    - nodejs
+    - sqlite-devel
+    - python-virtualenv
+    - python-pip
+    - python-pygments
+
+- import_tasks: postgresql_rhel.yml
+  when: is_rhel is defined
+- import_tasks: postgresql_fedora.yml
+  when: is_fedora is defined
+
+- import_tasks: ruby.yml
+- import_tasks: erlang.yml
+
+- import_tasks: cloud_trash.yml
+- import_tasks: fzy.yml

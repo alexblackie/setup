@@ -1,0 +1,14 @@
+---
+
+- name: Install redis
+  yum:
+    name: redis
+    state: present
+  become: yes
+
+- name: Enable and start redis
+  service:
+    name: redis
+    state: started
+    enabled: yes
+  become: yes

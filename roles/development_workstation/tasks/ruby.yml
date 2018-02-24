@@ -1,27 +1,27 @@
 ---
 
-- name: "Install ruby-install"
+- name: Install ruby-install
   git:
     repo: https://github.com/postmodern/ruby-install.git
     dest: /usr/local/ruby-install
     update: yes
   become: yes
 
-- name: "Fetch chruby"
+- name: Fetch chruby
   git:
     repo: https://github.com/postmodern/chruby.git
     dest: /usr/local/src/chruby
     update: no
   become: yes
 
-- name: "Install chruby"
+- name: Install chruby
   command: make install
   become: yes
   args:
     creates: /usr/local/share/chruby/chruby.sh
     chdir: /usr/local/src/chruby
 
-- name: "Install rubbies"
+- name: Install rubbies
   command: /usr/local/ruby-install/bin/ruby-install ruby {{ item }}
   args:
     creates: "{{ home }}/.rubies/ruby-{{ item }}/bin/ruby"

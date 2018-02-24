@@ -1,13 +1,12 @@
 ---
 
 - hosts: localhost
-  handlers:
-    - import_tasks: handlers/main.yml
+  vars:
+    is_fedora: yes
   roles:
     - yum_compat
     - desktop
+    - development_workstation
   tasks:
     - include_tasks: tasks/fedora/system.yml
-    - include_tasks: tasks/fedora/development.yml
     - include_tasks: tasks/fedora/docker.yml
-    - include_tasks: tasks/dotfiles.yml

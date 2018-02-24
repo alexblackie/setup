@@ -1,0 +1,30 @@
+---
+
+- name: Install Python 2 and some libs
+  yum:
+    name: "{{ item }}"
+  with_items:
+    - python
+    - python-devel
+    - python-virtualenv
+    - python-pip
+    - python-pygments
+  become: yes
+
+- name: Install Python 3
+  dnf:
+    name: "{{ item }}"
+  with_items:
+    - python3
+    - python3-devel
+  become: yes
+  when: is_fedora
+
+- name: Install some Python CLI tools
+  pip:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - awscli
+    - httpstat
