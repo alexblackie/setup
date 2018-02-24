@@ -10,3 +10,4 @@
   become: true
   args:
     chdir: "{{ home }}/src/fzy"
+    creates: /usr/local/bin/fzy
