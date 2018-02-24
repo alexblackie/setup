@@ -27,14 +27,14 @@
   dnf:
     name: "@C Development Tools and Libraries"
     state: present
-  when: is_fedora is defined
+  when: is_fedora
 
 - name: Install C toolchain
   become: yes
   yum:
     name: "@Development Tools"
     state: present
-  when: is_rhel is defined
+  when: is_rhel
 
 - name: Install some development tools and libraries
   yum:
@@ -61,9 +61,9 @@
     - sqlite-devel
 
 - import_tasks: postgresql_rhel.yml
-  when: is_rhel is defined
+  when: is_rhel
 - import_tasks: postgresql_fedora.yml
-  when: is_fedora is defined
+  when: is_fedora
 
 - import_tasks: ruby.yml
 - import_tasks: erlang.yml

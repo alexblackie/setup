@@ -5,35 +5,35 @@
     line: fastestmirror=1
     dest: /etc/dnf/dnf.conf
   become: yes
-  when: is_fedora is defined
+  when: is_fedora
 
 - name: Enable RPMFusion free
   yum:
     name: https://download1.rpmfusion.org/free/el/rpmfusion-free-release-7.noarch.rpm
     state: present
   become: yes
-  when: is_rhel is defined
+  when: is_rhel
 
 - name: Enable RPMFusion non-free
   yum:
     name: https://download1.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-7.noarch.rpm
     state: present
   become: yes
-  when: is_rhel is defined
+  when: is_rhel
 
 - name: Enable RPMFusion free
   yum:
     name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{ fedora_release }}.noarch.rpm
     state: present
   become: yes
-  when: is_fedora is defined
+  when: is_fedora
 
 - name: Enable RPMFusion non-free
   yum:
     name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
     state: present
   become: yes
-  when: is_fedora is defined
+  when: is_fedora
 
 - name: Enable sshd
   service:
