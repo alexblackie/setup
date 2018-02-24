@@ -1,23 +1,22 @@
 ---
 
 - name: Install the heroku-cli
-  shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC {{home}}/bin
+  become: yes
+  shell: curl -Ls https://cli-assets.heroku.com/branches/stable/heroku-linux-amd64.tar.gz | tar xzC /usr/local
   args:
-    creates: "{{ home }}/bin/heroku"
+    creates: /usr/local/heroku/bin/heroku
 
 - name: Install Terraform
+  become: yes
   unarchive:
     src: https://releases.hashicorp.com/terraform/0.11.3/terraform_0.11.3_linux_amd64.zip
-    dest: "{{ home }}/bin/"
+    dest: /usr/local/bin
     remote_src: yes
-    creates: "{{ home }}/bin/terraform"
-
-- name: Create user env file
-  file:
-    path: "{{ home }}/.env"
-    state: touch
+    creates: /usr/local/bin/terraform
 
 - name: Add Heroku CLI to PATH
-  lineinfile:
-    line: export PATH=$HOME/bin/heroku/bin:$PATH
-    dest: "{{ home }}/.env"
+  become: yes
+  copy:
+    content: export PATH=/usr/local/heroku/bin:$PATH
+    dest: /etc/profile.d/heroku.sh
+    mode: 0755
