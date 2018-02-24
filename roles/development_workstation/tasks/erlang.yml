@@ -1,7 +1,13 @@
 ---
 
+- name: Check for Erlang
+  command: stat /usr/bin/erl
+  register: has_erl
+  changed_when: false
+  failed_when: has_erl.rc > 1
 - name: Install Erlang
   yum:
     name: https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_20.2.2-1~centos~7_amd64.rpm
     state: present
   become: yes
+  when: has_erl == 1
