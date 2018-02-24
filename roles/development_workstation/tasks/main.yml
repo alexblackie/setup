@@ -77,3 +77,5 @@
 
 - import_tasks: cloud_trash.yml
 - import_tasks: fzy.yml
+
+- import_tasks: dotfiles.yml
