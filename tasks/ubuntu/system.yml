@@ -1,8 +1,0 @@
----
-
-- name: "enable sshd"
-  service:
-    name: ssh
-    state: started
-    enabled: yes
-  become: yes
