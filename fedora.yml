@@ -7,6 +7,6 @@
     - yum_compat
     - desktop
     - development_workstation
+    - docker
   tasks:
     - include_tasks: tasks/fedora/system.yml
-    - include_tasks: tasks/fedora/docker.yml

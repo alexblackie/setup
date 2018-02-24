@@ -14,6 +14,6 @@
   roles:
     - desktop
     - development_workstation
+    - docker
   tasks:
     - include_tasks: tasks/rhel/system.yml
-    - include_tasks: tasks/rhel/docker.yml
