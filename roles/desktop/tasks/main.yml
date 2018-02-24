@@ -21,7 +21,6 @@
     state: present
   with_items:
     - youtube-dl
-    - nmap
     - pass
     - powertop
     - ffmpeg
