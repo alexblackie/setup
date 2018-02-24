@@ -3,7 +3,7 @@
 - name: Install postgresql server and client libs
   dnf:
     name: "{{ item }}"
-    state: latest
+    state: present
   with_items:
     - python-psycopg2
     - postgresql
