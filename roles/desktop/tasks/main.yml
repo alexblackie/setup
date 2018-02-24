@@ -1,0 +1,54 @@
+---
+
+- name: Install workstation GUI apps and related dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - arc-theme
+    - adobe-source-code-pro-fonts
+    - gnome-tweak-tool
+    - gimp
+    - firefox
+    - virt-viewer
+    - virt-manager
+    - fuse-exfat
+
+- name: Install workstation CLI tools
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - youtube-dl
+    - nmap
+    - pass
+    - powertop
+    - ffmpeg
+    - mpv
+
+- include_tasks: lollypop.yml
+- include_tasks: sublime.yml
+
+
+# ------------------------------------------------------------------------------
+# Direct RPM installations
+# ------------------------------------------------------------------------------
+
+- name: Install keybase
+  yum:
+    name: https://prerelease.keybase.io/keybase_amd64.rpm
+    state: present
+  become: yes
+
+- name: Install Google Chrome
+  yum:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    state: present
+  become: yes
+
+- name: Install Zoom Meetings Client
+  yum:
+    name: https://zoom.us/client/latest/zoom_x86_64.rpm
+    state: present
+  become: yes

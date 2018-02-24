@@ -1,0 +1,16 @@
+---
+
+- name: Add Sublime Text 3 repo
+  yum_repository:
+    name: sublime-text
+    description: Sublime Text Stable Channel
+    baseurl: https://download.sublimetext.com/rpm/stable/x86_64
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+  become: yes
+
+- name: Install Sublime Text
+  yum:
+    name: sublime-text
+    state: present

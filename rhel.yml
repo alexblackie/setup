@@ -11,9 +11,10 @@
 - hosts: localhost
   handlers:
     - import_tasks: handlers/main.yml
+  roles:
+    - desktop
   tasks:
     - include_tasks: tasks/rhel/system.yml
     - include_tasks: tasks/rhel/development.yml
     - include_tasks: tasks/rhel/docker.yml
-    - include_tasks: tasks/rhel/desktop.yml
     - include_tasks: tasks/dotfiles.yml
