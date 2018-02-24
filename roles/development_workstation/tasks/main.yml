@@ -54,7 +54,6 @@
     - perf
     - dstat
     - strace
-    - ruby-devel
     - nodejs
     - sqlite-devel
 

@@ -1,5 +1,11 @@
 ---
 
+- name: Install system Ruby headers
+  become: yes
+  yum:
+    name: ruby-devel
+    state: present
+
 - name: Install ruby-install
   git:
     repo: https://github.com/postmodern/ruby-install.git
