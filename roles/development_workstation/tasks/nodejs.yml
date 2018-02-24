@@ -1,0 +1,9 @@
+---
+
+- name: Install nodejs and tools
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nodejs
+    - npm

@@ -55,7 +55,6 @@
     - perf
     - dstat
     - strace
-    - nodejs
     - sqlite-devel
 
 - import_tasks: postgresql_rhel.yml
@@ -67,6 +66,7 @@
 - import_tasks: erlang.yml
 - import_tasks: java.yml
 - import_tasks: redhat.yml
+- import_tasks: nodejs.yml
 
 - import_tasks: cloud_trash.yml
 - import_tasks: fzy.yml
