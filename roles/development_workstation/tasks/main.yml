@@ -49,13 +49,19 @@
     - pwgen
     - optipng
     - nmap
-    - htop
     - ImageMagick
     - ImageMagick-devel
+    - sqlite-devel
+
+- name: Install system visibility tools
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
     - perf
     - dstat
     - strace
-    - sqlite-devel
 
 - import_tasks: postgresql_rhel.yml
   when: is_rhel
