@@ -15,6 +15,14 @@
     - virt-manager
     - fuse-exfat
 
+# MPV isn't packaged for EL distributions
+- name: Install mpv
+  dnf:
+    name: mpv
+    state: present
+  become: yes
+  when: is_fedora
+
 - name: Install workstation CLI tools
   become: yes
   yum:
@@ -25,7 +33,6 @@
     - pass
     - powertop
     - ffmpeg
-    - mpv
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
