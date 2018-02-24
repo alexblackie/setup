@@ -27,8 +27,8 @@
     - ffmpeg
     - mpv
 
-- include_tasks: lollypop.yml
-- include_tasks: sublime.yml
+- import_tasks: lollypop.yml
+- import_tasks: sublime.yml
 
 
 # ------------------------------------------------------------------------------
