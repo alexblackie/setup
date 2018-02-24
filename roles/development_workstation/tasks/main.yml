@@ -51,6 +51,7 @@
     - nmap
     - htop
     - ImageMagick
+    - ImageMagick-devel
     - perf
     - dstat
     - strace
