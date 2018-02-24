@@ -1,35 +1,10 @@
 ---
 
 - hosts: localhost
-  tasks:
-    # Install yum on Fedora. Since I need to support both RHEL and Fedora, and
-    # I want to keep the duplication as low as possible, I'm using `yum` for
-    # everything and ignoring DNF for now, since it will work on both platforms.
-    #
-    # This means I need to install `yum` on Fedora, since the default symlink of
-    # yum -> dnf won't work with Ansible (which requires the `yum` python lib).
-    # So we need to actually install "real" yum so Ansible's `yum` task will
-    # work on Fedora.
-    #
-    # Unfortunately, Ansible's `os_family` fact won't give us more granularity
-    # than "RedHat", so we need to manually check for DNF and act upon that.
-    - name: Check for DNF
-      command: stat /usr/bin/dnf
-      register: has_dnf
-      changed_when: no
-      failed_when: has_dnf.rc > 1
-    - name: Install yum for compatibility
-      become: yes
-      dnf:
-        name: yum
-        state: present
-      when: has_dnf.rc == 0
-
-
-- hosts: localhost
   handlers:
     - import_tasks: handlers/main.yml
   roles:
+    - yum_compat
     - desktop
   tasks:
     - include_tasks: tasks/fedora/system.yml
