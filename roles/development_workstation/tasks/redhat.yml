@@ -1,0 +1,11 @@
+---
+
+- name: Install tools for RPM development
+  become: yes
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - redhat-rpm-config
+    - rpm-build
+    - pkgconfig

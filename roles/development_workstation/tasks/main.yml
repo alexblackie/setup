@@ -53,9 +53,6 @@
     - ImageMagick
     - perf
     - dstat
-    - redhat-rpm-config
-    - rpm-build
-    - pkgconfig
     - strace
     - ruby-devel
     - nodejs
@@ -69,6 +66,7 @@
 - import_tasks: ruby.yml
 - import_tasks: erlang.yml
 - import_tasks: java.yml
+- import_tasks: redhat.yml
 
 - import_tasks: cloud_trash.yml
 - import_tasks: fzy.yml
