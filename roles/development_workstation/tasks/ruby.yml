@@ -32,4 +32,4 @@
   args:
     creates: "{{ home }}/.rubies/ruby-{{ item }}/bin/ruby"
   with_items:
-    - 2.4.1
+    - 2.5.0
