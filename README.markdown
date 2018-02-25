@@ -21,7 +21,8 @@ all available updates and reboot; once updated:
        1. `subscription-manager repos --enable rhel-7-workstation-optional-rpms`
        2. `subscription-manager repos --enable rhel-7-workstation-extras-rpms`
        3. `yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
-  - On **CentOS**, all you need is to install `epel-release`.
+       4. Then you can install `ansible`.
+  - On **CentOS**, all you need is to install `epel-release` and `ansible`.
 
 ## Running
 
