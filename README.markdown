@@ -1,37 +1,42 @@
 # Bootstart
 
-Setting up computers is a pain if you're like me and reinstall your OS on a
-regular basis. Additionally, keeping track of all the random things you install
-over time is a challenge and can lead to frustration later on as you attempt to
-get things running again and can't remember that one thing you installed last
-time to make it work...
-
-I solved this by authoring a handleful of Ansible playbooks to automate the
-provisioning of my desktop machines, which you are now looking at.
+This is a repository of Ansible playbooks and roles that configure my laptops
+and workstations.
 
 ## Prerequisites
 
-These playbooks are built to support the latest release of Fedora Workstation.
+These playbooks support only the latest releases of:
 
-Automation isn't _perfect_, so there are a couple things that need to be
-installed manually first. I usually install all updates, install these packages,
-then reboot and run the Ansible.
+  - Fedora Workstation
+  - RedHat Enterprise Linux Workstation
+  - CentOS
 
-- `ansible`
-- `libselinux-python`
-- `python2-dnf`
+There are a few manual steps required on each of these platforms. First, install
+all available updates and reboot; once updated:
+
+  - On **Fedora Workstation** you must first install `ansible`, `python2-dnf`,
+    and `libselinux-python` before running.
+  - On **RedHat Enterprise Linux Workstation** you must first enable a handful
+    of repositories. In brief,
+       1. `subscription-manager repos --enable rhel-7-workstation-optional-rpms`
+       2. `subscription-manager repos --enable rhel-7-workstation-extras-rpms`
+       3. `yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
+  - On **CentOS**, all you need is to install `epel-release`.
 
 ## Running
 
-This is a pretty standard Ansible project, so running is quite simple:
+Run these playbooks as an unprivileged user (with `sudo` access). Pass
+`--ask-become-pass` to have Ansible prompt for `sudo` authentication before
+running.
 
 ```
-$ ansible-playbook master.yml
+$ ansible-playbook --ask-become-pass fedora.yml
 ```
 
-If you don't already have passwordless `sudo` configured, you may need to prime
-it beforehand as root access is required for some playbooks (it will `become`
-when necessary).
+There are two playbooks available currently:
+
+  1. `fedora.yml` for Fedora Workstation installs, and
+  2. `rhel.yml` for RedHat Enterprise Linux Workstation and CentOS installs.
 
 ## License
 
