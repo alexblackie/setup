@@ -6,7 +6,6 @@
     state: present
   become: yes
   with_items:
-    - arc-theme
     - adobe-source-code-pro-fonts
     - gnome-tweak-tool
     - gimp
