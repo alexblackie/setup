@@ -9,7 +9,7 @@
 - name: Make lollypop available to GNOME overview
   become: yes
   file:
-    src: /var/lib/flatpak/exports/share/applications/org.gnome.Lollypop.desktop
+    src: /var/lib/flatpak/app/org.gnome.Lollypop/current/active/export/share/applications/org.gnome.Lollypop.desktop
     dest: /usr/share/applications/org.gnome.Lollypop.desktop
     state: link
     seuser: system_u
