@@ -5,6 +5,7 @@
   command: flatpak install --assumeyes --from https://flathub.org/repo/appstream/org.gnome.Lollypop.flatpakref
   args:
     creates: /var/lib/flatpak/app/org.gnome.Lollypop
+  when: is_rhel
 
 - name: Make lollypop available to GNOME overview
   become: yes
@@ -13,3 +14,23 @@
     dest: /usr/share/applications/org.gnome.Lollypop.desktop
     state: link
     seuser: system_u
+  when: is_rhel
+
+- name: Add lollypop repo
+  become: yes
+  yum_repository:
+    name: lollypop
+    description: Copr repo for lollypop
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/gnumdk/lollypop/fedora-$releasever-$basearch/
+    skip_if_unavailable: yes
+    gpgcheck: yes
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/gnumdk/lollypop/pubkey.gpg
+    enabled: yes
+  when: is_fedora
+
+- name: Install Lollypop
+  become: yes
+  dnf:
+    name: lollypop
+    state: present
+  when: is_fedora
