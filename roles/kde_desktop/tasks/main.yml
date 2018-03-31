@@ -1,0 +1,7 @@
+---
+
+- name: Install breeze gtk theme
+  become: yes
+  dnf:
+    name: breeze-gtk
+    state: present

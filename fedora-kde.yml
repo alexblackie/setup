@@ -1,0 +1,12 @@
+---
+
+- hosts: localhost
+  vars:
+    is_fedora: yes
+  roles:
+    - yum_compat
+    - common_config
+    - desktop
+    - kde_desktop
+    - development_workstation
+    - docker
