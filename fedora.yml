@@ -7,5 +7,6 @@
     - yum_compat
     - common_config
     - desktop
+    - gnome_desktop
     - development_workstation
     - docker
