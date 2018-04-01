@@ -74,6 +74,7 @@
 - import_tasks: java.yml
 - import_tasks: redhat.yml
 - import_tasks: nodejs.yml
+- import_tasks: rust.yml
 
 - import_tasks: cloud_trash.yml
 - import_tasks: fzy.yml
