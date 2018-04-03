@@ -47,9 +47,5 @@
   get_url:
     url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
     dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
-
-- name: Update extracted root anchors
-  become: yes
-  command: /usr/bin/update-ca-trust extract
-  args:
-    creates: /etc/pki/ca-trust/extracted/pem/blackieops_trust_chain_2017.pem
+  notify:
+    - update ca-trust
