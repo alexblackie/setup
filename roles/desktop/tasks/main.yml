@@ -55,7 +55,7 @@
     name: https://prerelease.keybase.io/keybase_amd64.rpm
     state: present
   become: yes
-  when: has_keybase == 1
+  when: has_keybase.rc == 1
 
 - name: Check for Google Chrome
   command: stat /usr/bin/google-chrome
@@ -67,7 +67,7 @@
     name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
     state: present
   become: yes
-  when: has_chrome == 1
+  when: has_chrome.rc == 1
 
 - name: Check for zoom
   command: stat /usr/bin/zoom
