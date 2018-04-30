@@ -2,7 +2,7 @@
 user: ablackie
 group: ablackie
 home: /home/{{ user }}
-fedora_release: 27
+fedora_release: 28
 
 # Set defaults here; one of these should be overridden in each playbook's vars.
 is_fedora: no
