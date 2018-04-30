@@ -1,6 +1,22 @@
 ---
 
 - name: Install workstation GUI apps and related dependencies
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - adobe-source-code-pro-fonts
+    - gnome-tweak-tool
+    - gimp
+    - firefox
+    - virt-viewer
+    - virt-manager
+    - fuse-exfat
+    - mpv
+  when: is_fedora
+
+- name: Install workstation GUI apps and related dependencies
   yum:
     name: "{{ item }}"
     state: present
@@ -13,13 +29,19 @@
     - virt-viewer
     - virt-manager
     - fuse-exfat
+    - mpv
+  when: is_rhel
 
-# MPV isn't packaged for EL distributions
-- name: Install mpv
-  dnf:
-    name: mpv
-    state: present
+- name: Install workstation CLI tools
   become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - youtube-dl
+    - pass
+    - powertop
+    - ffmpeg
   when: is_fedora
 
 - name: Install workstation CLI tools
@@ -32,6 +54,7 @@
     - pass
     - powertop
     - ffmpeg
+  when: is_rhel
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml

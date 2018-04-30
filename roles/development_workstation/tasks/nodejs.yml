@@ -8,3 +8,14 @@
   with_items:
     - nodejs
     - npm
+  when: is_rhel
+
+- name: Install nodejs and tools
+  become: true
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nodejs
+    - npm
+  when: is_fedora

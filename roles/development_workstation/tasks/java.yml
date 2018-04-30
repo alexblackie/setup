@@ -1,6 +1,17 @@
 ---
 
 - name: Install JDK and tools
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - java-1.8.0-openjdk
+    - java-1.8.0-openjdk-devel
+    - maven
+  when: is_fedora
+
+- name: Install JDK and tools
   yum:
     name: "{{ item }}"
     state: present
@@ -9,3 +20,4 @@
     - java-1.8.0-openjdk
     - java-1.8.0-openjdk-devel
     - maven
+  when: is_rhel

@@ -2,11 +2,17 @@
 
 - name: Install Docker
   yum:
-    name: "{{ item }}"
+    name: docker
     state: present
   become: yes
-  with_items:
-    - docker
+  when: is_rhel
+
+- name: Install Docker
+  dnf:
+    name: docker
+    state: present
+  become: yes
+  when: is_fedora
 
 # RHEL doesn't package docker-compose and the official Docker repos don't
 # package Docker CE for RHEL (thank's, greedy biz asshats)

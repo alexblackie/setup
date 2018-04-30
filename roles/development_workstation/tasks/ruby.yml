@@ -5,6 +5,14 @@
   yum:
     name: ruby-devel
     state: present
+  when: is_rhel
+
+- name: Install system Ruby headers
+  become: yes
+  dnf:
+    name: ruby-devel
+    state: present
+  when: is_fedora
 
 - name: Install ruby-install
   git:

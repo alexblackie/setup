@@ -22,14 +22,14 @@
   when: is_rhel
 
 - name: Enable RPMFusion free
-  yum:
+  dnf:
     name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{ fedora_release }}.noarch.rpm
     state: present
   become: yes
   when: is_fedora
 
 - name: Enable RPMFusion non-free
-  yum:
+  dnf:
     name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
     state: present
   become: yes

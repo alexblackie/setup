@@ -5,6 +5,14 @@
   yum:
     name: ruby
     state: present
+  when: is_rhel
+
+- name: Install Ruby for gextension
+  become: yes
+  dnf:
+    name: ruby
+    state: present
+  when: is_fedora
 
 - name: Remap capslock to escape and set compose key
   command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'compose:rctrl']"

@@ -12,6 +12,14 @@
 
 - name: Install Sublime Text
   become: yes
+  dnf:
+    name: sublime-text
+    state: present
+  when: is_fedora
+
+- name: Install Sublime Text
+  become: yes
   yum:
     name: sublime-text
     state: present
+  when: is_rhel

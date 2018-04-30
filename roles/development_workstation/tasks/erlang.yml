@@ -5,9 +5,17 @@
   register: has_erl
   changed_when: false
   failed_when: has_erl.rc > 1
+  when: is_rhel
 - name: Install Erlang
   yum:
     name: https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_20.2.2-1~centos~7_amd64.rpm
     state: present
   become: yes
-  when: has_erl.rc == 1
+  when: is_rhel and has_erl.rc == 1
+
+- name: Install Erlang
+  become: yes
+  dnf:
+    name: erlang
+    state: present
+  when: is_fedora

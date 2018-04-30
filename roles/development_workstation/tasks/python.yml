@@ -10,11 +10,17 @@
     - python-pip
     - python-pygments
   become: yes
+  when: is_rhel
 
-- name: Install Python 3
+- name: Install Python and some libs
   dnf:
     name: "{{ item }}"
   with_items:
+    - python
+    - python-devel
+    - python-virtualenv
+    - python-pip
+    - python-pygments
     - python3
     - python3-devel
   become: yes

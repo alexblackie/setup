@@ -4,7 +4,6 @@
   vars:
     is_fedora: yes
   roles:
-    - yum_compat
     - common_config
     - desktop
     - gnome_desktop

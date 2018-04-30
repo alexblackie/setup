@@ -52,6 +52,25 @@
     - ImageMagick
     - ImageMagick-devel
     - sqlite-devel
+  when: is_rhel
+
+- name: Install some development tools and libraries
+  dnf:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - git
+    - tmux
+    - vim
+    - the_silver_searcher
+    - pwgen
+    - optipng
+    - nmap
+    - ImageMagick
+    - ImageMagick-devel
+    - sqlite-devel
+  when: is_fedora
 
 - name: Install system visibility tools
   become: yes
@@ -63,6 +82,19 @@
     - perf
     - dstat
     - strace
+  when: is_rhel
+
+- name: Install system visibility tools
+  become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - perf
+    - dstat
+    - strace
+  when: is_fedora
 
 - import_tasks: postgresql_rhel.yml
   when: is_rhel

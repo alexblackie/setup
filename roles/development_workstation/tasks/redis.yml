@@ -5,6 +5,14 @@
     name: redis
     state: present
   become: yes
+  when: is_rhel
+
+- name: Install redis
+  dnf:
+    name: redis
+    state: present
+  become: yes
+  when: is_fedora
 
 - name: Enable and start redis
   service:
