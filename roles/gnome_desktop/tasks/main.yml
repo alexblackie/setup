@@ -1,5 +1,11 @@
 ---
 
+- name: Install Ruby for gextension
+  become: yes
+  yum:
+    name: ruby
+    state: present
+
 - name: Remap capslock to escape and set compose key
   command: dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:escape', 'compose:rctrl']"
 - name: Show date in top panel clock
