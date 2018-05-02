@@ -7,6 +7,8 @@
   become: yes
   with_items:
     - adobe-source-code-pro-fonts
+    - mozilla-fira-mono-fonts
+    - mozilla-fira-sans-fonts
     - gnome-tweak-tool
     - gimp
     - firefox
@@ -23,6 +25,8 @@
   become: yes
   with_items:
     - adobe-source-code-pro-fonts
+    - mozilla-fira-mono-fonts
+    - mozilla-fira-sans-fonts
     - gnome-tweak-tool
     - gimp
     - firefox
