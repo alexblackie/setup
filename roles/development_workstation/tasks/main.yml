@@ -101,8 +101,11 @@
 - import_tasks: postgresql_fedora.yml
   when: is_fedora
 
+- import_tasks: redis.yml
+
 - import_tasks: ruby.yml
 - import_tasks: erlang.yml
+- import_tasks: python.yml
 - import_tasks: java.yml
 - import_tasks: redhat.yml
 - import_tasks: nodejs.yml
