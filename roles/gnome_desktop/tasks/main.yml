@@ -35,5 +35,5 @@
     chdir: "{{ home }}/.gextension"
   with_items:
     - sound-output-device-chooser@kgshank.net
-    - dash-to-dock@micxgx.gmail.com
+    - dash-to-panel@jderose9.github.com
     - caffeine@patapon.info
