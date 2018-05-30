@@ -99,15 +99,15 @@
 
 - name: Install gextension
   git:
-    repo: https://github.com/alexblackie/gextension.git
+    repo: https://projects.blackieops.com/alexblackie/gextension.git
     dest: "{{ home }}/.gextension"
     accept_hostkey: yes
-    update: no
+    update: yes
+
 - name: Install GNOME extensions
-  shell: ./gextension install {{item}}
+  shell: ./gextension install {{ item }}
   args:
     chdir: "{{ home }}/.gextension"
   with_items:
     - sound-output-device-chooser@kgshank.net
-    - dash-to-panel@jderose9.github.com
     - caffeine@patapon.info
