@@ -1,0 +1,46 @@
+---
+
+- name: Add Slack Repo key
+  become: yes
+  apt_key:
+    url: https://packagecloud.io/slacktechnologies/slack/gpgkey
+    state: present
+  when: is_ubuntu
+
+- name: Add Slack Repo
+  become: yes
+  apt_repository:
+    repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
+    state: present
+  when: is_ubuntu
+
+- name: Install Slack
+  become: yes
+  apt:
+    name: slack-desktop
+    state: present
+  when: is_ubuntu
+
+- name: Add Slack Repo
+  become: yes
+  yum_repository:
+    name: slack
+    description: Slack
+    baseurl: https://packagecloud.io/slacktechnologies/slack/fedora/21/x86_64
+    enabled: yes
+    gpgcheck: no # this *used* to be on. fuck you, slack
+  when: is_fedora or is_rhel
+
+- name: Install Slack
+  become: yes
+  dnf:
+    name: slack
+    state: present
+  when: is_fedora
+
+- name: Install Slack
+  become: yes
+  yum:
+    name: slack
+    state: present
+  when: is_rhel
