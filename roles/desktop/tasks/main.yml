@@ -60,34 +60,19 @@
     - ffmpeg
   when: is_rhel
 
+- name: Install workstation CLI tools
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - youtube-dl
+    - pass
+    - powertop
+    - ffmpeg
+  when: is_ubuntu
+
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: chrome.yml
 - import_tasks: keybase.yml
-
-
-# ------------------------------------------------------------------------------
-# Direct RPM installations
-#
-# These all have manual checks for the executable because `yum` will download
-# the RPM every time, since it can't know if the version we have install is the
-# same as the remote resource).
-# ------------------------------------------------------------------------------
-
-- name: Check for zoom
-  command: stat /usr/bin/zoom
-  register: has_zoom
-  changed_when: no
-  failed_when: has_zoom.rc > 1
-- name: Install Zoom Meetings Client
-  yum:
-    name: https://zoom.us/client/latest/zoom_x86_64.rpm
-    state: present
-  become: yes
-  when: is_rhel and has_zoom.rc == 1
-- name: Install Zoom Meetings Client
-  dnf:
-    name: https://zoom.us/client/latest/zoom_x86_64.rpm
-    state: present
-  become: yes
-  when: is_fedora and has_zoom.rc == 1
