@@ -13,6 +13,7 @@
     is_rhel: yes
   roles:
     - rhelish
+    - blackieops
     - desktop
     - development_workstation
     - docker

@@ -1,0 +1,9 @@
+---
+
+- name: Install BlackieOps Trust Root
+  become: yes
+  get_url:
+    url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
+    dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
+  notify:
+    - update ca-trust

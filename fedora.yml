@@ -5,6 +5,7 @@
     is_fedora: yes
   roles:
     - rhelish
+    - blackieops
     - desktop
     - gnome_desktop
     - development_workstation
