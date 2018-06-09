@@ -8,7 +8,7 @@
     update: no
 
 - name: Install dotfiles
-  shell: make && make install && make dconf
+  shell: ./install -f
   args:
     chdir: "{{ home }}/.dotfiles"
     creates: "{{ home }}/.commonrc"
