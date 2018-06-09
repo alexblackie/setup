@@ -1,0 +1,26 @@
+---
+
+- name: Add Google Chrome repo
+  become: yes
+  yum_repository:
+    name: google-chrome
+    description: Google Chrome
+    baseurl: http://dl.google.com/linux/chrome/rpm/stable/x86_64
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: https://dl.google.com/linux/linux_signing_key.pub
+  when: is_fedora or is_rhel
+
+- name: Install Google Chrome
+  become: yes
+  dnf:
+    name: google-chrome
+    state: present
+  when: is_fedora
+
+- name: Install Google Chrome
+  become: yes
+  yum:
+    name: google-chrome
+    state: present
+  when: is_rhel

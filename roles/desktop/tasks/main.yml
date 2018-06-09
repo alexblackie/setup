@@ -62,6 +62,7 @@
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
+- import_tasks: chrome.yml
 
 
 # ------------------------------------------------------------------------------
@@ -89,24 +90,6 @@
     state: present
   become: yes
   when: is_fedora and has_keybase.rc == 1
-
-- name: Check for Google Chrome
-  command: stat /usr/bin/google-chrome
-  register: has_chrome
-  changed_when: no
-  failed_when: has_chrome.rc > 1
-- name: Install Google Chrome
-  yum:
-    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    state: present
-  become: yes
-  when: is_rhel and has_chrome.rc == 1
-- name: Install Google Chrome
-  dnf:
-    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-    state: present
-  become: yes
-  when: is_fedora and has_chrome.rc == 1
 
 - name: Check for zoom
   command: stat /usr/bin/zoom
