@@ -63,6 +63,7 @@
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: chrome.yml
+- import_tasks: keybase.yml
 
 
 # ------------------------------------------------------------------------------
@@ -72,24 +73,6 @@
 # the RPM every time, since it can't know if the version we have install is the
 # same as the remote resource).
 # ------------------------------------------------------------------------------
-
-- name: Check for Keybase
-  command: stat /usr/bin/keybase
-  register: has_keybase
-  changed_when: no
-  failed_when: has_keybase.rc > 1
-- name: Install keybase
-  yum:
-    name: https://prerelease.keybase.io/keybase_amd64.rpm
-    state: present
-  become: yes
-  when: is_rhel and has_keybase.rc == 1
-- name: Install keybase
-  dnf:
-    name: https://prerelease.keybase.io/keybase_amd64.rpm
-    state: present
-  become: yes
-  when: is_fedora and has_keybase.rc == 1
 
 - name: Check for zoom
   command: stat /usr/bin/zoom
