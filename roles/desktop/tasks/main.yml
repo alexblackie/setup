@@ -66,6 +66,7 @@
     name: "{{ item }}"
     state: present
   with_items:
+    - network-manager-openvpn
     - gnome-tweaks
     - gimp
     - firefox
