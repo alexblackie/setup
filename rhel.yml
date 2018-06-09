@@ -12,7 +12,7 @@
   vars:
     is_rhel: yes
   roles:
-    - common_config
+    - rhelish
     - desktop
     - development_workstation
     - docker
