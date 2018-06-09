@@ -24,3 +24,9 @@
     name: sublime-text
     state: present
   when: is_rhel
+
+- name: Install Sublime Text snap
+  become: yes
+  command: snap install sublime-text --classic
+  args:
+    creates: /snap/bin/subl
