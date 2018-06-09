@@ -14,9 +14,25 @@
   become: yes
   when: is_fedora
 
+- name: Install redis
+  apt:
+    name: redis-server
+    state: present
+  become: yes
+  when: is_ubuntu
+
 - name: Enable and start redis
   service:
     name: redis
     state: started
     enabled: yes
   become: yes
+  when: is_fedora or is_rhel
+
+- name: Enable and start redis
+  service:
+    name: redis-server
+    state: started
+    enabled: yes
+  become: yes
+  when: is_ubuntu

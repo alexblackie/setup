@@ -19,3 +19,13 @@
     - nodejs
     - npm
   when: is_fedora
+
+- name: Install nodejs and tools
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - nodejs
+    - npm
+  when: is_ubuntu

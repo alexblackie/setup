@@ -9,3 +9,7 @@ Huge shout-out to Evan Klitzke, whose post inspired a lot of the removal/cleanup
 stuff herein:
 
      https://eklitzke.org/lobotomizing-gnome
+
+Perhaps also worth noting: we only gut GNOME on Fedora -- not Ubuntu or RHEL,
+as Ubuntu already has a "minimal install" mode which does most of what I want,
+and I'd fear breaking RHEL if I gutted too much from there.

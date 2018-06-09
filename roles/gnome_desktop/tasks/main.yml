@@ -14,6 +14,20 @@
     state: present
   when: is_fedora
 
+- name: Install Ruby for gextension
+  become: yes
+  apt:
+    name: ruby
+    state: present
+  when: is_ubuntu
+
+- name: Install psutil for dconf integration
+  become: yes
+  apt:
+    name: python-psutil
+    state: present
+  when: is_ubuntu
+
 - name: Set various GNOME dconf settings
   dconf:
     key: "{{ item.key }}"
@@ -97,7 +111,15 @@
     - evolution-addressbook-factory.service
     - evolution-calendar-factory.service
     - evolution-source-registry.service
-    - tracker-store.service
+
+# tracker is only used on Fedora/RHEL
+- name: Mask tracker indexer
+  systemd:
+    name: tracker-store.service
+    user: yes
+    masked: yes
+    state: stopped
+  when: is_fedora or is_rhel
 
 - name: Install gextension
   git:

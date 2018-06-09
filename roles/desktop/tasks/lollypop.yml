@@ -34,3 +34,27 @@
     name: lollypop
     state: present
   when: is_fedora
+
+- name: Import Lollypop apt key
+  become: yes
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 8FAD14A04A8E87F23FB5653BDBA501177AA84500
+  when: is_ubuntu
+
+- name: Add Lollypop repo
+  become: yes
+  apt_repository:
+    repo: "{{ item }}"
+    state: present
+  with_items:
+    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
+    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
+  when: is_ubuntu
+
+- name: Install Lollypop
+  become: yes
+  apt:
+    name: lollypop
+    state: present
+  when: is_ubuntu

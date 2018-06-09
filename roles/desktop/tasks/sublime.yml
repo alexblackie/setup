@@ -9,6 +9,7 @@
     gpgcheck: yes
     gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
   become: yes
+  when: is_fedora or is_rhel
 
 - name: Install Sublime Text
   become: yes

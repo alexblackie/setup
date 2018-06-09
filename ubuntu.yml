@@ -1,0 +1,11 @@
+---
+
+- hosts: localhost
+  vars:
+    is_ubuntu: yes
+  roles:
+    - blackieops
+    - desktop
+    - gnome_desktop
+    - development_workstation
+    - docker

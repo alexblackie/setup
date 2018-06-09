@@ -19,3 +19,10 @@
     name: erlang
     state: present
   when: is_fedora
+
+- name: Install Erlang
+  become: yes
+  apt:
+    name: erlang
+    state: present
+  when: is_ubuntu

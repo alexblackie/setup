@@ -36,6 +36,45 @@
     - mpv
   when: is_rhel
 
+- name: Download Source Code Pro manually
+  become: yes
+  get_url:
+    url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
+    dest: /usr/src/ascp.tar.gz
+    remote_src: yes
+  notify:
+    - extract source code pro
+    - install source code pro
+    - update font cache
+  when: is_ubuntu
+
+- name: Download Fira Sans manually
+  become: yes
+  get_url:
+    url: https://github.com/mozilla/Fira/archive/master.zip
+    dest: /usr/src/fira.tar.gz
+    remote_src: yes
+  notify:
+    - extract fira
+    - install fira
+    - update font cache
+  when: is_ubuntu
+
+- name: Install workstation GUI apps and related dependencies
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnome-tweaks
+    - gimp
+    - firefox
+    - virt-viewer
+    - virt-manager
+    - exfat-fuse
+    - mpv
+  when: is_ubuntu
+
 - name: Install workstation CLI tools
   become: yes
   dnf:

@@ -5,12 +5,14 @@
     dest: /etc/vimrc
     content: ""
   become: yes
+  when: is_fedora or is_rhel
 
 - name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
   become: yes
+  when: is_fedora or is_rhel
 
 - name: Create directory for third-party software sources
   file:
@@ -36,6 +38,13 @@
     state: present
   when: is_rhel
 
+- name: Install C toolchain
+  become: yes
+  apt:
+    name: build-essential
+    state: present
+  when: is_ubuntu
+
 - name: Install some development tools and libraries
   yum:
     name: "{{ item }}"
@@ -72,6 +81,26 @@
     - sqlite-devel
   when: is_fedora
 
+- name: Install some development tools and libraries
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - git
+    - git-doc
+    - tmux
+    - vim
+    - curl # lmao ubuntu doesn't come with curl by default??
+    - silversearcher-ag
+    - pwgen
+    - optipng
+    - nmap
+    - imagemagick
+    - libmagickwand-dev
+    - libsqlite3-dev
+  when: is_ubuntu
+
 - name: Install system visibility tools
   become: yes
   yum:
@@ -95,11 +124,25 @@
     - dstat
     - strace
   when: is_fedora
+
+- name: Install system visibility tools
+  become: yes
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - htop
+    - linux-tools-generic
+    - dstat
+    - strace
+  when: is_ubuntu
 
 - import_tasks: postgresql_rhel.yml
   when: is_rhel
 - import_tasks: postgresql_fedora.yml
   when: is_fedora
+- import_tasks: postgresql_ubuntu.yml
+  when: is_ubuntu
 
 - import_tasks: redis.yml
 

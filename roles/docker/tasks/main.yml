@@ -14,6 +14,13 @@
   become: yes
   when: is_fedora
 
+- name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+  become: yes
+  when: is_ubuntu
+
 # RHEL doesn't package docker-compose and the official Docker repos don't
 # package Docker CE for RHEL (thank's, greedy biz asshats)
 - name: Install docker-compose

@@ -24,3 +24,24 @@
     name: google-chrome
     state: present
   when: is_rhel
+
+- name: Add Google signing key
+  become: yes
+  apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    state: present
+  when: is_ubuntu
+
+- name: Add Google Chrome repo
+  become: yes
+  apt_repository:
+    repo: deb http://dl.google.com/linux/chrome/deb stable main
+    state: present
+  when: is_ubuntu
+
+- name: Install Google Chrome
+  become: yes
+  apt:
+    name: google-chrome-stable
+    state: present
+  when: is_ubuntu

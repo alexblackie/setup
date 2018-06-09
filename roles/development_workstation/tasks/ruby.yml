@@ -14,6 +14,13 @@
     state: present
   when: is_fedora
 
+- name: Install system Ruby headers
+  become: yes
+  apt:
+    name: ruby-dev
+    state: present
+  when: is_ubuntu
+
 - name: Install ruby-install
   git:
     repo: https://github.com/postmodern/ruby-install.git

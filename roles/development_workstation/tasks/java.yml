@@ -21,3 +21,13 @@
     - java-1.8.0-openjdk-devel
     - maven
   when: is_rhel
+
+- name: Install JDK and tools
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: yes
+  with_items:
+    - default-jdk
+    - maven
+  when: is_ubuntu
