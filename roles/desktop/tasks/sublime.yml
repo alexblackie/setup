@@ -30,3 +30,4 @@
   command: snap install sublime-text --classic
   args:
     creates: /snap/bin/subl
+  when: is_ubuntu
