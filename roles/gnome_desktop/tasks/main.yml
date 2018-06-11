@@ -59,7 +59,7 @@
     - key: "/org/gnome/desktop/search-providers/disable-external"
       value: "true"
     - key: "/org/gnome/shell/favorite-apps"
-      value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'sublime_text.desktop', 'firefox.desktop', 'org.gnome.Lollypop.desktop']"
+      value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'sublime_text.desktop', 'firefox.desktop', 'org.gnome.Lollypop.desktop', 'slack.desktop']"
 
 - name: Clean out a bunch of GNOME junk
   become: yes
