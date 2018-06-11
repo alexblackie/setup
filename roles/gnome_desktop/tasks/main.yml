@@ -23,6 +23,13 @@
 
 - name: Install psutil for dconf integration
   become: yes
+  dnf:
+    name: python-psutil
+    state: present
+  when: is_fedora
+
+- name: Install psutil for dconf integration
+  become: yes
   apt:
     name: python-psutil
     state: present
