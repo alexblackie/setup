@@ -30,6 +30,13 @@
 
 - name: Install psutil for dconf integration
   become: yes
+  pip:
+    name: psutil
+    state: present
+  when: is_rhel
+
+- name: Install psutil for dconf integration
+  become: yes
   apt:
     name: python-psutil
     state: present
@@ -116,6 +123,7 @@
     - evolution-addressbook-factory.service
     - evolution-calendar-factory.service
     - evolution-source-registry.service
+  when: is_fedora
 
 # tracker is only used on Fedora/RHEL
 - name: Mask tracker indexer
@@ -124,7 +132,7 @@
     user: yes
     masked: yes
     state: stopped
-  when: is_fedora or is_rhel
+  when: is_fedora
 
 - name: Install gextension
   git:
