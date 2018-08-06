@@ -9,4 +9,5 @@
     - desktop
     - kde_desktop
     - development_workstation
+    - virtualization
     - docker
