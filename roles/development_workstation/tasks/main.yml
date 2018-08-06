@@ -137,6 +137,13 @@
     - strace
   when: is_ubuntu
 
+- name: Install snapd
+  become: yes
+  dnf:
+    name: snapd
+    state: present
+  when: is_fedora
+
 - import_tasks: postgresql_rhel.yml
   when: is_rhel
 - import_tasks: postgresql_fedora.yml
