@@ -41,3 +41,10 @@
     state: started
     enabled: yes
   become: yes
+
+- name: Install fwupd for firmware update support
+  become: yes
+  dnf:
+    name: fwupd
+    state: present
+  when: is_fedora
