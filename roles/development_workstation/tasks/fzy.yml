@@ -4,10 +4,19 @@
   git:
     repo: https://github.com/jhawthorn/fzy.git
     dest: "{{ home }}/src/fzy"
+  when: is_fedora or is_rhel
 
 - name: Compile and install fzy
   shell: make && make install
-  become: true
+  become: yes
   args:
     chdir: "{{ home }}/src/fzy"
     creates: /usr/local/bin/fzy
+  when: is_fedora or is_rhel
+
+- name: Install fzy
+  become: yes
+  apt:
+    name: fzy
+    state: present
+  when: is_ubuntu
