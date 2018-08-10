@@ -23,7 +23,7 @@
     state: present
   when: is_ubuntu
 
-- name: flatpak
+- name: Add flathub remote
   become: yes
   flatpak_remote:
     name: flathub
