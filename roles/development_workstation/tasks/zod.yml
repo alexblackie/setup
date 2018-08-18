@@ -1,0 +1,14 @@
+---
+
+- name: Clone zodiac
+  git:
+    repo: https://github.com/nuex/zodiac.git
+    dest: "{{ home }}/src/zodiac"
+    update: yes
+
+- name: Install zodiac
+  become: yes
+  shell: make install
+  args:
+    chdir: "{{ home }}/src/zodiac"
+    creates: /usr/bin/zodiac
