@@ -74,6 +74,8 @@
     - virt-manager
     - exfat-fuse
     - mpv
+    - claws-mail
+    - claws-mail-plugins-pgp
   when: is_ubuntu
 
 - name: Install workstation CLI tools
