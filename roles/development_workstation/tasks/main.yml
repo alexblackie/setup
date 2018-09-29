@@ -61,6 +61,7 @@
     - ImageMagick
     - ImageMagick-devel
     - sqlite-devel
+    - inotify-tools
   when: is_rhel
 
 - name: Install some development tools and libraries
@@ -79,6 +80,7 @@
     - ImageMagick
     - ImageMagick-devel
     - sqlite-devel
+    - inotify-tools
   when: is_fedora
 
 - name: Install some development tools and libraries
@@ -99,6 +101,7 @@
     - imagemagick
     - libmagickwand-dev
     - libsqlite3-dev
+    - inotify-tools
   when: is_ubuntu
 
 - name: Install system visibility tools
