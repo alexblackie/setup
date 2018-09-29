@@ -39,6 +39,15 @@ There are two playbooks available currently:
   1. `fedora.yml` for Fedora Workstation installs, and
   2. `rhel.yml` for RedHat Enterprise Linux Workstation and CentOS installs.
 
+## Known Problems
+
+There appears to be a weird bug when using Mitogen, where `become_user` on a
+localhost run will cause permission errors because it tries to `os.chdir` to the
+directory where Ansible is running -- which, for this repo, is likely within
+your home directory (which an unprivileged user can't read). Therefore, it's
+encouraged to disable Mitogen when running these playbooks until a workaround or
+fix is found.
+
 ## License
 
 See [LICENSE](./LICENSE).
