@@ -16,6 +16,8 @@
     - virt-manager
     - fuse-exfat
     - mpv
+    - claws-mail
+    - claws-mail-plugins-pgp
   when: is_fedora
 
 - name: Install workstation GUI apps and related dependencies
@@ -34,6 +36,8 @@
     - virt-manager
     - fuse-exfat
     - mpv
+    - claws-mail
+    - claws-mail-plugins-pgp
   when: is_rhel
 
 - name: Download Source Code Pro manually
