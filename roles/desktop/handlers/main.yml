@@ -21,7 +21,7 @@
 - name: install fira
   become: yes
   copy:
-    src: /usr/src/Fira-master/OTF/
+    src: /usr/src/Fira-master/otf/
     dest: /usr/share/fonts/
 
 - name: update font cache
