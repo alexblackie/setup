@@ -1,8 +1,0 @@
----
-
-- name: Install GNOME Podcasts app
-  become: yes
-  flatpak:
-    remote: flathub
-    name: org.gnome.Podcasts
-    state: present
