@@ -153,6 +153,20 @@
     state: present
   when: is_fedora
 
+- name: Install gawk
+  become: yes
+  apt:
+    name: gawk
+    state: present
+  when: is_ubuntu
+
+- name: Ensure we're using gawk
+  become: yes
+  alternatives:
+    name: awk
+    path: /usr/bin/gawk
+  when: is_ubuntu
+
 - import_tasks: postgresql_rhel.yml
   when: is_rhel
 - import_tasks: postgresql_fedora.yml
