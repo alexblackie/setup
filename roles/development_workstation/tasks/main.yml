@@ -106,6 +106,8 @@
     - libsqlite3-dev
     - inotify-tools
     - entr
+    - whois
+    - ethtool
   when: is_ubuntu
 
 - name: Install system visibility tools
