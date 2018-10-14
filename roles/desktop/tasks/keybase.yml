@@ -24,3 +24,9 @@
     name: keybase
     state: present
   when: is_rhel
+
+- name: Install Keybase
+  become: yes
+  apt:
+    deb: https://prerelease.keybase.io/keybase_amd64.deb
+  when: is_ubuntu
