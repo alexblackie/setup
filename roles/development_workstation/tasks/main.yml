@@ -102,6 +102,7 @@
     - nmap
     - imagemagick
     - libmagickwand-dev
+    - sqlite3
     - libsqlite3-dev
     - inotify-tools
     - entr
