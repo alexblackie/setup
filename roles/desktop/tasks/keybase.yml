@@ -11,6 +11,13 @@
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
   when: is_rhel or is_fedora
 
+- name: Add Keybase repo
+  apt_repository:
+    repo: deb http://prerelease.keybase.io/deb stable main
+    state: present
+    filename: keybase
+  when: is_ubuntu
+
 - name: Install Keybase
   become: yes
   dnf:
@@ -28,5 +35,6 @@
 - name: Install Keybase
   become: yes
   apt:
-    deb: https://prerelease.keybase.io/keybase_amd64.deb
+    name: keybase
+    state: present
   when: is_ubuntu
