@@ -2,7 +2,7 @@
 
 - name: Clone dotfiles
   git:
-    repo: https://projects.blackieops.com/alexblackie/dotfiles.git
+    repo: https://github.com/alexblackie/dotfiles.git
     dest: "{{ home }}/.dotfiles"
     accept_hostkey: yes
     update: no

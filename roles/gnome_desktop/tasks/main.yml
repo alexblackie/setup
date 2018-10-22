@@ -70,7 +70,7 @@
 
 - name: Install gextension
   git:
-    repo: https://projects.blackieops.com/alexblackie/gextension.git
+    repo: https://github.com/alexblackie/gextension.git
     dest: "{{ home }}/.gextension"
     accept_hostkey: yes
     update: yes
