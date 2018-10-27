@@ -10,6 +10,7 @@ These playbooks support only the latest releases of:
   - Fedora Workstation
   - RedHat Enterprise Linux Workstation
   - CentOS
+  - Ubuntu (LTS)
 
 There are a few manual steps required on each of these platforms. First, install
 all available updates and reboot; once updated:
@@ -23,6 +24,7 @@ all available updates and reboot; once updated:
        3. `yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
        4. Then you can install `ansible`.
   - On **CentOS**, all you need is to install `epel-release` and `ansible`.
+  - On **Ubuntu**, just install `ansible`.
 
 ## Running
 
@@ -34,10 +36,17 @@ running.
 $ ansible-playbook --ask-become-pass fedora.yml
 ```
 
-There are two playbooks available currently:
+There are a few playbooks available currently for various targets:
 
-  1. `fedora.yml` for Fedora Workstation installs, and
-  2. `rhel.yml` for RedHat Enterprise Linux Workstation and CentOS installs.
+  - `fedora.yml` for Fedora Workstation installs
+  - `fedora-kde.yml` for Fedora Workstation KDE Spin installs
+  - `rhel.yml` for RedHat Enterprise Linux Workstation and CentOS installs.
+  - `ubuntu.yml` for Ubuntu Desktop installs
+  - `ubuntu-headless.yml` for Ubuntu Server or VM installs.
+
+Additionally, there is a utility playbook: `intel_graphics.yml`, which installs
+the `libva` hardware acceleration drivers, allowing H.264 offload among other
+things in various video players.
 
 ## Known Problems
 
