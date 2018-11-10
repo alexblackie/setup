@@ -11,13 +11,6 @@
 
 - name: Install flatpak
   become: yes
-  yum:
-    name: flatpak
-    state: present
-  when: is_rhel
-
-- name: Install flatpak
-  become: yes
   apt:
     name: flatpak
     state: present

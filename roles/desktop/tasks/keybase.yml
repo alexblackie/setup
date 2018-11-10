@@ -9,7 +9,7 @@
     enabled: yes
     gpgcheck: yes
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
-  when: is_rhel or is_fedora
+  when: is_fedora
 
 - name: Add Keybase repo
   apt_repository:
@@ -24,13 +24,6 @@
     name: keybase
     state: present
   when: is_fedora
-
-- name: Install Keybase
-  become: yes
-  yum:
-    name: keybase
-    state: present
-  when: is_rhel
 
 - name: Install Keybase
   become: yes

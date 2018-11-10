@@ -1,17 +1,5 @@
 ---
 
-- name: Install Python 2 and some libs
-  yum:
-    name: "{{ item }}"
-  with_items:
-    - python
-    - python-devel
-    - python-virtualenv
-    - python-pip
-    - python-pygments
-  become: yes
-  when: is_rhel
-
 - name: Install Python and some libs
   dnf:
     name: "{{ item }}"

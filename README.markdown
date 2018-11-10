@@ -8,8 +8,6 @@ and workstations.
 These playbooks support only the latest releases of:
 
   - Fedora Workstation
-  - RedHat Enterprise Linux Workstation
-  - CentOS
   - Ubuntu (LTS)
 
 There are a few manual steps required on each of these platforms. First, install
@@ -17,13 +15,6 @@ all available updates and reboot; once updated:
 
   - On **Fedora Workstation** you must first install `ansible`, `python2-dnf`,
     and `libselinux-python` before running.
-  - On **RedHat Enterprise Linux Workstation** you must first enable a handful
-    of repositories. In brief,
-       1. `subscription-manager repos --enable rhel-7-workstation-optional-rpms`
-       2. `subscription-manager repos --enable rhel-7-workstation-extras-rpms`
-       3. `yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm`
-       4. Then you can install `ansible`.
-  - On **CentOS**, all you need is to install `epel-release` and `ansible`.
   - On **Ubuntu**, just install `ansible`.
 
 ## Running
@@ -40,7 +31,6 @@ There are a few playbooks available currently for various targets:
 
   - `fedora.yml` for Fedora Workstation installs
   - `fedora-kde.yml` for Fedora Workstation KDE Spin installs
-  - `rhel.yml` for RedHat Enterprise Linux Workstation and CentOS installs.
   - `ubuntu.yml` for Ubuntu Desktop installs
   - `ubuntu-headless.yml` for Ubuntu Server or VM installs.
 

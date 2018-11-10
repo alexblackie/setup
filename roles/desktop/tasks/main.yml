@@ -20,26 +20,6 @@
     - claws-mail-plugins-pgp
   when: is_fedora
 
-- name: Install workstation GUI apps and related dependencies
-  yum:
-    name: "{{ item }}"
-    state: present
-  become: yes
-  with_items:
-    - adobe-source-code-pro-fonts
-    - mozilla-fira-mono-fonts
-    - mozilla-fira-sans-fonts
-    - gnome-tweak-tool
-    - gimp
-    - firefox
-    - virt-viewer
-    - virt-manager
-    - fuse-exfat
-    - mpv
-    - claws-mail
-    - claws-mail-plugins-pgp
-  when: is_rhel
-
 - name: Download Source Code Pro manually
   become: yes
   get_url:
@@ -94,18 +74,6 @@
     - powertop
     - ffmpeg
   when: is_fedora
-
-- name: Install workstation CLI tools
-  become: yes
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - youtube-dl
-    - pass
-    - powertop
-    - ffmpeg
-  when: is_rhel
 
 - name: Install workstation CLI tools
   become: yes

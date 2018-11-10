@@ -5,14 +5,14 @@
     dest: /etc/vimrc
     content: ""
   become: yes
-  when: is_fedora or is_rhel
+  when: is_fedora
 
 - name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
   become: yes
-  when: is_fedora or is_rhel
+  when: is_fedora
 
 - name: Create directory for third-party software sources
   file:
@@ -33,37 +33,10 @@
 
 - name: Install C toolchain
   become: yes
-  yum:
-    name: "@Development Tools"
-    state: present
-  when: is_rhel
-
-- name: Install C toolchain
-  become: yes
   apt:
     name: build-essential
     state: present
   when: is_ubuntu
-
-- name: Install some development tools and libraries
-  yum:
-    name: "{{ item }}"
-    state: present
-  become: yes
-  with_items:
-    - git
-    - tmux
-    - vim
-    - the_silver_searcher
-    - pwgen
-    - optipng
-    - nmap
-    - ImageMagick
-    - ImageMagick-devel
-    - sqlite-devel
-    - inotify-tools
-    - entr
-  when: is_rhel
 
 - name: Install some development tools and libraries
   dnf:
@@ -112,18 +85,6 @@
 
 - name: Install system visibility tools
   become: yes
-  yum:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - htop
-    - perf
-    - dstat
-    - strace
-  when: is_rhel
-
-- name: Install system visibility tools
-  become: yes
   dnf:
     name: "{{ item }}"
     state: present
@@ -167,8 +128,6 @@
     path: /usr/bin/gawk
   when: is_ubuntu
 
-- import_tasks: postgresql_rhel.yml
-  when: is_rhel
 - import_tasks: postgresql_fedora.yml
   when: is_fedora
 - import_tasks: postgresql_ubuntu.yml

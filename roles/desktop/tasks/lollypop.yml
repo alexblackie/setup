@@ -1,21 +1,5 @@
 ---
 
-- name: Install Lollypop
-  become: yes
-  command: flatpak install --assumeyes --from https://flathub.org/repo/appstream/org.gnome.Lollypop.flatpakref
-  args:
-    creates: /var/lib/flatpak/app/org.gnome.Lollypop
-  when: is_rhel
-
-- name: Make lollypop available to GNOME overview
-  become: yes
-  file:
-    src: /var/lib/flatpak/app/org.gnome.Lollypop/current/active/export/share/applications/org.gnome.Lollypop.desktop
-    dest: /usr/share/applications/org.gnome.Lollypop.desktop
-    state: link
-    seuser: system_u
-  when: is_rhel
-
 - name: Add lollypop repo
   become: yes
   yum_repository:

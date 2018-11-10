@@ -1,7 +1,5 @@
 ---
 
-# Note: currently we don't install rust on RHEL just because I'm too lazy to
-# install it manually and don't need it on my RHEL machines.
 - name: Install Rust toolchain
   become: yes
   dnf:

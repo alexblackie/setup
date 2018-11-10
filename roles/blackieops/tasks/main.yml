@@ -7,7 +7,7 @@
     dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
   notify:
     - update ca-trust
-  when: is_fedora or is_rhel
+  when: is_fedora
 
 - name: Install BlackieOps Trust Root
   become: yes
