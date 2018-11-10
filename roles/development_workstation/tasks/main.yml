@@ -114,6 +114,26 @@
     state: present
   when: is_ubuntu
 
+- name: Install some development tools and libraries
+  become: yes
+  homebrew:
+    name:
+      - git
+      - tmux
+      - reattach-to-user-namespace
+      - vim
+      - curl
+      - wget
+      - the_silver_searcher
+      - pwgen
+      - optipng
+      - nmap
+      - imagemagick
+      - sqlite
+      - htop
+    state: present
+  when: is_macos
+
 - name: Install system visibility tools
   become: yes
   dnf:
@@ -161,6 +181,8 @@
   when: is_fedora
 - import_tasks: postgresql_ubuntu.yml
   when: is_ubuntu
+- import_tasks: postgresql_macos.yml
+  when: is_macos
 
 - import_tasks: redis.yml
 

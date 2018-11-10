@@ -38,3 +38,9 @@
     name: google-chrome-stable
     state: present
   when: is_ubuntu
+
+- name: Install Google Chrome
+  homebrew_cask:
+    name: google-chrome
+    state: present
+  when: is_macos

@@ -9,6 +9,7 @@ These playbooks support only the latest releases of:
 
   - Fedora Workstation
   - Ubuntu (LTS)
+  - macOS
 
 There are a few manual steps required on each of these platforms. First, install
 all available updates and reboot; once updated:
@@ -16,6 +17,10 @@ all available updates and reboot; once updated:
   - On **Fedora Workstation** you must first install `ansible`, `python2-dnf`,
     and `libselinux-python` before running.
   - On **Ubuntu**, just install `ansible`.
+  - On **MacOS**, you'll need to:
+    - Install XCode CLI tools: `xcode-select --install`
+    - Install homebrew
+    - Install `ansible` through `brew` or `pip`.
 
 ## Running
 
@@ -33,10 +38,12 @@ There are a few playbooks available currently for various targets:
   - `fedora-kde.yml` for Fedora Workstation KDE Spin installs
   - `ubuntu.yml` for Ubuntu Desktop installs
   - `ubuntu-headless.yml` for Ubuntu Server or VM installs.
+  - `macos.yml` for Macintosh computers.
 
 Additionally, there is a utility playbook: `intel_graphics.yml`, which installs
 the `libva` hardware acceleration drivers, allowing H.264 offload among other
-things in various video players.
+things in various video players. This playbook is only for Linux, and currently
+specifically only for Fedora.
 
 ## Known Problems
 

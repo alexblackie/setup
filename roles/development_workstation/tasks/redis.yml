@@ -14,6 +14,13 @@
   become: yes
   when: is_ubuntu
 
+- name: Install redis
+  become: yes
+  homebrew:
+    name: redis
+    state: present
+  when: is_macos
+
 - name: Enable and start redis
   service:
     name: redis
@@ -29,3 +36,10 @@
     enabled: yes
   become: yes
   when: is_ubuntu
+
+- name: Enable and start redis
+  homebrew_service:
+    name: redis
+    state: started
+    enabled: yes
+  when: is_macos

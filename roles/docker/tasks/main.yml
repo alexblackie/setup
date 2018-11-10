@@ -14,6 +14,12 @@
   become: yes
   when: is_ubuntu
 
+- name: Install Docker
+  homebrew_cask:
+    name: docker
+    state: present
+  when: is_macos
+
 - name: Install docker-compose
   become: yes
   pip:
@@ -25,6 +31,7 @@
     name: docker
     state: present
   become: yes
+  when: is_fedora or is_ubuntu
 
 - name: Add local user to docker group
   user:
@@ -32,6 +39,7 @@
     groups: docker
     append: yes
   become: yes
+  when: is_fedora or is_ubuntu
 
 - name: Enable and start docker
   service:
@@ -39,3 +47,4 @@
     enabled: yes
     state: started
   become: yes
+  when: is_fedora or is_ubuntu

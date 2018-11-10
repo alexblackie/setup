@@ -18,3 +18,11 @@
     - update-ca-certificates
   when: is_ubuntu
 
+- name: Install BlackieOps Trust Root
+  become: yes
+  get_url:
+    url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
+    dest: /tmp/blackieops.pem
+  notify:
+    - update keychain
+  when: is_macos
