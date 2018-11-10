@@ -87,7 +87,6 @@
     - ffmpeg
   when: is_ubuntu
 
-- import_tasks: flatpak.yml
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: chrome.yml
