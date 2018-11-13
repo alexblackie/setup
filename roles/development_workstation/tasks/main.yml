@@ -38,73 +38,102 @@
     state: present
   when: is_ubuntu
 
+- name: Install asdf version manager
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    version: v0.6.0
+    dest: "{{ home }}/.asdf"
+    update: yes
+
 - name: Install some development tools and libraries
-  dnf:
-    name: "{{ item }}"
-    state: present
   become: yes
-  with_items:
-    - git
-    - tmux
-    - vim
-    - the_silver_searcher
-    - pwgen
-    - optipng
-    - nmap
-    - ImageMagick
-    - ImageMagick-devel
-    - sqlite-devel
-    - inotify-tools
-    - entr
+  dnf:
+    name:
+      - ruby-devel
+      - automake
+      - autoconf
+      - readline-devel
+      - ncurses-devel
+      - openssl-devel
+      - libyaml-devel
+      - libxslt-devel
+      - libffi-devel
+      - libtool
+      - unixODBC-devel
+      - nodejs
+      - npm
+      - git
+      - tmux
+      - vim
+      - the_silver_searcher
+      - pwgen
+      - optipng
+      - nmap
+      - ImageMagick
+      - ImageMagick-devel
+      - sqlite-devel
+      - inotify-tools
+      - entr
+    state: present
   when: is_fedora
 
 - name: Install some development tools and libraries
-  apt:
-    name: "{{ item }}"
-    state: present
   become: yes
-  with_items:
-    - git
-    - git-doc
-    - tmux
-    - vim
-    - curl # lmao ubuntu doesn't come with curl by default??
-    - silversearcher-ag
-    - pwgen
-    - optipng
-    - nmap
-    - imagemagick
-    - libmagickwand-dev
-    - sqlite3
-    - libsqlite3-dev
-    - inotify-tools
-    - entr
-    - whois
-    - ethtool
+  apt:
+    name:
+      - ruby-dev
+      - automake
+      - autoconf
+      - libreadline-dev
+      - libncurses-dev
+      - libssl-dev
+      - libyaml-dev
+      - libxslt-dev
+      - libffi-dev
+      - libtool
+      - unixodbc-dev
+      - nodejs
+      - npm
+      - git
+      - git-doc
+      - tmux
+      - vim
+      - curl
+      - silversearcher-ag
+      - pwgen
+      - optipng
+      - nmap
+      - imagemagick
+      - libmagickwand-dev
+      - sqlite3
+      - libsqlite3-dev
+      - inotify-tools
+      - entr
+      - whois
+      - ethtool
+    state: present
   when: is_ubuntu
 
 - name: Install system visibility tools
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - htop
+      - perf
+      - dstat
+      - strace
     state: present
-  with_items:
-    - htop
-    - perf
-    - dstat
-    - strace
   when: is_fedora
 
 - name: Install system visibility tools
   become: yes
   apt:
-    name: "{{ item }}"
+    name:
+      - htop
+      - linux-tools-generic
+      - dstat
+      - strace
     state: present
-  with_items:
-    - htop
-    - linux-tools-generic
-    - dstat
-    - strace
   when: is_ubuntu
 
 - name: Install snapd
@@ -135,12 +164,9 @@
 
 - import_tasks: redis.yml
 
-- import_tasks: ruby.yml
-- import_tasks: erlang.yml
 - import_tasks: python.yml
 - import_tasks: java.yml
 - import_tasks: redhat.yml
-- import_tasks: nodejs.yml
 - import_tasks: rust.yml
 - import_tasks: latex.yml
 
