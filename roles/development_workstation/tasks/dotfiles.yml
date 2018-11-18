@@ -8,7 +8,7 @@
     update: no
 
 - name: Install dotfiles
-  shell: ./install -f
+  shell: FORCE=1 ./install
   args:
     chdir: "{{ home }}/.dotfiles"
     creates: "{{ home }}/.commonrc"
