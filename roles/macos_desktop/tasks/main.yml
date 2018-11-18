@@ -92,6 +92,27 @@
     type: int
     value: 0
 
+- name: Disable Siri status bar icon
+  osx_defaults:
+    domain: com.apple.Siri
+    key: StatusMenuVisible
+    type: bool
+    value: false
+
+- name: Tell Siri we don't want it
+  osx_defaults:
+    domain: com.apple.Siri
+    key: UserHasDeclinedEnable
+    type: bool
+    value: true
+
+- name: Disable Siri Assistant
+  osx_defaults:
+    domain: com.apple.assistant.support
+    key: 'Assistant Enabled'
+    type: int
+    value: 0
+
 ###############################################################################
 # Things I used to set, but am not sure if I want.
 ###############################################################################
