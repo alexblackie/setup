@@ -12,13 +12,6 @@
     type: bool
     value: false
 
-- name: Allow restarting/quitting Finder.app
-  osx_defaults:
-    domain: com.apple.finder
-    key: QuitMenuItem
-    type: bool
-    value: true
-
 - name: Show all file extensions in Finder
   osx_defaults:
     key: AppleShowAllExtensions
@@ -65,27 +58,6 @@
     key: DoNotOfferNewDisksForBackup
     type: bool
     value: true
-
-- name: Enable browsing the network across all network connections
-  osx_defaults:
-    domain: com.apple.NetworkBrowser
-    key: BrowseAllInterfaces
-    type: bool
-    value: true
-
-- name: Don't relaunch apps on login
-  osx_defaults:
-    domain: com.apple.loginwindow
-    key: LoginwindowLaunchesRelaunchApps
-    type: bool
-    value: false
-
-- name: Don't save state of apps on logout
-  osx_defaults:
-    domain: com.apple.loginwindow
-    key: TALLogoutSavesState
-    type: bool
-    value: false
 
 - name: Make key repeat real fast
   osx_defaults:
@@ -142,6 +114,38 @@
 - name: Don't save windows when quitting apps
   osx_defaults:
     key: NSQuitAlwaysKeepsWindows
+    type: bool
+    value: false
+  when: False
+
+- name: Allow restarting/quitting Finder.app
+  osx_defaults:
+    domain: com.apple.finder
+    key: QuitMenuItem
+    type: bool
+    value: true
+  when: False
+
+- name: Enable browsing the network across all network connections
+  osx_defaults:
+    domain: com.apple.NetworkBrowser
+    key: BrowseAllInterfaces
+    type: bool
+    value: true
+  when: False
+
+- name: Don't relaunch apps on login
+  osx_defaults:
+    domain: com.apple.loginwindow
+    key: LoginwindowLaunchesRelaunchApps
+    type: bool
+    value: false
+  when: False
+
+- name: Don't save state of apps on logout
+  osx_defaults:
+    domain: com.apple.loginwindow
+    key: TALLogoutSavesState
     type: bool
     value: false
   when: False
