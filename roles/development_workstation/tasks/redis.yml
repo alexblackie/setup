@@ -15,7 +15,6 @@
   when: is_ubuntu
 
 - name: Install redis
-  become: yes
   homebrew:
     name: redis
     state: present
