@@ -30,11 +30,12 @@
   homebrew_cask:
     name:
       - firefox
-      - iterm2
+      - homebrew/cask-versions/iterm2-beta
       - karabiner-elements
       - font-source-code-pro
       - font-fira-mono
       - 1password
+      - viscosity
     state: present
   when: is_macos
 
