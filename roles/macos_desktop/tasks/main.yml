@@ -32,13 +32,6 @@
     type: bool
     value: false
 
-- name: Enable text selection in QuickLook
-  osx_defaults:
-    domain: com.apple.finder
-    key: QLEnableTextSelection
-    type: bool
-    value: true
-
 - name: Enable devtools in Safari
   osx_defaults:
     domain: com.apple.Safari
@@ -59,12 +52,6 @@
     type: bool
     value: true
 
-- name: Make key repeat real fast
-  osx_defaults:
-    key: KeyRepeat
-    type: int
-    value: 0
-
 - name: Enable tab to all controls
   osx_defaults:
     key: AppleKeyboardUIMode
@@ -78,95 +65,9 @@
     type: bool
     value: true
 
-- name: Open mission control when slamming into the top-left screen corner
+- name: Disable recent apps in Dock
   osx_defaults:
     domain: com.apple.dock
-    key: wvous-tl-corner
-    type: int
-    value: 2
-
-- name: Don't require a modifier for the aforementioned top-left hotcorner
-  osx_defaults:
-    domain: com.apple.dock
-    key: wvous-tl-modifier
-    type: int
-    value: 0
-
-- name: Disable Siri status bar icon
-  osx_defaults:
-    domain: com.apple.Siri
-    key: StatusMenuVisible
+    key: show-recents
     type: bool
     value: false
-
-- name: Tell Siri we don't want it
-  osx_defaults:
-    domain: com.apple.Siri
-    key: UserHasDeclinedEnable
-    type: bool
-    value: true
-
-- name: Disable Siri Assistant
-  osx_defaults:
-    domain: com.apple.assistant.support
-    key: 'Assistant Enabled'
-    type: int
-    value: 0
-
-###############################################################################
-# Things I used to set, but am not sure if I want.
-###############################################################################
-
-- name: Disable window opening animations
-  osx_defaults:
-    key: NSAutomaticWindowAnimationsEnabled
-    type: bool
-    value: false
-  when: False
-
-- name: Show hidden files in Finder
-  osx_defaults:
-    domain: com.apple.Finder
-    key: AppleShowAllFiles
-    type: bool
-    value: true
-  when: False
-
-- name: Don't save windows when quitting apps
-  osx_defaults:
-    key: NSQuitAlwaysKeepsWindows
-    type: bool
-    value: false
-  when: False
-
-- name: Allow restarting/quitting Finder.app
-  osx_defaults:
-    domain: com.apple.finder
-    key: QuitMenuItem
-    type: bool
-    value: true
-  when: False
-
-- name: Enable browsing the network across all network connections
-  osx_defaults:
-    domain: com.apple.NetworkBrowser
-    key: BrowseAllInterfaces
-    type: bool
-    value: true
-  when: False
-
-- name: Don't relaunch apps on login
-  osx_defaults:
-    domain: com.apple.loginwindow
-    key: LoginwindowLaunchesRelaunchApps
-    type: bool
-    value: false
-  when: False
-
-- name: Don't save state of apps on logout
-  osx_defaults:
-    domain: com.apple.loginwindow
-    key: TALLogoutSavesState
-    type: bool
-    value: false
-  when: False
