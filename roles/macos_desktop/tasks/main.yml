@@ -1,0 +1,73 @@
+---
+
+- name: Always expand save dialogues' file browser
+  osx_defaults:
+    key: NSNavPanelExpandedStateForSaveMode
+    type: bool
+    value: true
+
+- name: Disable autocorrect
+  osx_defaults:
+    key: NSAutomaticSpellingCorrectionEnabled
+    type: bool
+    value: false
+
+- name: Show all file extensions in Finder
+  osx_defaults:
+    key: AppleShowAllExtensions
+    type: bool
+    value: true
+
+- name: Show status bar in Finder.app
+  osx_defaults:
+    domain: com.apple.finder
+    key: ShowStatusBar
+    type: bool
+    value: true
+
+- name: Don't warn when changing a file extension
+  osx_defaults:
+    domain: com.apple.finder
+    key: FXEnableExtensionChangeWarning
+    type: bool
+    value: false
+
+- name: Enable devtools in Safari
+  osx_defaults:
+    domain: com.apple.Safari
+    key: IncludeInternalDebugMenu
+    type: bool
+    value: true
+
+- name: Enable devtools in all webkits
+  osx_defaults:
+    key: WebKitDeveloperExtras
+    type: bool
+    value: true
+
+- name: Make time machine shut up
+  osx_defaults:
+    domain: com.apple.TimeMachine
+    key: DoNotOfferNewDisksForBackup
+    type: bool
+    value: true
+
+- name: Enable tab to all controls
+  osx_defaults:
+    key: AppleKeyboardUIMode
+    type: int
+    value: 3
+
+- name: Don't spew .DS_Store files into my network mounts
+  osx_defaults:
+    domain: com.apple.desktopservices
+    key: DSDontWriteNetworkStores
+    type: bool
+    value: true
+
+- name: Disable recent apps in Dock
+  osx_defaults:
+    domain: com.apple.dock
+    key: show-recents
+    type: bool
+    value: false

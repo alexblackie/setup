@@ -24,3 +24,9 @@
   args:
     creates: /snap/bin/subl
   when: is_ubuntu
+
+- name: Install Sublime Text cask
+  homebrew_cask:
+    name: sublime-text
+    state: present
+  when: is_macos

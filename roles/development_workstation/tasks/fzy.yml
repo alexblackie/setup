@@ -4,6 +4,7 @@
   git:
     repo: https://github.com/jhawthorn/fzy.git
     dest: "{{ home }}/src/fzy"
+  when: is_fedora or is_ubuntu
 
 - name: Compile and install fzy
   shell: make && make install
@@ -11,3 +12,10 @@
   args:
     chdir: "{{ home }}/src/fzy"
     creates: /usr/local/bin/fzy
+  when: is_fedora or is_ubuntu
+
+- name: Install fzy
+  homebrew:
+    name: fzy
+    state: present
+  when: is_macos

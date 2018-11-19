@@ -11,3 +11,8 @@
   service:
     name: postgresql-9.6
     state: restarted
+
+- name: brew restart postgresql
+  homebrew_service:
+    name: postgresql
+    state: restarted

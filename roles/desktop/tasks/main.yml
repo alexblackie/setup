@@ -20,6 +20,25 @@
     - claws-mail-plugins-pgp
   when: is_fedora
 
+- name: Enable Homebrew fonts cask
+  homebrew_tap:
+    name:
+      - Homebrew/homebrew-cask-fonts
+  when: is_macos
+
+- name: Install workstation GUI apps and related dependencies
+  homebrew_cask:
+    name:
+      - firefox
+      - homebrew/cask-versions/iterm2-beta
+      - karabiner-elements
+      - font-source-code-pro
+      - font-fira-mono
+      - 1password
+      - viscosity
+    state: present
+  when: is_macos
+
 - name: Download Source Code Pro manually
   become: yes
   get_url:
@@ -86,6 +105,15 @@
     - powertop
     - ffmpeg
   when: is_ubuntu
+
+- name: Install workstation CLI tools
+  homebrew:
+    name:
+      - youtube-dl
+      - pass
+      - ffmpeg
+    state: present
+  when: is_macos
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml

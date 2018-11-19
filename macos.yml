@@ -1,0 +1,13 @@
+---
+
+- hosts: localhost
+  vars:
+    is_macos: yes
+    user: alexblackie
+    group: staff
+    home: /Users/{{ user }}
+  roles:
+    - blackieops
+    - desktop
+    - macos_desktop
+    - development_workstation

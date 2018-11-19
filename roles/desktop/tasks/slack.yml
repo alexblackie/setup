@@ -37,3 +37,9 @@
     name: slack
     state: present
   when: is_fedora
+
+- name: Install Slack
+  homebrew_cask:
+    name: slack
+    state: present
+  when: is_macos

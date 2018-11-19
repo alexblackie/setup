@@ -31,3 +31,9 @@
     name: keybase
     state: present
   when: is_ubuntu
+
+- name: Install Keybase
+  homebrew_cask:
+    name: keybase
+    state: present
+  when: is_macos
