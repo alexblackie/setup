@@ -9,11 +9,15 @@
     creates: /usr/local/heroku/bin/heroku
   when: is_fedora or is_ubuntu
 
-- name: Install cloud tools
+- name: Install Terraform
   homebrew:
-    name:
-      - heroku
-      - terraform
+    name: terraform
+    state: present
+  when: is_macos
+
+- name: Install Heroku CLI
+  homebrew:
+    name: heroku/brew/heroku
     state: present
   when: is_macos
 
