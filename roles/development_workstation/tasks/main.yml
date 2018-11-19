@@ -115,9 +115,9 @@
   when: is_ubuntu
 
 - name: Install some development tools and libraries
-  become: yes
   homebrew:
     name:
+      - findutils
       - git
       - tmux
       - reattach-to-user-namespace
