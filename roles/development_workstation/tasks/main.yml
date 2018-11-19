@@ -118,6 +118,7 @@
   homebrew:
     name:
       - findutils
+      - autoconf
       - git
       - tmux
       - reattach-to-user-namespace
