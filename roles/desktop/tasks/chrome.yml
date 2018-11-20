@@ -39,8 +39,9 @@
     state: present
   when: is_ubuntu
 
+# TODO disabled because the sha sums mismatch at time of writing
 - name: Install Google Chrome
   homebrew_cask:
     name: google-chrome
     state: present
-  when: is_macos
+  when: is_macos and False
