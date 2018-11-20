@@ -37,8 +37,5 @@
   when: is_ubuntu
 
 - name: Enable and start redis
-  homebrew_service:
-    name: redis
-    state: started
-    enabled: yes
+  command: brew services run redis
   when: is_macos

@@ -13,6 +13,4 @@
     state: restarted
 
 - name: brew restart postgresql
-  homebrew_service:
-    name: postgresql
-    state: restarted
+  command: brew services restart postgresql

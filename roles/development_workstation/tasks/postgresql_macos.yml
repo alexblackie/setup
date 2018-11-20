@@ -7,11 +7,13 @@
       - libpq
     state: present
 
-# TODO this path can't be right...
 - name: Add custom pg_hba.conf to allow password auth
   template:
     src: pg_hba.conf.j2
-    dest: /usr/local/etc/postgresql/pg_hba.conf
+    dest: /usr/local/var/postgres/pg_hba.conf
   become: yes
   notify:
     - brew restart postgresql
+
+- name: Enable and start PostgreSQL
+  command: brew services run postgresql
