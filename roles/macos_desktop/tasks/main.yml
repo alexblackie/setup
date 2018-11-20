@@ -71,3 +71,9 @@
     key: show-recents
     type: bool
     value: false
+
+- name: Only show scrollbars when scrolling
+  osx_defaults:
+    key: AppleShowScrollBars
+    type: string
+    value: WhenScrolling
