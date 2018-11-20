@@ -77,3 +77,22 @@
     key: AppleShowScrollBars
     type: string
     value: WhenScrolling
+
+- name: Show date in clock
+  osx_defaults:
+    domain: com.apple.MenuBarClock
+    key: ShowDay
+    type: bool
+    value: true
+
+- name: Disable inserting a period on double-space
+  osx_defaults:
+    key: NSAutomaticPeriodSubstitutionEnabled
+    type: bool
+    value: false
+
+- name: Don't save to iCloud by default
+  osx_defaults:
+    key: NSDocumentSaveNewDocumentsToCloud
+    type: bool
+    value: false
