@@ -25,6 +25,7 @@
   pip:
     name: docker-compose
     state: present
+  when: is_fedora or is_ubuntu
 
 - name: Ensure presence of docker group
   group:
@@ -48,3 +49,9 @@
     state: started
   become: yes
   when: is_fedora or is_ubuntu
+
+- name: Install Docker.app
+  homebrew_cask:
+    name: docker
+    state: present
+  when: is_macos
