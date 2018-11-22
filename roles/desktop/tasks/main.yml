@@ -31,7 +31,6 @@
     name:
       - firefox
       - homebrew/cask-versions/iterm2-beta
-      - karabiner-elements
       - font-source-code-pro
       - font-fira-mono
       - 1password
