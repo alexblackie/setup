@@ -122,3 +122,14 @@
     key: NSDocumentSaveNewDocumentsToCloud
     type: bool
     value: false
+  tags:
+    - tweaks
+
+- name: Don't rearrange spaces based on most-recent-used
+  osx_defaults:
+    domain: com.apple.dock
+    key: mru-spaces
+    type: bool
+    value: false
+  tags:
+    - tweaks
