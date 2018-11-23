@@ -5,18 +5,24 @@
     key: NSNavPanelExpandedStateForSaveMode
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Disable autocorrect
   osx_defaults:
     key: NSAutomaticSpellingCorrectionEnabled
     type: bool
     value: false
+  tags:
+    - tweaks
 
 - name: Show all file extensions in Finder
   osx_defaults:
     key: AppleShowAllExtensions
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Show status bar in Finder.app
   osx_defaults:
@@ -24,6 +30,8 @@
     key: ShowStatusBar
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Don't warn when changing a file extension
   osx_defaults:
@@ -31,6 +39,8 @@
     key: FXEnableExtensionChangeWarning
     type: bool
     value: false
+  tags:
+    - tweaks
 
 - name: Enable devtools in Safari
   osx_defaults:
@@ -38,12 +48,16 @@
     key: IncludeInternalDebugMenu
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Enable devtools in all webkits
   osx_defaults:
     key: WebKitDeveloperExtras
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Make time machine shut up
   osx_defaults:
@@ -51,12 +65,16 @@
     key: DoNotOfferNewDisksForBackup
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Enable tab to all controls
   osx_defaults:
     key: AppleKeyboardUIMode
     type: int
     value: 3
+  tags:
+    - tweaks
 
 - name: Don't spew .DS_Store files into my network mounts
   osx_defaults:
@@ -64,6 +82,8 @@
     key: DSDontWriteNetworkStores
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Disable recent apps in Dock
   osx_defaults:
@@ -77,6 +97,8 @@
     key: AppleShowScrollBars
     type: string
     value: WhenScrolling
+  tags:
+    - tweaks
 
 - name: Show date in clock
   osx_defaults:
@@ -84,12 +106,16 @@
     key: ShowDay
     type: bool
     value: true
+  tags:
+    - tweaks
 
 - name: Disable inserting a period on double-space
   osx_defaults:
     key: NSAutomaticPeriodSubstitutionEnabled
     type: bool
     value: false
+  tags:
+    - tweaks
 
 - name: Don't save to iCloud by default
   osx_defaults:
