@@ -17,7 +17,9 @@
 - name: Install psutil for dconf integration
   become: yes
   dnf:
-    name: python-psutil
+    name:
+      - python2-psutil
+      - python3-psutil
     state: present
   when: is_fedora
 

@@ -6,6 +6,7 @@
     state: present
   with_items:
     - python-psycopg2
+    - python3-psycopg2
     - postgresql
     - postgresql-devel
     - postgresql-server

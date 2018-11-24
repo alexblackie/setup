@@ -141,7 +141,6 @@
     name:
       - htop
       - perf
-      - dstat
       - strace
     state: present
   when: is_fedora

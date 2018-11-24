@@ -3,7 +3,7 @@ user: ablackie
 group: ablackie
 home: /home/{{ user }}
 
-fedora_release: 28
+fedora_release: 29
 ubuntu_codename: bionic
 
 # Set defaults here; one of these should be overridden in each playbook's vars.
