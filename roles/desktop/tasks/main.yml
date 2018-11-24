@@ -30,6 +30,7 @@
   homebrew_cask:
     name:
       - firefox
+      - whatsapp
       - homebrew/cask-versions/iterm2-beta
       - font-source-code-pro
       - font-fira-mono
