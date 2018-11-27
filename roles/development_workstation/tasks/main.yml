@@ -52,6 +52,8 @@
       - ruby-devel
       - automake
       - autoconf
+      - wxGTK3-devel
+      - wxBase3
       - readline-devel
       - ncurses-devel
       - openssl-devel
@@ -84,6 +86,10 @@
       - ruby-dev
       - automake
       - autoconf
+      - libwxgtk3.0-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libpng3
       - libreadline-dev
       - libncurses-dev
       - libssl-dev
@@ -119,6 +125,7 @@
     name:
       - findutils
       - autoconf
+      - wxmac
       - git
       - tmux
       - reattach-to-user-namespace
