@@ -16,4 +16,4 @@
     - brew restart postgresql
 
 - name: Enable and start PostgreSQL
-  command: brew services run postgresql
+  command: brew services start postgresql
