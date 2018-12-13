@@ -5,6 +5,7 @@
     is_fedora: yes
   roles:
     - rhelish
+    - snap
     - blackieops
     - desktop
     - gnome_desktop

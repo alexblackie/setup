@@ -4,6 +4,7 @@
   vars:
     is_ubuntu: yes
   roles:
+    - snap
     - blackieops
     - desktop
     - gnome_desktop
