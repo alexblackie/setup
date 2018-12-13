@@ -14,13 +14,16 @@ These playbooks support only the latest releases of:
 There are a few manual steps required on each of these platforms. First, install
 all available updates and reboot; once updated:
 
-  - On **Fedora Workstation** you must first install `ansible`, `python2-dnf`,
-    and `libselinux-python` before running.
-  - On **Ubuntu**, just install `ansible`.
+  - On **Fedora Workstation** you must first install `python2-dnf`, and
+    `libselinux-python` before running.
   - On **MacOS**, you'll need to:
     - Install XCode CLI tools: `xcode-select --install`
     - Install homebrew
-    - Install `ansible` through `brew` or `pip`.
+
+Then you can install Ansible through either your favourite package manager or
+`pip`. These playbooks require at least Ansible 2.8, so you may need to install
+through `pip` to ensure you have a more recent version than your distro
+provides.
 
 ## Running
 
