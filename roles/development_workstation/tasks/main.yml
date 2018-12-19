@@ -62,8 +62,6 @@
       - libffi-devel
       - libtool
       - unixODBC-devel
-      - nodejs
-      - npm
       - git
       - tmux
       - vim
@@ -98,8 +96,6 @@
       - libffi-dev
       - libtool
       - unixodbc-dev
-      - nodejs
-      - npm
       - git
       - git-doc
       - tmux
