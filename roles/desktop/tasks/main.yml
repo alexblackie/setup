@@ -117,7 +117,6 @@
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
-- import_tasks: spotify.yml
 - import_tasks: chrome.yml
 - import_tasks: keybase.yml
 - import_tasks: slack.yml
