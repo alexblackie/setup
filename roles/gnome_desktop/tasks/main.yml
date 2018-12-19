@@ -1,19 +1,5 @@
 ---
 
-- name: Install Ruby for gextension
-  become: yes
-  dnf:
-    name: ruby
-    state: present
-  when: is_fedora
-
-- name: Install Ruby for gextension
-  become: yes
-  apt:
-    name: ruby
-    state: present
-  when: is_ubuntu
-
 - name: Install psutil for dconf integration
   become: yes
   dnf:
@@ -53,18 +39,3 @@
       value: "true"
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
-
-- name: Install gextension
-  git:
-    repo: https://github.com/alexblackie/gextension.git
-    dest: "{{ home }}/.gextension"
-    accept_hostkey: yes
-    update: yes
-
-- name: Install GNOME extensions
-  shell: ./gextension install {{ item }}
-  args:
-    chdir: "{{ home }}/.gextension"
-  with_items:
-    - sound-output-device-chooser@kgshank.net
-    - caffeine@patapon.info
