@@ -11,7 +11,14 @@
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
   when: is_fedora
 
+- name: Add keybase repo id
+  become: yes
+  apt_key:
+    url: https://keybase.io/docs/server_security/code_signing_key.asc
+  when: is_ubuntu
+
 - name: Add Keybase repo
+  become: yes
   apt_repository:
     repo: deb http://prerelease.keybase.io/deb stable main
     state: present
