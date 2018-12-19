@@ -10,6 +10,7 @@
 - name: Add Slack Repo
   become: yes
   apt_repository:
+    filename: slack
     repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
     state: present
   when: is_ubuntu

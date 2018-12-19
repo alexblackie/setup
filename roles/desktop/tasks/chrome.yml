@@ -28,6 +28,7 @@
 - name: Add Google Chrome repo
   become: yes
   apt_repository:
+    filename: google-chrome
     repo: deb http://dl.google.com/linux/chrome/deb stable main
     state: present
   when: is_ubuntu
