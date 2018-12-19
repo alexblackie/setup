@@ -1,18 +1,21 @@
 ---
 
 - name: Ensure snapd is installed
+  become: yes
   dnf:
     name: snapd
     state: present
   when: is_fedora
 
 - name: Ensure snapd is installed
+  become: yes
   apt:
     name: snapd
     state: present
   when: is_ubuntu
 
 - name: Enable snapd service
+  become: yes
   service:
     name: snapd
     state: started
