@@ -74,6 +74,7 @@
       - sqlite-devel
       - inotify-tools
       - entr
+      - jq
     state: present
   when: is_fedora
 
@@ -113,6 +114,7 @@
       - entr
       - whois
       - ethtool
+      - jq
     state: present
   when: is_ubuntu
 
@@ -135,6 +137,7 @@
       - imagemagick
       - sqlite
       - htop
+      - jq
     state: present
   when: is_macos
 
