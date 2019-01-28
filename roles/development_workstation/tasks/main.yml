@@ -75,6 +75,7 @@
       - inotify-tools
       - entr
       - jq
+      - ShellCheck
     state: present
   when: is_fedora
 
@@ -115,6 +116,7 @@
       - whois
       - ethtool
       - jq
+      - shellcheck
     state: present
   when: is_ubuntu
 
@@ -138,6 +140,7 @@
       - sqlite
       - htop
       - jq
+      - shellcheck
     state: present
   when: is_macos
 
