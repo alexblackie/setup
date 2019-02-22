@@ -37,6 +37,7 @@
       - font-go-mono
       - 1password
       - viscosity
+      - imageoptim
     state: present
   when: is_macos
 
