@@ -38,7 +38,6 @@ $ ansible-playbook --ask-become-pass fedora.yml
 There are a few playbooks available currently for various targets:
 
   - `fedora.yml` for Fedora Workstation installs
-  - `fedora-kde.yml` for Fedora Workstation KDE Spin installs
   - `ubuntu.yml` for Ubuntu Desktop installs
   - `ubuntu-headless.yml` for Ubuntu Server or VM installs.
   - `macos.yml` for Macintosh computers.
