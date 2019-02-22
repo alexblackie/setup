@@ -1,7 +1,4 @@
 ---
-user: ablackie
-group: ablackie
-home: /home/{{ user }}
 
 fedora_release: 29
 ubuntu_codename: bionic

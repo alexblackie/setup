@@ -35,7 +35,7 @@
 
 - name: Add superuser role for default user
   postgresql_user:
-    name: "{{ user }}"
+    name: "{{ ansible_user_id }}"
     role_attr_flags: SUPERUSER,LOGIN
     state: present
   become: yes

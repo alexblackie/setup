@@ -28,7 +28,7 @@
 
 - name: Add superuser role for default user
   postgresql_user:
-    name: "{{ user }}"
+    name: "{{ local_user }}"
     role_attr_flags: SUPERUSER,LOGIN
     state: present
   become: yes

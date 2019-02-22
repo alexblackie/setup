@@ -1,5 +1,15 @@
 ---
 
+# Since ansible_user_id will be `root` if we `become: yes`, this caches the
+# unprivileged user in a fact for us to use everywhere.
+- name: Get local username
+  set_fact:
+    local_user: "{{ ansible_user_id }}"
+
+- name: Get home directory path
+  set_fact:
+    home: "{{ lookup('env', 'HOME') }}"
+
 - name: Install BlackieOps Trust Root
   become: yes
   get_url:

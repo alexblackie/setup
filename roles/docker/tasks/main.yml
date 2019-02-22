@@ -36,7 +36,7 @@
 
 - name: Add local user to docker group
   user:
-    name: "{{ user }}"
+    name: "{{ local_user }}"
     groups: docker
     append: yes
   become: yes
