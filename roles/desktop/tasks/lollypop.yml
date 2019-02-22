@@ -32,8 +32,8 @@
     repo: "{{ item }}"
     state: present
   with_items:
-    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
-    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
+    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
+    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Lollypop

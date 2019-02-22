@@ -47,14 +47,14 @@
 - name: Enable RPMFusion free
   become: yes
   dnf:
-    name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{ fedora_release }}.noarch.rpm
+    name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{ ansible_facts["distribution_major_version"] }}.noarch.rpm
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
 - name: Enable RPMFusion non-free
   become: yes
   dnf:
-    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
+    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts["distribution_major_version"] }}.noarch.rpm
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
