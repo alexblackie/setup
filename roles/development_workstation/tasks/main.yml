@@ -5,14 +5,14 @@
     dest: /etc/vimrc
     content: ""
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Create directory for third-party software sources
   file:
@@ -29,14 +29,14 @@
   dnf:
     name: "@C Development Tools and Libraries"
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install C toolchain
   become: yes
   apt:
     name: build-essential
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install asdf version manager
   git:
@@ -77,7 +77,7 @@
       - jq
       - ShellCheck
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install some development tools and libraries
   become: yes
@@ -118,7 +118,7 @@
       - jq
       - shellcheck
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install some development tools and libraries
   homebrew:
@@ -142,7 +142,7 @@
       - jq
       - shellcheck
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install system visibility tools
   become: yes
@@ -152,7 +152,7 @@
       - perf
       - strace
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install system visibility tools
   become: yes
@@ -163,35 +163,35 @@
       - dstat
       - strace
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install snapd
   become: yes
   dnf:
     name: snapd
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install gawk
   become: yes
   apt:
     name: gawk
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Ensure we're using gawk
   become: yes
   alternatives:
     name: awk
     path: /usr/bin/gawk
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - import_tasks: postgresql_fedora.yml
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 - import_tasks: postgresql_ubuntu.yml
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 - import_tasks: postgresql_macos.yml
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: redis.yml
 

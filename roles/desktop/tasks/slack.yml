@@ -5,7 +5,7 @@
   apt_key:
     url: https://packagecloud.io/slacktechnologies/slack/gpgkey
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Slack Repo
   become: yes
@@ -13,14 +13,14 @@
     filename: slack
     repo: deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Slack
   become: yes
   apt:
     name: slack-desktop
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Slack Repo
   become: yes
@@ -30,17 +30,17 @@
     baseurl: https://packagecloud.io/slacktechnologies/slack/fedora/21/x86_64
     enabled: yes
     gpgcheck: no # this *used* to be on. fuck you, slack
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Slack
   become: yes
   dnf:
     name: slack
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Slack
   homebrew_cask:
     name: slack
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"

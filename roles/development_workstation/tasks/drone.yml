@@ -3,17 +3,17 @@
 - name: Enable drone CI CLI cask
   homebrew_tap:
     name: drone/drone
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install Drone CI CLI
   homebrew:
     name: drone
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install Drone CI CLI
   unarchive:
     src: https://github.com/drone/drone-cli/releases/download/{{ drone_cli_version }}/drone_linux_amd64.tar.gz
     remote_src: yes
     dest: "{{ home }}/bin/"
-  when: ansible_os_family == "RedHat" or ansible_os_family == "Debian"
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"

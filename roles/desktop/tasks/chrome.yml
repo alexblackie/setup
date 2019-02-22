@@ -9,21 +9,21 @@
     enabled: yes
     gpgcheck: yes
     gpgkey: https://dl.google.com/linux/linux_signing_key.pub
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Google Chrome
   become: yes
   dnf:
     name: google-chrome
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Add Google signing key
   become: yes
   apt_key:
     url: https://dl.google.com/linux/linux_signing_key.pub
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Google Chrome repo
   become: yes
@@ -31,18 +31,18 @@
     filename: google-chrome
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Google Chrome
   become: yes
   apt:
     name: google-chrome-stable
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 # TODO disabled because the sha sums mismatch at time of writing
 - name: Install Google Chrome
   homebrew_cask:
     name: google-chrome
     state: present
-  when: is_macos and False
+  when: ansible_facts["os_family"] == "Darwin" and False

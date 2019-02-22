@@ -7,19 +7,19 @@
     dest: /usr/local
     remote_src: yes
     creates: /usr/local/heroku/bin/heroku
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Terraform
   homebrew:
     name: terraform
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install Heroku CLI
   homebrew:
     name: heroku/brew/heroku
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install Terraform
   become: yes
@@ -28,7 +28,7 @@
     dest: /usr/local/bin
     remote_src: yes
     creates: /usr/local/bin/terraform
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Heroku CLI to PATH
   become: yes
@@ -36,4 +36,4 @@
     content: export PATH=/usr/local/heroku/bin:$PATH
     dest: /etc/profile.d/heroku.sh
     mode: 0755
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"

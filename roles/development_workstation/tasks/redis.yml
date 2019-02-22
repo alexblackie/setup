@@ -5,20 +5,20 @@
     name: redis
     state: present
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install redis
   apt:
     name: redis-server
     state: present
   become: yes
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install redis
   homebrew:
     name: redis
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Enable and start redis
   service:
@@ -26,7 +26,7 @@
     state: started
     enabled: yes
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Enable and start redis
   service:
@@ -34,8 +34,8 @@
     state: started
     enabled: yes
   become: yes
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Enable and start redis
   command: brew services run redis
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"

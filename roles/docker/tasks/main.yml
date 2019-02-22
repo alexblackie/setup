@@ -5,34 +5,34 @@
     name: docker
     state: present
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Docker
   apt:
     name: docker.io
     state: present
   become: yes
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Docker
   homebrew_cask:
     name: docker
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install docker-compose
   become: yes
   pip:
     name: docker-compose
     state: present
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Ensure presence of docker group
   group:
     name: docker
     state: present
   become: yes
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add local user to docker group
   user:
@@ -40,7 +40,7 @@
     groups: docker
     append: yes
   become: yes
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Enable and start docker
   service:
@@ -48,10 +48,10 @@
     enabled: yes
     state: started
   become: yes
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Docker.app
   homebrew_cask:
     name: docker
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"

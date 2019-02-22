@@ -8,7 +8,7 @@
       - maven
     state: present
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install JDK and tools
   apt:
@@ -17,4 +17,4 @@
       - maven
     state: present
   become: yes
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"

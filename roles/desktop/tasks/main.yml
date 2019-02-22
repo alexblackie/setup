@@ -1,5 +1,14 @@
 ---
 
+- name: Install libva for hardware video offload
+  become: yes
+  dnf:
+    name:
+      - libva-intel-driver
+      - libva-intel-hybrid-driver
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+
 - name: Install workstation GUI apps and related dependencies
   dnf:
     name:
@@ -13,13 +22,13 @@
       - mpv
     state: present
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Enable Homebrew fonts cask
   homebrew_tap:
     name:
       - Homebrew/homebrew-cask-fonts
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install workstation GUI apps and related dependencies
   homebrew_cask:
@@ -32,7 +41,7 @@
       - viscosity
       - imageoptim
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Download Source Code Pro manually
   become: yes
@@ -44,7 +53,7 @@
     - extract source code pro
     - install source code pro
     - update font cache
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install workstation GUI apps and related dependencies
   become: yes
@@ -60,7 +69,7 @@
       - mpv
       - ubuntu-restricted-extras
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install workstation CLI tools
   become: yes
@@ -70,7 +79,7 @@
       - powertop
       - ffmpeg
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install workstation CLI tools
   become: yes
@@ -80,7 +89,7 @@
       - powertop
       - ffmpeg
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install workstation CLI tools
   homebrew:
@@ -88,10 +97,13 @@
       - youtube-dl
       - ffmpeg
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: chrome.yml
 - import_tasks: keybase.yml
 - import_tasks: slack.yml
+
+- import_tasks: gnome.yml
+- import_tasks: macos.yml

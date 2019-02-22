@@ -7,14 +7,14 @@
       - python2-psutil
       - python3-psutil
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install psutil for dconf integration
   become: yes
   apt:
     name: python-psutil
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Set various GNOME dconf settings
   dconf:
@@ -39,3 +39,4 @@
       value: "true"
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"

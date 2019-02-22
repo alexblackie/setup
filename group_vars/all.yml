@@ -5,8 +5,3 @@ home: /home/{{ user }}
 
 fedora_release: 29
 ubuntu_codename: bionic
-
-# Set defaults here; one of these should be overridden in each playbook's vars.
-is_fedora: no
-is_ubuntu: no
-is_macos: no

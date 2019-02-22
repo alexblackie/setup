@@ -7,7 +7,7 @@
       - qemu-kvm
       - libvirt
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Enable and start libvirtd
   become: yes
@@ -15,4 +15,4 @@
     name: libvirtd
     state: started
     enabled: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"

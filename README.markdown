@@ -18,7 +18,7 @@ all available updates and reboot; once updated:
     `libselinux-python` before running.
   - On **MacOS**, you'll need to:
     - Install XCode CLI tools: `xcode-select --install`
-    - Install homebrew
+    - Install [Homebrew](https://brew.sh)
 
 Then you can install Ansible through either your favourite package manager or
 `pip`. These playbooks require at least Ansible 2.8, so you may need to install
@@ -32,20 +32,13 @@ Run these playbooks as an unprivileged user (with `sudo` access). Pass
 running.
 
 ```
-$ ansible-playbook --ask-become-pass fedora.yml
+$ ansible-playbook --ask-become-pass workstation.yml
 ```
 
-There are a few playbooks available currently for various targets:
+There are two playbooks available:
 
-  - `fedora.yml` for Fedora Workstation installs
-  - `ubuntu.yml` for Ubuntu Desktop installs
-  - `ubuntu-headless.yml` for Ubuntu Server or VM installs.
-  - `macos.yml` for Macintosh computers.
-
-Additionally, there is a utility playbook: `intel_graphics.yml`, which installs
-the `libva` hardware acceleration drivers, allowing H.264 offload among other
-things in various video players. This playbook is only for Linux, and currently
-specifically only for Fedora.
+  - `workstation.yml` for desktop/laptop workstations (GUI tools included);
+  - `headless.yml` for headless Linux installs (CLI tools only).
 
 ## Known Problems
 

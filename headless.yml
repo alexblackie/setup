@@ -1,8 +1,6 @@
 ---
 
 - hosts: localhost
-  vars:
-    is_ubuntu: yes
   roles:
     - snap
     - base

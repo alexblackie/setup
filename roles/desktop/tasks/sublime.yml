@@ -9,24 +9,24 @@
     gpgcheck: yes
     gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
   become: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Sublime Text
   become: yes
   dnf:
     name: sublime-text
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Sublime Text snap
   become: yes
   command: snap install sublime-text --classic
   args:
     creates: /snap/bin/subl
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Sublime Text cask
   homebrew_cask:
     name: sublime-text
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"

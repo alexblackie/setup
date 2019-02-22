@@ -10,21 +10,21 @@
     gpgcheck: yes
     gpgkey: https://copr-be.cloud.fedoraproject.org/results/gnumdk/lollypop/pubkey.gpg
     enabled: yes
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Lollypop
   become: yes
   dnf:
     name: lollypop
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Import Lollypop apt key
   become: yes
   apt_key:
     keyserver: keyserver.ubuntu.com
     id: 8FAD14A04A8E87F23FB5653BDBA501177AA84500
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Lollypop repo
   become: yes
@@ -34,11 +34,11 @@
   with_items:
     - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
     - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ubuntu_codename }} main
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Lollypop
   become: yes
   apt:
     name: lollypop
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"

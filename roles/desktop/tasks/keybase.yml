@@ -9,13 +9,13 @@
     enabled: yes
     gpgcheck: yes
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Add keybase repo id
   become: yes
   apt_key:
     url: https://keybase.io/docs/server_security/code_signing_key.asc
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Keybase repo
   become: yes
@@ -23,24 +23,24 @@
     repo: deb http://prerelease.keybase.io/deb stable main
     state: present
     filename: keybase
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Keybase
   become: yes
   dnf:
     name: keybase
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install Keybase
   become: yes
   apt:
     name: keybase
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Keybase
   homebrew_cask:
     name: keybase
     state: present
-  when: is_macos
+  when: ansible_facts["os_family"] == "Darwin"

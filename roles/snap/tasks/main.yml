@@ -5,14 +5,14 @@
   dnf:
     name: snapd
     state: present
-  when: is_fedora
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Ensure snapd is installed
   become: yes
   apt:
     name: snapd
     state: present
-  when: is_ubuntu
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Enable snapd service
   become: yes
@@ -20,4 +20,4 @@
     name: snapd
     state: started
     enabled: yes
-  when: is_fedora or is_ubuntu
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"

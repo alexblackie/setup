@@ -1,13 +1,10 @@
 ---
 
 - hosts: localhost
-  vars:
-    is_fedora: yes
   roles:
     - snap
     - base
     - desktop
-    - gnome_desktop
     - virtualization
     - development_workstation
     - docker

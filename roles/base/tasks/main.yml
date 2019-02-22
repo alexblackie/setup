@@ -7,7 +7,7 @@
     dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
   notify:
     - update ca-trust
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install BlackieOps Trust Root
   become: yes
@@ -16,7 +16,7 @@
     dest: /usr/local/share/ca-certificates/blackieops_trust_chain_2017.pem
   notify:
     - update-ca-certificates
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install BlackieOps Trust Root
   become: yes
@@ -54,7 +54,7 @@
     state: started
     enabled: yes
   become: yes
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Enable ssh
   service:
@@ -62,7 +62,7 @@
     state: started
     enabled: yes
   become: yes
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install fwupd for firmware update support
   become: yes
