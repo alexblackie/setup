@@ -3,10 +3,8 @@
 - name: Install tools for RPM development
   become: yes
   dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - redhat-rpm-config
-    - rpm-build
-    - pkgconfig
+    name:
+      - redhat-rpm-config
+      - rpm-build
+      - pkgconfig
   when: is_fedora

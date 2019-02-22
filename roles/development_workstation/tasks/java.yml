@@ -2,21 +2,19 @@
 
 - name: Install JDK and tools
   dnf:
-    name: "{{ item }}"
+    name:
+      - java-1.8.0-openjdk
+      - java-1.8.0-openjdk-devel
+      - maven
     state: present
   become: yes
-  with_items:
-    - java-1.8.0-openjdk
-    - java-1.8.0-openjdk-devel
-    - maven
   when: is_fedora
 
 - name: Install JDK and tools
   apt:
-    name: "{{ item }}"
+    name:
+      - default-jdk
+      - maven
     state: present
   become: yes
-  with_items:
-    - default-jdk
-    - maven
   when: is_ubuntu

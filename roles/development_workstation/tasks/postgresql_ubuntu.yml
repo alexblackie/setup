@@ -2,14 +2,13 @@
 
 - name: Install postgresql server and client libs
   apt:
-    name: "{{ item }}"
+    name:
+      - python-psycopg2
+      - postgresql
+      - libpq-dev
+      - postgresql-client
+      - postgresql-contrib
     state: present
-  with_items:
-    - python-psycopg2
-    - postgresql
-    - libpq-dev
-    - postgresql-client
-    - postgresql-contrib
   become: yes
 
 - name: Add custom pg_hba.conf to allow password auth

@@ -2,15 +2,14 @@
 
 - name: Install postgresql server and client libs
   dnf:
-    name: "{{ item }}"
+    name:
+      - python-psycopg2
+      - python3-psycopg2
+      - postgresql
+      - postgresql-devel
+      - postgresql-server
+      - postgresql-contrib
     state: present
-  with_items:
-    - python-psycopg2
-    - python3-psycopg2
-    - postgresql
-    - postgresql-devel
-    - postgresql-server
-    - postgresql-contrib
   become: yes
 
 - name: Initialize PostgreSQL data directory

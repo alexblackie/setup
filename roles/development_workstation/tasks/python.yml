@@ -2,37 +2,34 @@
 
 - name: Install Python and some libs
   dnf:
-    name: "{{ item }}"
-  with_items:
-    - python
-    - python-devel
-    - python-virtualenv
-    - python-pip
-    - python-pygments
-    - python3
-    - python3-devel
+    name:
+      - python
+      - python-devel
+      - python-virtualenv
+      - python-pip
+      - python-pygments
+      - python3
+      - python3-devel
   become: yes
   when: is_fedora
 
 - name: Install Python and some libs
   apt:
-    name: "{{ item }}"
-  with_items:
-    - python
-    - python-dev
-    - python-virtualenv
-    - python-pip
-    - python-pygments
-    - python3
-    - python3-dev
+    name:
+      - python
+      - python-dev
+      - python-virtualenv
+      - python-pip
+      - python-pygments
+      - python3
+      - python3-dev
   become: yes
   when: is_ubuntu
 
 - name: Install some Python CLI tools
   pip:
-    name: "{{ item }}"
+    name:
+      - awscli
+      - httpstat
     state: present
   become: yes
-  with_items:
-    - awscli
-    - httpstat

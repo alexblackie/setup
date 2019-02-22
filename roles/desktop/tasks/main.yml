@@ -2,22 +2,21 @@
 
 - name: Install workstation GUI apps and related dependencies
   dnf:
-    name: "{{ item }}"
+    name:
+      - adobe-source-code-pro-fonts
+      - mozilla-fira-mono-fonts
+      - mozilla-fira-sans-fonts
+      - gnome-tweak-tool
+      - gimp
+      - firefox
+      - virt-viewer
+      - virt-manager
+      - fuse-exfat
+      - mpv
+      - claws-mail
+      - claws-mail-plugins-pgp
     state: present
   become: yes
-  with_items:
-    - adobe-source-code-pro-fonts
-    - mozilla-fira-mono-fonts
-    - mozilla-fira-sans-fonts
-    - gnome-tweak-tool
-    - gimp
-    - firefox
-    - virt-viewer
-    - virt-manager
-    - fuse-exfat
-    - mpv
-    - claws-mail
-    - claws-mail-plugins-pgp
   when: is_fedora
 
 - name: Enable Homebrew fonts cask
@@ -68,42 +67,39 @@
 - name: Install workstation GUI apps and related dependencies
   become: yes
   apt:
-    name: "{{ item }}"
+    name:
+      - network-manager-openvpn
+      - gnome-tweaks
+      - gimp
+      - firefox
+      - virt-viewer
+      - virt-manager
+      - exfat-fuse
+      - mpv
+      - claws-mail
+      - claws-mail-plugins
+      - ubuntu-restricted-extras
     state: present
-  with_items:
-    - network-manager-openvpn
-    - gnome-tweaks
-    - gimp
-    - firefox
-    - virt-viewer
-    - virt-manager
-    - exfat-fuse
-    - mpv
-    - claws-mail
-    - claws-mail-plugins
-    - ubuntu-restricted-extras
   when: is_ubuntu
 
 - name: Install workstation CLI tools
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - youtube-dl
+      - powertop
+      - ffmpeg
     state: present
-  with_items:
-    - youtube-dl
-    - powertop
-    - ffmpeg
   when: is_fedora
 
 - name: Install workstation CLI tools
   become: yes
   apt:
-    name: "{{ item }}"
+    name:
+      - youtube-dl
+      - powertop
+      - ffmpeg
     state: present
-  with_items:
-    - youtube-dl
-    - powertop
-    - ffmpeg
   when: is_ubuntu
 
 - name: Install workstation CLI tools
