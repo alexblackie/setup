@@ -13,8 +13,6 @@
       - virt-manager
       - fuse-exfat
       - mpv
-      - claws-mail
-      - claws-mail-plugins-pgp
     state: present
   become: yes
   when: is_fedora
@@ -76,8 +74,6 @@
       - virt-manager
       - exfat-fuse
       - mpv
-      - claws-mail
-      - claws-mail-plugins
       - ubuntu-restricted-extras
     state: present
   when: is_ubuntu
