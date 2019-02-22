@@ -4,8 +4,6 @@
   dnf:
     name:
       - adobe-source-code-pro-fonts
-      - mozilla-fira-mono-fonts
-      - mozilla-fira-sans-fonts
       - gnome-tweak-tool
       - gimp
       - firefox
@@ -30,8 +28,6 @@
       - whatsapp
       - homebrew/cask-versions/iterm2-beta
       - font-source-code-pro
-      - font-fira-mono
-      - font-go-mono
       - 1password
       - viscosity
       - imageoptim
@@ -47,18 +43,6 @@
   notify:
     - extract source code pro
     - install source code pro
-    - update font cache
-  when: is_ubuntu
-
-- name: Download Fira Sans manually
-  become: yes
-  get_url:
-    url: https://github.com/mozilla/Fira/archive/master.zip
-    dest: /usr/src/fira.tar.gz
-    remote_src: yes
-  notify:
-    - extract fira
-    - install fira
     - update font cache
   when: is_ubuntu
 
