@@ -5,7 +5,7 @@
     is_ubuntu: yes
   roles:
     - snap
-    - blackieops
+    - base
     - desktop
     - gnome_desktop
     - development_workstation

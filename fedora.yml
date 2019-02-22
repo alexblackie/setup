@@ -4,9 +4,8 @@
   vars:
     is_fedora: yes
   roles:
-    - rhelish
     - snap
-    - blackieops
+    - base
     - desktop
     - gnome_desktop
     - virtualization

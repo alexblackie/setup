@@ -1,0 +1,72 @@
+---
+
+- name: Install BlackieOps Trust Root
+  become: yes
+  get_url:
+    url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
+    dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
+  notify:
+    - update ca-trust
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Install BlackieOps Trust Root
+  become: yes
+  get_url:
+    url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
+    dest: /usr/local/share/ca-certificates/blackieops_trust_chain_2017.pem
+  notify:
+    - update-ca-certificates
+  when: ansible_facts["os_family"] == "Debian"
+
+- name: Install BlackieOps Trust Root
+  become: yes
+  get_url:
+    url: https://trust.blackieops.com/blackieops_trust_chain_2017.pem
+    dest: /tmp/blackieops.pem
+  notify:
+    - update keychain
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: Enable fastest mirror dnf plugin
+  become: yes
+  lineinfile:
+    line: fastestmirror=1
+    dest: /etc/dnf/dnf.conf
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: Enable RPMFusion free
+  become: yes
+  dnf:
+    name: http://mirror.us.leaseweb.net/rpmfusion/free/fedora/rpmfusion-free-release-{{ fedora_release }}.noarch.rpm
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: Enable RPMFusion non-free
+  become: yes
+  dnf:
+    name: http://mirror.us.leaseweb.net/rpmfusion/nonfree/fedora/rpmfusion-nonfree-release-{{fedora_release}}.noarch.rpm
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: Enable sshd
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+  become: yes
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Enable ssh
+  service:
+    name: ssh
+    state: started
+    enabled: yes
+  become: yes
+  when: ansible_facts["os_family"] == "Debian"
+
+- name: Install fwupd for firmware update support
+  become: yes
+  dnf:
+    name: fwupd
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"

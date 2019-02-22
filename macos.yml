@@ -7,7 +7,7 @@
     group: staff
     home: /Users/{{ user }}
   roles:
-    - blackieops
+    - base
     - desktop
     - macos_desktop
     - development_workstation
