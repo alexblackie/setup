@@ -37,3 +37,12 @@
     dest: /etc/profile.d/heroku.sh
     mode: 0755
   when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+
+- name: Install Kubernetes tools and CLIs
+  homebrew:
+    name:
+      - kubectl
+      - kubernetes-helm
+      - kompose
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
