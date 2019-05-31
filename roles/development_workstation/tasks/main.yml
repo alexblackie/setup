@@ -141,6 +141,7 @@
       - htop
       - jq
       - shellcheck
+      - gnupg
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
