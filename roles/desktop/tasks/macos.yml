@@ -151,3 +151,68 @@
   when: ansible_facts["os_family"] == "Darwin"
   tags:
     - tweaks
+
+- name: Disable auto-brightness adjustment
+  osx_defaults:
+    domain: com.apple.BezelServices
+    key: dAuto
+    type: bool
+    value: false
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+
+- name: Enable 4-fingers-vertical to access mission control
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadFourFingerVertSwipeGesture
+    type: int
+    value: 2
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+    - threefingerdrag
+
+- name: Enable 4-fingers-horizontal to switch spaces
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadFourFingerHorizSwipeGesture
+    type: int
+    value: 2
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+    - threefingerdrag
+
+- name: Disable three-fingers-up to access mission control
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadThreeFingerVertSwipeGesture
+    type: int
+    value: 0
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+    - threefingerdrag
+
+- name: Disable three-fingers-horizontal to switch spaces
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadThreeFingerHorizSwipeGesture
+    type: int
+    value: 0
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+    - threefingerdrag
+
+- name: Enable three-finger drag on internal trackpad
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: TrackpadThreeFingerDrag
+    type: int
+    value: 1
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+    - threefingerdrag
