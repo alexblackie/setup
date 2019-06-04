@@ -216,3 +216,22 @@
   tags:
     - tweaks
     - threefingerdrag
+
+- name: Disable tap-to-click on internal trackpad
+  osx_defaults:
+    key: com.apple.mouse.tapBehavior
+    type: int
+    value: 0
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+
+- name: Ensure drag locking is disabled
+  osx_defaults:
+    domain: com.apple.AppleMultitouchTrackpad
+    key: Dragging
+    type: int
+    value: 0
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
