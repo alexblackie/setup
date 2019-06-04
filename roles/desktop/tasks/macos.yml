@@ -116,10 +116,10 @@
 
 - name: Show date in clock
   osx_defaults:
-    domain: com.apple.MenuBarClock
-    key: ShowDay
-    type: bool
-    value: true
+    domain: com.apple.menuextra.clock
+    key: DateFormat
+    type: string
+    value: "EEE d MMM HH:mm"
   when: ansible_facts["os_family"] == "Darwin"
   tags:
     - tweaks
