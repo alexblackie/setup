@@ -103,7 +103,6 @@
 - import_tasks: sublime.yml
 - import_tasks: chrome.yml
 - import_tasks: keybase.yml
-- import_tasks: slack.yml
 
 - import_tasks: gnome.yml
 - import_tasks: macos.yml
