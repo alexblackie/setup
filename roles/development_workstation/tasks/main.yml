@@ -1,5 +1,27 @@
 ---
 
+- name: install zsh
+  apt:
+    name: zsh
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+
+- name: install zsh
+  dnf:
+    name: zsh
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: set default shell to zsh
+  user:
+    shell: /bin/zsh
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: set default shell to zsh
+  user:
+    shell: /usr/bin/zsh
+  when: ansible_facts["os_family"] is not "Darwin"
+
 - name: disable gross vim defaults
   copy:
     dest: /etc/vimrc
