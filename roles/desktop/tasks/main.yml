@@ -9,6 +9,13 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
+- name: Install dbus-tools for setting GNOME config programmatically
+  become: yes
+  dnf:
+    name: dbus-tools
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+
 - name: Install workstation GUI apps and related dependencies
   dnf:
     name:
