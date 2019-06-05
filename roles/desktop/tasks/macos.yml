@@ -219,7 +219,8 @@
 
 - name: Disable tap-to-click on internal trackpad
   osx_defaults:
-    key: com.apple.mouse.tapBehavior
+    domain: com.apple.AppleMultitouchTrackpad
+    key: Clicking
     type: int
     value: 0
   when: ansible_facts["os_family"] == "Darwin"
