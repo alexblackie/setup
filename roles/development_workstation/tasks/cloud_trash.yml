@@ -8,18 +8,36 @@
     remote_src: yes
     creates: /usr/local/heroku/bin/heroku
   when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
 
-- name: Install Terraform
-  homebrew:
-    name: terraform
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
+- name: Add Heroku CLI to PATH
+  become: yes
+  copy:
+    content: export PATH=/usr/local/heroku/bin:$PATH
+    dest: /etc/profile.d/heroku.sh
+    mode: 0755
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
 
 - name: Install Heroku CLI
   homebrew:
     name: heroku/brew/heroku
     state: present
   when: ansible_facts["os_family"] == "Darwin"
+  tags:
+  - cloud
+  - package
+
+- name: Install Terraform
+  homebrew:
+    name: terraform
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+  - cloud
+  - package
 
 - name: Install Terraform
   become: yes
@@ -29,14 +47,18 @@
     remote_src: yes
     creates: /usr/local/bin/terraform
   when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
 
-- name: Add Heroku CLI to PATH
+- name: Install Kubernetes CLI
   become: yes
-  copy:
-    content: export PATH=/usr/local/heroku/bin:$PATH
-    dest: /etc/profile.d/heroku.sh
-    mode: 0755
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  dnf:
+    name: kubernetes-client
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - cloud
+  - package
 
 - name: Install Kubernetes tools and CLIs
   homebrew:
@@ -46,3 +68,60 @@
       - kompose
     state: present
   when: ansible_facts["os_family"] == "Darwin"
+  tags:
+  - cloud
+  - package
+
+- name: Add Google Cloud SDK repo
+  become: yes
+  yum_repository:
+    name: google-cloud-sdk
+    description: Google Cloud SDK
+    baseurl: "https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64"
+    enabled: yes
+    gpgcheck: yes
+    gpgkey: "https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg"
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - cloud
+  - repository
+
+- name: Add Google Cloud SDK repo signing key
+  become: yes
+  apt_key:
+    url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
+  - repository
+
+- name: Add Google Cloud SDK repo
+  become: yes
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
+  - repository
+
+- name: Install Google Cloud CLI
+  become: yes
+  dnf:
+    name: google-cloud-sdk
+    state: present
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - cloud
+  - package
+
+- name: Install Google Cloud CLI
+  become: yes
+  apt:
+    name: google-cloud-sdk
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - cloud
+  - package
