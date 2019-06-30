@@ -99,7 +99,7 @@
 - name: Add Google Cloud SDK repo
   become: yes
   apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main"
+    repo: "deb https://packages.cloud.google.com/apt cloud-sdk main"
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
   tags:
