@@ -231,6 +231,5 @@
 - import_tasks: cloud_trash.yml
 - import_tasks: drone.yml
 - import_tasks: fzy.yml
-- import_tasks: zod.yml
 
 - import_tasks: dotfiles.yml
