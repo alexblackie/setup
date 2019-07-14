@@ -6,22 +6,10 @@
     src: /usr/src/ascp.tar.gz
     dest: /usr/src/
 
-- name: extract fira
-  become: yes
-  unarchive:
-    src: /usr/src/fira.tar.gz
-    dest: /usr/src/
-
 - name: install source code pro
   become: yes
   copy:
     src: /usr/src/source-code-pro-2.030R-ro-1.050R-it/OTF/
-    dest: /usr/share/fonts/
-
-- name: install fira
-  become: yes
-  copy:
-    src: /usr/src/Fira-master/otf/
     dest: /usr/share/fonts/
 
 - name: update font cache
