@@ -5,7 +5,7 @@
   yum_repository:
     name: keybase
     description: Keybase
-    baseurl: http://prerelease.keybase.io/rpm/x86_64
+    baseurl: https://prerelease.keybase.io/rpm/x86_64
     enabled: yes
     gpgcheck: yes
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
