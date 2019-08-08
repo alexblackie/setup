@@ -27,6 +27,8 @@
       value: "true"
     - key: "/org/gnome/desktop/interface/clock-show-date"
       value: "true"
+    - key: "/org/gnome/desktop/interface/clock-show-weekday"
+      value: "true"
     - key: "/org/gnome/desktop/wm/preferences/button-layout"
       value: "':minimize,maximize,close'"
     - key: "/org/gnome/software/allow-updates"
