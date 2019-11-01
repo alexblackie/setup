@@ -22,7 +22,9 @@
 - name: Install .NET Core SDK
   become: true
   package:
-    name: dotnet-sdk-3.0
+    name:
+    - dotnet-sdk-2.2
+    - dotnet-sdk-3.0
     state: present
   tags:
   - packages
