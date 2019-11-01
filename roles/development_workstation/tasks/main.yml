@@ -226,6 +226,7 @@
 
 - import_tasks: python.yml
 - import_tasks: java.yml
+- import_tasks: dotnet.yml
 - import_tasks: redhat.yml
 
 - import_tasks: cloud_trash.yml
