@@ -1,30 +1,22 @@
 ---
 
-- name: Add Docker CE repo
-  yum_repository:
-    name: docker-ce-stable
-    description: Docker CE Stable - $basearch
-    # so this is locked at 29 because currently, at time of writing, Docker has
-    # not rebuilt any packages for Fedora 30 except containerd... And we have
-    # to use the upstream repo because the version that ships with Fedora is
-    # many years old and doesn't support many newer features.
-    baseurl: "https://download.docker.com/linux/fedora/29/$basearch/stable"
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: "https://download.docker.com/linux/fedora/gpg"
-  when: ansible_facts["distribution"] == "Fedora"
-  become: yes
-  tags:
-  - docker
-
-- name: Install Docker
+- name: Install podman for dockerish support
+  become: true
   dnf:
     name:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
+    - podman
+    - podman-docker
     state: present
-  become: yes
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - packages
+  - docker
+
+- name: Silence podman docker cli warning
+  become: true
+  copy:
+    content: ""
+    dest: /etc/containers/nodocker
   when: ansible_facts["distribution"] == "Fedora"
   tags:
   - docker
@@ -36,6 +28,7 @@
   become: yes
   when: ansible_facts["distribution"] == "Ubuntu"
   tags:
+  - packages
   - docker
 
 - name: Install Docker
@@ -44,6 +37,7 @@
     state: present
   when: ansible_facts["os_family"] == "Darwin"
   tags:
+  - packages
   - docker
 
 - name: Install docker-compose
@@ -53,6 +47,7 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
   tags:
+  - packages
   - docker
 
 - name: Ensure presence of docker group
@@ -60,7 +55,7 @@
     name: docker
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Ubuntu"
   tags:
   - docker
 
@@ -70,7 +65,7 @@
     groups: docker
     append: yes
   become: yes
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Ubuntu"
   tags:
   - docker
 
@@ -80,14 +75,7 @@
     enabled: yes
     state: started
   become: yes
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - docker
-
-- name: Install Docker.app
-  homebrew_cask:
-    name: docker
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-  tags:
+  - services
   - docker
