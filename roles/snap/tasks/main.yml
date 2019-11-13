@@ -2,17 +2,10 @@
 
 - name: Ensure snapd is installed
   become: yes
-  dnf:
+  package:
     name: snapd
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Ensure snapd is installed
-  become: yes
-  apt:
-    name: snapd
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Enable snapd service
   become: yes
@@ -21,3 +14,11 @@
     state: started
     enabled: yes
   when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+
+- name: Create /snap for classic snap support
+  become: yes
+  file:
+    src: /var/lib/snapd/snap
+    dest: /snap
+    state: link
+  when: ansible_facts["distribution"] == "Fedora"
