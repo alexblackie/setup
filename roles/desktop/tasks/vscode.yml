@@ -1,34 +1,20 @@
 ---
 
-- name: Add VSCode yum repo
-  become: true
-  yum_repository:
-    name: microsoft-vscode
-    description: Visual Studio Code
-    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
-    enabled: true
-    gpgcheck: true
-    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
-  when: ansible_facts["os_family"] == "RedHat"
-  tags:
-    - vscode
-    - packages
-
-- name: Add VSCode debian repo
+- name: Add VSCode Snap
   become: true
   snap:
     name: code
     classic: true
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian" or ansible_facts["os_family"] == "RedHat"
   tags:
     - vscode
     - packages
 
-- name: Install Visual Studio Code
-  become: true
-  package:
-    name: code
+- name: Add VSCode
+  homebrew_cask:
+    name: visual-studio-code
     state: present
+  when: ansible_facts["os_family"] == "Darwin"
   tags:
     - vscode
     - packages
