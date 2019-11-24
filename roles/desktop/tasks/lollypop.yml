@@ -17,11 +17,8 @@
 - name: Add Lollypop repo
   become: yes
   apt_repository:
-    repo: "{{ item }}"
+    repo: deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
     state: present
-  with_items:
-    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
-    - deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Lollypop
