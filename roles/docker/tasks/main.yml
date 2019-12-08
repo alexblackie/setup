@@ -1,24 +1,30 @@
 ---
 
-- name: Install podman for dockerish support
+- name: Install Docker CE repo
+  become: true
+  yum_repository:
+    name: docker-ce
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+    enabled: true
+    gpgcheck: true
+    gpgkey: "https://download.docker.com/linux/fedora/gpg"
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - docker
+  - packages
+
+- name: Install docker-ce
   become: true
   dnf:
     name:
-    - podman
-    - podman-docker
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
     state: present
   when: ansible_facts["distribution"] == "Fedora"
   tags:
   - packages
-  - docker
-
-- name: Silence podman docker cli warning
-  become: true
-  copy:
-    content: ""
-    dest: /etc/containers/nodocker
-  when: ansible_facts["distribution"] == "Fedora"
-  tags:
   - docker
 
 - name: Install Docker
@@ -65,7 +71,7 @@
     groups: docker
     append: yes
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "Fedora"
   tags:
   - docker
 
@@ -75,7 +81,7 @@
     enabled: yes
     state: started
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "Fedora"
   tags:
   - services
   - docker
