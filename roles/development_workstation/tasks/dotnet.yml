@@ -26,6 +26,7 @@
     - dotnet-sdk-2.2
     - dotnet-sdk-3.0
     state: present
+  when: ansible_facts["distribution"] == "Fedora"
   tags:
   - packages
   - dotnet
