@@ -1,5 +1,7 @@
 ---
 
+# TODO: ubuntu
+
 - name: Install QEMU and Libvirt
   become: yes
   dnf:
@@ -7,7 +9,7 @@
       - qemu-kvm
       - libvirt
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Enable and start libvirtd
   become: yes
@@ -15,4 +17,4 @@
     name: libvirtd
     state: started
     enabled: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"

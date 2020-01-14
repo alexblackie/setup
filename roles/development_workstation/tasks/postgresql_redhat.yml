@@ -3,7 +3,6 @@
 - name: Install postgresql server and client libs
   dnf:
     name:
-      - python-psycopg2
       - python3-psycopg2
       - postgresql
       - postgresql-devel

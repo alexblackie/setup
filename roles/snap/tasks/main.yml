@@ -5,7 +5,7 @@
   package:
     name: snapd
     state: present
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Enable snapd service
   become: yes
@@ -13,7 +13,7 @@
     name: snapd
     state: started
     enabled: yes
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Create /snap for classic snap support
   become: yes
@@ -21,4 +21,4 @@
     src: /var/lib/snapd/snap
     dest: /snap
     state: link
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"

@@ -14,22 +14,20 @@
   dnf:
     name: dbus-tools
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install workstation GUI apps and related dependencies
   dnf:
     name:
-      - adobe-source-code-pro-fonts
-      - gnome-tweak-tool
+      - gnome-tweaks
       - gimp
-      - firefox
       - virt-viewer
       - virt-manager
       - fuse-exfat
       - mpv
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Enable Homebrew fonts cask
   homebrew_tap:
@@ -50,18 +48,6 @@
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
-- name: Download Source Code Pro manually
-  become: yes
-  get_url:
-    url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
-    dest: /usr/src/ascp.tar.gz
-    remote_src: yes
-  notify:
-    - extract source code pro
-    - install source code pro
-    - update font cache
-  when: ansible_facts["distribution"] == "Ubuntu"
-
 - name: Install workstation GUI apps and related dependencies
   become: yes
   apt:
@@ -78,6 +64,25 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
+- name: Download Source Code Pro manually
+  become: yes
+  get_url:
+    url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
+    dest: /usr/src/ascp.tar.gz
+    remote_src: yes
+  notify:
+    - extract source code pro
+    - install source code pro
+    - update font cache
+  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "RedHat"
+
+- name: Install Source Code Pro
+  dnf:
+    name: adobe-source-code-pro-fonts
+    state: present
+  become: yes
+  when: ansible_facts["distribution"] == "Fedora"
+
 - name: Install workstation CLI tools
   become: yes
   dnf:
@@ -86,7 +91,7 @@
       - powertop
       - ffmpeg
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install workstation CLI tools
   become: yes

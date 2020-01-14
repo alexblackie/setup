@@ -1,5 +1,7 @@
 ---
 
+# TODO: RHEL
+
 - name: Install Lollypop
   become: yes
   dnf:

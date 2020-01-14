@@ -85,3 +85,15 @@
   tags:
   - services
   - docker
+
+- name: Install podman
+  dnf:
+    name:
+      - podman
+      - podman-docker
+    state: present
+  become: yes
+  when: ansible_facts["distribution"] == "RedHat"
+  tags:
+  - packages
+  - docker

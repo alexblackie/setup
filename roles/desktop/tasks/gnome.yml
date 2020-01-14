@@ -3,11 +3,9 @@
 - name: Install psutil for dconf integration
   become: yes
   dnf:
-    name:
-      - python2-psutil
-      - python3-psutil
+    name: python3-psutil
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install psutil for dconf integration
   become: yes
@@ -41,4 +39,4 @@
       value: "true"
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"

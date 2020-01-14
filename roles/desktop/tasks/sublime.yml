@@ -9,14 +9,14 @@
     gpgcheck: yes
     gpgkey: https://download.sublimetext.com/sublimehq-rpm-pub.gpg
   become: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install Sublime Text
   become: yes
   dnf:
     name: sublime-text
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install Sublime Text snap
   become: yes

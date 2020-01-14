@@ -2,17 +2,10 @@
 
 - name: install zsh
   become: yes
-  apt:
+  package:
     name: zsh
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: install zsh
-  become: yes
-  dnf:
-    name: zsh
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["os_family"] == "RedHat"
 
 - name: set default shell to zsh
   become: yes
@@ -33,14 +26,14 @@
     dest: /etc/vimrc
     content: ""
   become: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
   become: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Create directory for third-party software sources
   file:
@@ -58,6 +51,21 @@
     name: "@C Development Tools and Libraries"
     state: present
   when: ansible_facts["distribution"] == "Fedora"
+
+# The "development tools" group in RHEL is enormous and I don't want most of it.
+- name: Install C toolchain
+  become: yes
+  dnf:
+    name:
+      - binutils
+      - bison
+      - flex
+      - gcc
+      - gcc-c++
+      - make
+      - pkgconfig
+    state: present
+  when: ansible_facts["distribution"] == "RedHat"
 
 - name: Install C toolchain
   become: yes
@@ -93,7 +101,6 @@
       - git
       - tmux
       - vim
-      - the_silver_searcher
       - pwgen
       - optipng
       - nmap
@@ -101,8 +108,15 @@
       - ImageMagick-devel
       - sqlite-devel
       - inotify-tools
-      - entr
       - jq
+    state: present
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Install some development tools and libraries
+  dnf:
+    name:
+      - the_silver_searcher
+      - entr
       - ShellCheck
     state: present
   when: ansible_facts["distribution"] == "Fedora"
@@ -181,7 +195,7 @@
       - perf
       - strace
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install system visibility tools
   become: yes
@@ -193,13 +207,6 @@
       - strace
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install snapd
-  become: yes
-  dnf:
-    name: snapd
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install gawk
   become: yes
@@ -215,8 +222,8 @@
     path: /usr/bin/gawk
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- import_tasks: postgresql_fedora.yml
-  when: ansible_facts["distribution"] == "Fedora"
+- import_tasks: postgresql_redhat.yml
+  when: ansible_facts["os_family"] == "RedHat"
 - import_tasks: postgresql_ubuntu.yml
   when: ansible_facts["distribution"] == "Ubuntu"
 - import_tasks: postgresql_macos.yml

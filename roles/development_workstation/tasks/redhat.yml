@@ -7,4 +7,4 @@
       - redhat-rpm-config
       - rpm-build
       - pkgconfig
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"

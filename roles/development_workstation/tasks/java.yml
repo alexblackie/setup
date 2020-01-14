@@ -8,7 +8,7 @@
       - maven
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install JDK and tools
   apt:

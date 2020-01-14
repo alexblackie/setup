@@ -9,7 +9,7 @@
     enabled: yes
     gpgcheck: yes
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Add keybase repo id
   become: yes
@@ -30,7 +30,7 @@
   dnf:
     name: keybase
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install Keybase
   become: yes

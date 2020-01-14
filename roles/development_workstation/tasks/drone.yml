@@ -16,4 +16,4 @@
     src: https://github.com/drone/drone-cli/releases/download/{{ drone_cli_version }}/drone_linux_amd64.tar.gz
     remote_src: yes
     dest: "{{ home }}/bin/"
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
