@@ -29,3 +29,10 @@
     name: lollypop
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
+
+- name: Install Lollypop
+  become: yes
+  flatpak:
+    name: org.gnome.Lollypop
+    state: present
+  when: ansible_facts["distribution"] == "RedHat"
