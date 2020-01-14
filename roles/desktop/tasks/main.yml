@@ -9,6 +9,15 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
+- name: Install OpenVPN support for NetworkManager
+  dnf:
+    name:
+      - NetworkManager-openvpn
+      - NetworkManager-openvpn-gnome
+    state: present
+  become: yes
+  when: ansible_facts["distribution"] == "RedHat"
+
 - name: Install dbus-tools for setting GNOME config programmatically
   become: yes
   dnf:
