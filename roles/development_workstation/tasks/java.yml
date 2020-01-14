@@ -3,8 +3,8 @@
 - name: Install JDK and tools
   dnf:
     name:
-      - java-1.8.0-openjdk
-      - java-1.8.0-openjdk-devel
+      - java-latest-openjdk
+      - java-latest-openjdk-devel
       - maven
     state: present
   become: yes
