@@ -232,6 +232,7 @@
 - import_tasks: redis.yml
 - import_tasks: drone.yml
 - import_tasks: fzy.yml
+- import_tasks: ag.yml
 
 - import_tasks: python.yml
 - import_tasks: java.yml

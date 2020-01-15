@@ -1,0 +1,17 @@
+---
+
+# Currently EPEL has no `ag` package built for RHEL 8, so we need to compile it ourselves.
+
+- name: Clone the_silver_searcher
+  git:
+    repo: https://github.com/ggreer/the_silver_searcher.git
+    dest: "{{ home }}/src/ag"
+  when: ansible_facts["distribution"] == "RedHat"
+
+- name: Compile and install the_silver_searcher
+  shell: ./build.sh && make install
+  become: yes
+  args:
+    chdir: "{{ home }}/src/ag"
+    creates: /usr/local/bin/ag
+  when: ansible_facts["distribution"] == "RedHat"
