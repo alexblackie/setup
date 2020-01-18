@@ -2,17 +2,13 @@
 
 - name: Install psutil for dconf integration
   become: yes
-  dnf:
+  package:
     name: python3-psutil
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install psutil for dconf integration
-  become: yes
-  apt:
-    name: python-psutil
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - gnome
+  - packages
 
 - name: Set various GNOME dconf settings
   dconf:
@@ -40,3 +36,5 @@
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - gnome
