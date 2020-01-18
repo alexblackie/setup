@@ -9,12 +9,3 @@
   tags:
     - vscode
     - packages
-
-- name: Add VSCode
-  homebrew_cask:
-    name: visual-studio-code
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-  tags:
-    - vscode
-    - packages

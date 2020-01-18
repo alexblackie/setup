@@ -37,15 +37,6 @@
   - packages
   - docker
 
-- name: Install Docker
-  homebrew_cask:
-    name: docker
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-  tags:
-  - packages
-  - docker
-
 - name: Install docker-compose
   become: yes
   pip:

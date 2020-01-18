@@ -24,9 +24,3 @@
   args:
     creates: /snap/bin/subl
   when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install Sublime Text cask
-  homebrew_cask:
-    name: sublime-text
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"

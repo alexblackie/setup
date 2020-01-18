@@ -38,25 +38,6 @@
   become: yes
   when: ansible_facts["os_family"] == "RedHat"
 
-- name: Enable Homebrew fonts cask
-  homebrew_tap:
-    name:
-      - Homebrew/homebrew-cask-fonts
-  when: ansible_facts["os_family"] == "Darwin"
-
-- name: Install workstation GUI apps and related dependencies
-  homebrew_cask:
-    name:
-      - firefox
-      - whatsapp
-      - homebrew/cask-versions/iterm2-beta
-      - font-source-code-pro
-      - 1password
-      - viscosity
-      - imageoptim
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-
 - name: Install workstation GUI apps and related dependencies
   become: yes
   apt:
@@ -112,18 +93,8 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- name: Install workstation CLI tools
-  homebrew:
-    name:
-      - youtube-dl
-      - ffmpeg
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: vscode.yml
 - import_tasks: keybase.yml
-
 - import_tasks: gnome.yml
-- import_tasks: macos.yml

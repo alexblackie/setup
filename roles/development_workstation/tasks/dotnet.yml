@@ -1,6 +1,6 @@
 ---
 
-# TODO: ubuntu, macos, RHEL
+# TODO: ubuntu, RHEL
 # RHEL provides official repos, I think??
 
 - name: Add Microsoft repo

@@ -7,7 +7,3 @@
 - name: update-ca-certificates
   become: yes
   command: update-ca-certificates
-
-- name: update keychain
-  become: yes
-  shell: /usr/bin/security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain /tmp/blackieops.pem
