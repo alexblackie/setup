@@ -9,15 +9,6 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
-- name: Install OpenVPN support for NetworkManager
-  dnf:
-    name:
-      - NetworkManager-openvpn
-      - NetworkManager-openvpn-gnome
-    state: present
-  become: yes
-  when: ansible_facts["distribution"] == "RedHat"
-
 - name: Install dbus-tools for setting GNOME config programmatically
   become: yes
   dnf:
@@ -25,74 +16,43 @@
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 
-- name: Install workstation GUI apps and related dependencies
-  dnf:
+- name: Install workstation apps and tools
+  package:
     name:
       - gnome-tweaks
       - gimp
       - virt-viewer
       - virt-manager
-      - fuse-exfat
       - mpv
+      - youtube-dl
+      - powertop
+      - ffmpeg
+    state: present
+  become: yes
+  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+
+- name: Install RedHat-specific workstation apps and tools
+  dnf:
+    name:
+      - NetworkManager-openvpn
+      - NetworkManager-openvpn-gnome
+      - fuse-exfat
     state: present
   become: yes
   when: ansible_facts["os_family"] == "RedHat"
 
-- name: Install workstation GUI apps and related dependencies
+- name: Install Ubuntu-specific workstation apps and tools
   become: yes
   apt:
     name:
       - network-manager-openvpn
-      - gnome-tweaks
-      - gimp
-      - firefox
-      - virt-viewer
-      - virt-manager
+      - network-manager-openvpn-gnome
       - exfat-fuse
-      - mpv
       - ubuntu-restricted-extras
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- name: Download Source Code Pro manually
-  become: yes
-  get_url:
-    url: https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.tar.gz
-    dest: /usr/src/ascp.tar.gz
-    remote_src: yes
-  notify:
-    - extract source code pro
-    - install source code pro
-    - update font cache
-  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "RedHat"
-
-- name: Install Source Code Pro
-  dnf:
-    name: adobe-source-code-pro-fonts
-    state: present
-  become: yes
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Install workstation CLI tools
-  become: yes
-  dnf:
-    name:
-      - youtube-dl
-      - powertop
-      - ffmpeg
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install workstation CLI tools
-  become: yes
-  apt:
-    name:
-      - youtube-dl
-      - powertop
-      - ffmpeg
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
-
+- import_tasks: source_code_pro.yml
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: keybase.yml
