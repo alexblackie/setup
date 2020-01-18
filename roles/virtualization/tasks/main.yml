@@ -1,15 +1,19 @@
 ---
 
-# TODO: ubuntu
+- include_vars: "{{ ansible_facts['os_family'] }}.yml"
+  tags:
+  - virt
 
-- name: Install QEMU and Libvirt
+- name: Install QEMU and libvirt
   become: yes
-  dnf:
+  package:
     name:
-      - qemu-kvm
-      - libvirt
+    - qemu-kvm
+    - "{{ libvirt_package_name }}"
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  tags:
+  - virt
+  - packages
 
 - name: Enable and start libvirtd
   become: yes
@@ -18,3 +22,5 @@
     state: started
     enabled: yes
   when: ansible_facts["os_family"] == "RedHat"
+  tags:
+  - virt
