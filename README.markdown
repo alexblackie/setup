@@ -14,12 +14,11 @@ These playbooks support only the latest releases of:
 There are a few manual steps required on each of these platforms. First, install
 all available updates and reboot; once updated:
 
-  - On **Fedora Workstation** you must first install `python3-dnf`, and
-    `libselinux-python` before running.
   - On **RedHat Enterprise Linux Developer Workstation** you will need to
     enable both EPEL and the CodeReady Builder repos:
     - `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
     - `subscription-manager repos --enable "codeready-builder-for-rhel-8-x86_64-rpms"`
+  - On **anything else**, you're ready to run out of the box.
 
 Then you can install Ansible through either your favourite package manager or
 `pip`. These playbooks require at least Ansible 2.8, so you may need to install
