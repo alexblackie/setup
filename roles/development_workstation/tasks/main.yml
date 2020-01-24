@@ -106,6 +106,7 @@
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install some development tools and libraries
+  become: yes
   dnf:
     name:
       - the_silver_searcher
