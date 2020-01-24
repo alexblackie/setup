@@ -1,48 +1,11 @@
 ---
 
-- name: Install Docker CE repo
-  become: true
-  yum_repository:
-    name: docker-ce
-    description: Docker CE Stable - $basearch
-    baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
-    enabled: true
-    gpgcheck: true
-    gpgkey: "https://download.docker.com/linux/fedora/gpg"
-  when: ansible_facts["distribution"] == "Fedora"
-  tags:
-  - docker
-  - packages
-
-- name: Install docker-ce
-  become: true
-  dnf:
-    name:
-    - docker-ce
-    - docker-ce-cli
-    - containerd.io
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
-  tags:
-  - packages
-  - docker
-
 - name: Install Docker
   apt:
     name: docker.io
     state: present
   become: yes
   when: ansible_facts["distribution"] == "Ubuntu"
-  tags:
-  - packages
-  - docker
-
-- name: Install docker-compose
-  become: yes
-  pip:
-    name: docker-compose
-    state: present
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
   tags:
   - packages
   - docker
@@ -62,7 +25,7 @@
     groups: docker
     append: yes
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["distribution"] == "Ubuntu"
   tags:
   - docker
 
@@ -72,7 +35,7 @@
     enabled: yes
     state: started
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["distribution"] == "Ubuntu"
   tags:
   - services
   - docker
@@ -84,7 +47,7 @@
       - podman-docker
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "RedHat"
+  when: ansible_facts["os_family"] == "RedHat"
   tags:
   - packages
   - docker
