@@ -66,12 +66,6 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- name: Install asdf version manager
-  git:
-    repo: https://github.com/asdf-vm/asdf.git
-    version: v0.7.3
-    dest: "{{ home }}/.asdf"
-    update: yes
 
 - name: Install some development tools and libraries
   become: yes
@@ -190,6 +184,13 @@
     name: awk
     path: /usr/bin/gawk
   when: ansible_facts["distribution"] == "Ubuntu"
+
+- name: Install asdf version manager
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    version: v0.7.3
+    dest: "{{ home }}/.asdf"
+    update: yes
 
 - import_tasks: postgresql_redhat.yml
   when: ansible_facts["os_family"] == "RedHat"
