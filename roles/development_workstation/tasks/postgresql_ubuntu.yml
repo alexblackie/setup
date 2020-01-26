@@ -3,7 +3,7 @@
 - name: Install postgresql server and client libs
   apt:
     name:
-      - python-psycopg2
+      - python3-psycopg2
       - postgresql
       - libpq-dev
       - postgresql-client
