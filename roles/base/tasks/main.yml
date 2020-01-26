@@ -63,6 +63,13 @@
     state: present
   when: ansible_facts["distribution"] == "RedHat"
 
+- name: Install OpenSSH
+  become: true
+  apt:
+    name: openssh-server
+    state: present
+  when: ansible_facts["os_family"] == "Debian"
+
 - name: Enable sshd
   service:
     name: sshd
