@@ -185,13 +185,6 @@
     path: /usr/bin/gawk
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- name: Install asdf version manager
-  git:
-    repo: https://github.com/asdf-vm/asdf.git
-    version: v0.7.3
-    dest: "{{ home }}/.asdf"
-    update: yes
-
 - import_tasks: postgresql_redhat.yml
   when: ansible_facts["os_family"] == "RedHat"
 - import_tasks: postgresql_ubuntu.yml
@@ -201,6 +194,8 @@
 - import_tasks: drone.yml
 - import_tasks: fzy.yml
 - import_tasks: ag.yml
+
+- import_tasks: asdf.yml
 
 - import_tasks: python.yml
 - import_tasks: java.yml

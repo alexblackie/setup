@@ -1,0 +1,26 @@
+---
+
+- name: Install asdf version manager
+  git:
+    repo: https://github.com/asdf-vm/asdf.git
+    version: v0.7.3
+    dest: "{{ home }}/.asdf"
+    update: yes
+  tags:
+  - asdf
+  - development_workstation
+
+- name: Install plugins for asdf
+  command: "{{ home }}/.asdf/bin/asdf plugin-add {{ item }}"
+  args:
+    creates: "{{ home }}/.asdf/plugins/{{ item }}"
+  with_items:
+  - erlang
+  - elixir
+  - ruby
+  - nodejs
+  - kubectl
+  - terraform
+  tags:
+  - asdf
+  - development_workstation
