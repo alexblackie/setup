@@ -24,4 +24,4 @@
     creates: "{{ home }}/.completed_initial_dconf_restore"
   tags:
   - dotfiles
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  when: should_dconf and (ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu")

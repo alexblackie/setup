@@ -1,6 +1,8 @@
 ---
 
 - hosts: localhost
+  vars:
+    should_dconf: true
   roles:
     - snap
     - base
