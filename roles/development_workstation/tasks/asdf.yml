@@ -21,6 +21,7 @@
   - nodejs
   - kubectl
   - terraform
+  - golang
   tags:
   - asdf
   - development_workstation
