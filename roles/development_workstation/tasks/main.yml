@@ -29,7 +29,7 @@
 
 - name: Create directory for third-party software sources
   file:
-    path: "{{ home }}/src"
+    path: "{{ third_party_src }}"
     state: directory
 
 - name: Create local bin directory

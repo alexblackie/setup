@@ -3,13 +3,13 @@
 - name: Clone fzy
   git:
     repo: https://github.com/jhawthorn/fzy.git
-    dest: "{{ home }}/src/fzy"
+    dest: "{{ third_party_src }}/fzy"
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Compile and install fzy
   shell: make && make install
   become: yes
   args:
-    chdir: "{{ home }}/src/fzy"
+    chdir: "{{ third_party_src }}/fzy"
     creates: /usr/local/bin/fzy
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
