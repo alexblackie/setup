@@ -1,14 +1,5 @@
 ---
 
-- name: Install libva for hardware video offload
-  become: yes
-  dnf:
-    name:
-      - libva-intel-driver
-      - libva-intel-hybrid-driver
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
 - name: Install dbus-tools for setting GNOME config programmatically
   become: yes
   dnf:
