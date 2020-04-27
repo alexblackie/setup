@@ -121,7 +121,7 @@
       - libglu1-mesa-dev
       - libpng-dev
       - libreadline-dev
-      - libncurses-dev
+      - libncurses5-dev
       - libssl-dev
       - libyaml-dev
       - libxslt-dev
