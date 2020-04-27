@@ -2,31 +2,10 @@
 
 - name: Install Lollypop
   become: yes
-  dnf:
+  package:
     name: lollypop
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Import Lollypop apt key
-  become: yes
-  apt_key:
-    keyserver: keyserver.ubuntu.com
-    id: 8FAD14A04A8E87F23FB5653BDBA501177AA84500
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Add Lollypop repo
-  become: yes
-  apt_repository:
-    repo: deb http://ppa.launchpad.net/gnumdk/lollypop/ubuntu {{ ansible_facts["distribution_release"] }} main
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install Lollypop
-  become: yes
-  apt:
-    name: lollypop
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Lollypop
   become: yes
