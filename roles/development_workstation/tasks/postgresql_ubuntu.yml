@@ -14,7 +14,7 @@
 - name: Add custom pg_hba.conf to allow password auth
   template:
     src: pg_hba.conf.j2
-    dest: /etc/postgresql/10/main/pg_hba.conf
+    dest: /etc/postgresql/12/main/pg_hba.conf
   become: yes
   notify:
     - restart postgresql
