@@ -35,6 +35,8 @@
       value: "true"
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
+    - key: "/org/gnome/desktop/peripherals/touchpad/click-method"
+      value: "'fingers'"
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
   tags:
   - gnome
