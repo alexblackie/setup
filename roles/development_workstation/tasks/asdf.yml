@@ -22,6 +22,7 @@
   - kubectl
   - terraform
   - golang
+  - maven
   tags:
   - asdf
   - development_workstation
