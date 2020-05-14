@@ -20,6 +20,7 @@
   - ruby
   - nodejs
   - kubectl
+  - helm
   - terraform
   - golang
   - maven
