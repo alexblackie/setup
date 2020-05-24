@@ -27,6 +27,12 @@
   become: yes
   when: ansible_facts["os_family"] == "RedHat"
 
+- name: Increase default user watches limit
+  become: yes
+  lineinfile:
+    line: "fs.inotify.max_user_watches=524288"
+    dest: /etc/sysctl.conf
+
 - name: Create directory for third-party software sources
   file:
     path: "{{ third_party_src }}"
