@@ -213,4 +213,6 @@
 - import_tasks: java.yml
 - import_tasks: redhat.yml
 
+- import_tasks: azure.yml
+
 - import_tasks: dotfiles.yml
