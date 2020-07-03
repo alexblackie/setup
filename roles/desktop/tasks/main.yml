@@ -1,5 +1,13 @@
 ---
 
+- name: Install flathub Flatpak remote
+  become: yes
+  flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+  when: ansible_facts["os_family"] == "RedHat"
+
 - name: Install dbus-tools for setting GNOME config programmatically
   become: yes
   dnf:
