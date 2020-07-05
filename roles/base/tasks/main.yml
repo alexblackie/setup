@@ -10,24 +10,6 @@
   set_fact:
     home: "{{ lookup('env', 'HOME') }}"
 
-- name: Install BlackieOps Trust Root
-  become: yes
-  get_url:
-    url: https://pki.blackieops.com/blackieops_trust_chain_2017.pem
-    dest: /etc/pki/ca-trust/source/anchors/blackieops_trust_chain_2017.pem
-  notify:
-    - update ca-trust
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install BlackieOps Trust Root
-  become: yes
-  get_url:
-    url: https://pki.blackieops.com/blackieops_trust_chain_2017.pem
-    dest: /usr/local/share/ca-certificates/blackieops_trust_chain_2017.pem
-  notify:
-    - update-ca-certificates
-  when: ansible_facts["distribution"] == "Ubuntu"
-
 - name: Enable fastest mirror dnf plugin
   become: yes
   lineinfile:
