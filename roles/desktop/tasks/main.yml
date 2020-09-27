@@ -54,7 +54,6 @@
 - import_tasks: source_code_pro.yml
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
-- import_tasks: vscode.yml
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
 - import_tasks: gnome.yml
