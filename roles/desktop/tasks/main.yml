@@ -36,6 +36,7 @@
       - NetworkManager-openvpn
       - NetworkManager-openvpn-gnome
       - fuse-exfat
+      - mozilla-fira-mono-fonts
     state: present
   become: yes
   when: ansible_facts["os_family"] == "RedHat"
@@ -48,10 +49,10 @@
       - network-manager-openvpn-gnome
       - exfat-fuse
       - ubuntu-restricted-extras
+      - fonts-firacode
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- import_tasks: source_code_pro.yml
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: keybase.yml
