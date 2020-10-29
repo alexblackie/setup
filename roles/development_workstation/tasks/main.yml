@@ -50,21 +50,6 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
-# The "development tools" group in RHEL is enormous and I don't want most of it.
-- name: Install C toolchain
-  become: yes
-  dnf:
-    name:
-      - binutils
-      - bison
-      - flex
-      - gcc
-      - gcc-c++
-      - make
-      - pkgconfig
-    state: present
-  when: ansible_facts["distribution"] == "RedHat"
-
 - name: Install C toolchain
   become: yes
   apt:
@@ -205,7 +190,6 @@
 - import_tasks: redis.yml
 - import_tasks: drone.yml
 - import_tasks: fzy.yml
-- import_tasks: ag.yml
 
 - import_tasks: asdf.yml
 

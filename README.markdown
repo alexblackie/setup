@@ -8,22 +8,10 @@ and workstations.
 These playbooks support only the latest releases of:
 
   - Fedora Workstation
-  - RedHat Enterprise Linux Developer Workstation
   - Ubuntu (LTS)
 
-There are a few manual steps required on each of these platforms. First, install
-all available updates and reboot; once updated:
-
-  - On **RedHat Enterprise Linux Developer Workstation** you will need to
-    enable both EPEL and the CodeReady Builder repos:
-    - `dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm`
-    - `subscription-manager repos --enable "codeready-builder-for-rhel-8-x86_64-rpms"`
-  - On **anything else**, you're ready to run out of the box.
-
-Then you can install Ansible through either your favourite package manager or
-`pip`. These playbooks require at least Ansible 2.8, so you may need to install
-through `pip` to ensure you have a more recent version than your distro
-provides.
+Most tasks will probably work on RHEL/CentOS, but that is not tested nor
+officially supported.
 
 ## Running
 
