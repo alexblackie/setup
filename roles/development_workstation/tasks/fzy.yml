@@ -4,7 +4,7 @@
   git:
     repo: https://github.com/jhawthorn/fzy.git
     dest: "{{ third_party_src }}/fzy"
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Compile and install fzy
   shell: make && make install
@@ -12,4 +12,11 @@
   args:
     chdir: "{{ third_party_src }}/fzy"
     creates: /usr/local/bin/fzy
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Install fzy
+  become: true
+  apt:
+    name: fzy
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
