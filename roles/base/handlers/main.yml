@@ -1,9 +1,0 @@
----
-
-- name: update ca-trust
-  become: yes
-  command: /usr/bin/update-ca-trust extract
-
-- name: update-ca-certificates
-  become: yes
-  command: update-ca-certificates
