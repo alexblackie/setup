@@ -199,4 +199,6 @@
 
 - import_tasks: azure.yml
 
+- import_tasks: fd.yml
+
 - import_tasks: dotfiles.yml
