@@ -188,17 +188,11 @@
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - import_tasks: redis.yml
-- import_tasks: drone.yml
 - import_tasks: fzy.yml
-
 - import_tasks: asdf.yml
-
 - import_tasks: python.yml
 - import_tasks: java.yml
 - import_tasks: redhat.yml
-
 - import_tasks: azure.yml
-
 - import_tasks: fd.yml
-
 - import_tasks: dotfiles.yml
