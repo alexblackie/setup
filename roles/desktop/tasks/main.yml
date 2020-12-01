@@ -53,8 +53,35 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
+- name: Enable Homebrew fonts cask
+  homebrew_tap:
+    name: Homebrew/homebrew-cask-fonts
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: Install workstation GUI apps and related dependencies
+  homebrew_cask:
+    name:
+      - firefox
+      - iterm2
+      # For some reason, ansible can't find this but I can install manually...
+      #- font-source-code-pro
+      #- font-fira-mono
+      - viscosity
+      - imageoptim
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: Install workstation CLI tools
+  homebrew:
+    name:
+      - youtube-dl
+      - ffmpeg
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+
 - import_tasks: lollypop.yml
 - import_tasks: sublime.yml
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
 - import_tasks: gnome.yml
+- import_tasks: macos.yml

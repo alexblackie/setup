@@ -3,6 +3,7 @@
 - include_vars: "{{ ansible_facts['os_family'] }}.yml"
   tags:
   - virt
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: Install QEMU and libvirt
   become: yes
@@ -11,6 +12,7 @@
     - qemu-kvm
     - "{{ libvirt_package_name }}"
     state: present
+  when: ansible_facts["os_family"] != "Darwin"
   tags:
   - virt
   - packages

@@ -1,0 +1,18 @@
+---
+
+- name: Install PostgreSQL server and client
+  homebrew:
+    name:
+      - postgresql
+      - libpq
+    state: present
+
+- name: Add custom pg_hba.conf to allow password auth
+  template:
+    src: pg_hba.conf.j2
+    dest: /usr/local/var/postgres/pg_hba.conf
+  notify:
+    - brew restart postgresql
+
+- name: Enable and start PostgreSQL
+  command: brew services start postgresql

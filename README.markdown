@@ -9,6 +9,8 @@ These playbooks support only the latest releases of:
 
   - Fedora Workstation
   - Ubuntu (LTS)
+  - macOS
+    - (Homebrew must be installed first.)
 
 Most tasks will probably work on RHEL/CentOS, but that is not tested nor
 officially supported.
