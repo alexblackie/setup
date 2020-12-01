@@ -2,4 +2,4 @@
 
 drone_cli_version: v1.2.0
 
-third_party_src: "{{ home }}/.3psrc"
+third_party_src: "{{ home }}/vendor"
