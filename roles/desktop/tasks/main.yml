@@ -80,6 +80,7 @@
   when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: lollypop.yml
+- import_tasks: signal.yml
 - import_tasks: sublime.yml
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
