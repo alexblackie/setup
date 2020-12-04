@@ -19,11 +19,3 @@
       - python3-pip
   become: yes
   when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install some Python CLI tools
-  pip:
-    name:
-      - httpstat
-      - pynvim
-    state: present
-  become: yes
