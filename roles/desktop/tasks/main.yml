@@ -62,7 +62,6 @@
   homebrew_cask:
     name:
       - firefox
-      - iterm2
       # For some reason, ansible can't find this but I can install manually...
       #- font-source-code-pro
       #- font-fira-mono
