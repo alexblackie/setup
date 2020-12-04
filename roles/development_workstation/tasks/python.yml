@@ -23,7 +23,6 @@
 - name: Install some Python CLI tools
   pip:
     name:
-      - awscli
       - httpstat
       - pynvim
     state: present
