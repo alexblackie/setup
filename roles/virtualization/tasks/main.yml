@@ -26,3 +26,10 @@
   when: ansible_facts["os_family"] == "RedHat"
   tags:
   - virt
+
+# not quite libvirt, but it'll do, lol
+- name: Install multipass
+  homebrew_cask:
+    name: multipass
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
