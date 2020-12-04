@@ -12,6 +12,7 @@
   user:
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: disable gross vim defaults
   copy:
@@ -32,6 +33,7 @@
   lineinfile:
     line: "fs.inotify.max_user_watches=524288"
     dest: /etc/sysctl.conf
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: Create directory for third-party software sources
   file:
@@ -141,6 +143,31 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
+- name: Install some development tools and libraries
+  homebrew:
+    name:
+      - findutils
+      - autoconf
+      - wxmac
+      - git
+      - tmux
+      - reattach-to-user-namespace
+      - vim
+      - curl
+      - wget
+      - the_silver_searcher
+      - pwgen
+      - optipng
+      - nmap
+      - imagemagick
+      - sqlite
+      - htop
+      - jq
+      - shellcheck
+      - gnupg
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+
 - name: Install system visibility tools
   become: yes
   dnf:
@@ -181,11 +208,20 @@
   package:
     name: neovim
     state: present
+  when: ansible_facts["os_family"] != "Darwin"
+
+- name: Install neovim
+  homebrew:
+    name: neovim
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: postgresql_redhat.yml
   when: ansible_facts["os_family"] == "RedHat"
 - import_tasks: postgresql_ubuntu.yml
   when: ansible_facts["distribution"] == "Ubuntu"
+- import_tasks: postgresql_macos.yml
+  when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: redis.yml
 - import_tasks: fzy.yml
