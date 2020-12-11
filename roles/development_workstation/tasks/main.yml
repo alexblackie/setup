@@ -163,6 +163,7 @@
       - sqlite
       - htop
       - jq
+      - entr
       - shellcheck
       - gnupg
     state: present
