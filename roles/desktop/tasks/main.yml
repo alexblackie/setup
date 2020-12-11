@@ -18,14 +18,14 @@
 - name: Install workstation apps and tools
   package:
     name:
-      - gnome-tweaks
-      - gimp
-      - virt-viewer
-      - virt-manager
-      - mpv
-      - youtube-dl
-      - powertop
       - ffmpeg
+      - gimp
+      - gnome-tweaks
+      - mpv
+      - powertop
+      - virt-manager
+      - virt-viewer
+      - youtube-dl
     state: present
   become: yes
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
@@ -45,11 +45,11 @@
   become: yes
   apt:
     name:
+      - exfat-fuse
+      - fonts-firacode
       - network-manager-openvpn
       - network-manager-openvpn-gnome
-      - exfat-fuse
       - ubuntu-restricted-extras
-      - fonts-firacode
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
@@ -66,18 +66,18 @@
       #- font-source-code-pro
       #- font-fira-mono
       #- font-iosevka
-      - viscosity
       - imageoptim
-      - sketch
       - rectangle
+      - sketch
+      - viscosity
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install workstation CLI tools
   homebrew:
     name:
-      - youtube-dl
       - ffmpeg
+      - youtube-dl
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 

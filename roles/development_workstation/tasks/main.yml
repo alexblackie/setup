@@ -64,31 +64,31 @@
   become: yes
   dnf:
     name:
-      - ruby-devel
-      - automake
-      - autoconf
-      - wxGTK3-devel
-      - wxBase3
-      - readline-devel
-      - ncurses-devel
-      - openssl-devel
-      - libyaml-devel
-      - libxslt-devel
-      - libffi-devel
-      - libtool
-      - unixODBC-devel
-      - git
-      - tmux
-      - vim
-      - pwgen
-      - optipng
-      - nmap
       - ImageMagick
       - ImageMagick-devel
-      - sqlite-devel
+      - autoconf
+      - automake
+      - git
       - inotify-tools
       - jq
+      - libffi-devel
+      - libtool
+      - libxslt-devel
+      - libyaml-devel
+      - ncurses-devel
+      - nmap
+      - openssl-devel
+      - optipng
+      - pwgen
+      - readline-devel
+      - ruby-devel
+      - sqlite-devel
+      - tmux
+      - unixODBC-devel
+      - vim
       - whois
+      - wxBase3
+      - wxGTK3-devel
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 
@@ -96,9 +96,9 @@
   become: yes
   dnf:
     name:
-      - the_silver_searcher
-      - entr
       - ShellCheck
+      - entr
+      - the_silver_searcher
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
@@ -106,66 +106,66 @@
   become: yes
   apt:
     name:
-      - ruby-dev
-      - automake
       - autoconf
-      - libwxgtk3.0-gtk3-dev
-      - libgl1-mesa-dev
-      - libglu1-mesa-dev
-      - libpng-dev
-      - libreadline-dev
-      - libncurses5-dev
-      - libssl-dev
-      - libyaml-dev
-      - libxslt-dev
-      - libffi-dev
-      - libtool
-      - unixodbc-dev
+      - automake
+      - curl
+      - entr
+      - ethtool
       - git
       - git-doc
-      - tmux
-      - vim
-      - curl
-      - silversearcher-ag
-      - pwgen
-      - optipng
-      - nmap
       - imagemagick
-      - libmagickwand-dev
-      - sqlite3
-      - libsqlite3-dev
       - inotify-tools
-      - entr
-      - whois
-      - ethtool
       - jq
+      - libffi-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libmagickwand-dev
+      - libncurses5-dev
+      - libpng-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libtool
+      - libwxgtk3.0-gtk3-dev
+      - libxslt-dev
+      - libyaml-dev
+      - nmap
+      - optipng
+      - pwgen
+      - ruby-dev
       - shellcheck
+      - silversearcher-ag
+      - sqlite3
+      - tmux
+      - unixodbc-dev
+      - vim
+      - whois
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install some development tools and libraries
   homebrew:
     name:
-      - findutils
       - autoconf
-      - wxmac
-      - git
-      - tmux
-      - reattach-to-user-namespace
-      - vim
       - curl
-      - wget
-      - the_silver_searcher
-      - pwgen
-      - optipng
-      - nmap
-      - imagemagick
-      - sqlite
-      - htop
-      - jq
       - entr
-      - shellcheck
+      - findutils
+      - git
       - gnupg
+      - htop
+      - imagemagick
+      - jq
+      - nmap
+      - optipng
+      - pwgen
+      - reattach-to-user-namespace
+      - shellcheck
+      - sqlite
+      - the_silver_searcher
+      - tmux
+      - vim
+      - wget
+      - wxmac
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
@@ -183,9 +183,9 @@
   become: yes
   apt:
     name:
+      - dstat
       - htop
       - linux-tools-generic
-      - dstat
       - strace
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
