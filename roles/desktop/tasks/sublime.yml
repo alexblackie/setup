@@ -25,10 +25,8 @@
     creates: /snap/bin/subl
   when: ansible_facts["distribution"] == "Ubuntu"
 
-# TODO: does not work yet in Big Sur
-#
-#- name: Install Sublime Text cask
-#  homebrew_cask:
-#    name: sublime-text
-#    state: present
-#  when: ansible_facts["os_family"] == "Darwin"
+- name: Install Sublime Text cask
+  homebrew_cask:
+    name: sublime-text
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
