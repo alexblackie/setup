@@ -1,8 +1,0 @@
----
-
-- name: Install Lollypop
-  become: yes
-  package:
-    name: lollypop
-    state: present
-  when: ansible_facts["distribution"] == "Fedora" or ansible_facts["distribution"] == "Ubuntu"
