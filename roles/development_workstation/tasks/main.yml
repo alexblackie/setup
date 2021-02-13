@@ -83,6 +83,7 @@
       - readline-devel
       - ruby-devel
       - sqlite-devel
+      - postgresql-client
       - tmux
       - unixODBC-devel
       - vim
@@ -140,6 +141,7 @@
       - unixodbc-dev
       - vim
       - whois
+      - postgresql-client
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
@@ -166,6 +168,7 @@
       - vim
       - wget
       - wxmac
+      - postgresql
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
