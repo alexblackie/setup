@@ -19,23 +19,3 @@
     name: redis
     state: present
   when: ansible_facts["os_family"] == "Darwin"
-
-- name: Enable and start redis
-  service:
-    name: redis
-    state: started
-    enabled: yes
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Enable and start redis
-  service:
-    name: redis-server
-    state: started
-    enabled: yes
-  become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Enable and start redis
-  command: brew services run redis
-  when: ansible_facts["os_family"] == "Darwin"
