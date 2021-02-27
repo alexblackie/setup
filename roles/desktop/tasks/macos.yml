@@ -18,6 +18,15 @@
   tags:
     - tweaks
 
+- name: Disable touchbar typing suggestions
+  osx_defaults:
+    key: NSAutomaticTextCompletionEnabled
+    type: bool
+    value: false
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
+
 - name: Show all file extensions in Finder
   osx_defaults:
     key: AppleShowAllExtensions
