@@ -160,7 +160,6 @@
       - nmap
       - optipng
       - pwgen
-      - reattach-to-user-namespace
       - shellcheck
       - sqlite
       - the_silver_searcher
