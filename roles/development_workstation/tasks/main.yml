@@ -14,13 +14,6 @@
     shell: /usr/bin/zsh
   when: ansible_facts["os_family"] != "Darwin"
 
-- name: disable gross vim defaults
-  copy:
-    dest: /etc/vimrc
-    content: ""
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat"
-
 - name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
@@ -86,7 +79,7 @@
       - postgresql-client
       - tmux
       - unixODBC-devel
-      - vim
+      - neovim
       - whois
       - wxBase3
       - wxGTK3-devel
@@ -139,7 +132,7 @@
       - sqlite3
       - tmux
       - unixodbc-dev
-      - vim
+      - neovim
       - whois
       - postgresql-client
     state: present
@@ -164,7 +157,7 @@
       - sqlite
       - the_silver_searcher
       - tmux
-      - vim
+      - neovim
       - wget
       - wxmac
       - postgresql
@@ -205,19 +198,6 @@
     name: awk
     path: /usr/bin/gawk
   when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install neovim
-  become: yes
-  package:
-    name: neovim
-    state: present
-  when: ansible_facts["os_family"] != "Darwin"
-
-- name: Install neovim
-  homebrew:
-    name: neovim
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: redis.yml
 - import_tasks: fzy.yml
