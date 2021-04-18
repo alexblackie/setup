@@ -44,7 +44,7 @@
     enabled: yes
     state: started
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: not skipservices and ansible_facts["distribution"] == "Ubuntu"
   tags:
   - services
   - docker

@@ -1,0 +1,10 @@
+---
+
+- hosts: localhost
+  vars:
+    should_dconf: false
+    skipservices: true
+  roles:
+    - snap
+    - base
+    - development_workstation
