@@ -54,7 +54,6 @@
   homebrew_cask:
     name:
       - firefox
-      - font-source-code-pro
       - font-fira-mono
       - font-iosevka
       - imageoptim
