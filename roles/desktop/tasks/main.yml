@@ -55,6 +55,7 @@
     name:
       - firefox
       - font-fira-mono
+      - font-fira-code
       - font-iosevka
       - imageoptim
       - rectangle
