@@ -52,7 +52,6 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-
 - name: Install some development tools and libraries
   become: yes
   dnf:
@@ -72,6 +71,7 @@
       - nmap
       - openssl-devel
       - optipng
+      - tree
       - pwgen
       - readline-devel
       - ruby-devel
@@ -126,6 +126,7 @@
       - nmap
       - optipng
       - pwgen
+      - tree
       - ruby-dev
       - shellcheck
       - silversearcher-ag
@@ -156,6 +157,7 @@
       - shellcheck
       - sqlite
       - the_silver_searcher
+      - tree
       - tmux
       - neovim
       - wget
