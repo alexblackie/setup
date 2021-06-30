@@ -1,0 +1,16 @@
+---
+
+- name: Install Iosevka font
+  homebrew_cask:
+    name:
+    - font-iosevka
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: Download Iosevka font
+  become: true
+  unarchive:
+    src: "https://github.com/be5invis/Iosevka/releases/download/v7.2.3/ttc-iosevka-7.2.3.zip"
+    dest: "/usr/share/fonts/truetype"
+    remote_src: true
+  when: ansible_facts["os_family"] != "Darwin"
