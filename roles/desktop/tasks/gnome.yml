@@ -31,8 +31,6 @@
       value: "false"
     - key: "/org/gnome/terminal/legacy/default-show-menubar"
       value: "false"
-    - key: "/org/gnome/settings-daemon/plugins/color/night-light-enabled"
-      value: "true"
     - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
       value: "false"
     - key: "/org/gnome/desktop/peripherals/touchpad/click-method"
