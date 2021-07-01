@@ -73,6 +73,7 @@
   when: ansible_facts["os_family"] == "Darwin"
 
 - import_tasks: iosevka.yml
+- import_tasks: kitty.yml
 - import_tasks: spotify.yml
 - import_tasks: signal.yml
 - import_tasks: sublime.yml
