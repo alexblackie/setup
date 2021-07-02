@@ -58,7 +58,6 @@
       - font-fira-code
       - imageoptim
       - rectangle
-      - sketch
       - viscosity
       - 1password
     state: present
