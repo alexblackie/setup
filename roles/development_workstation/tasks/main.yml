@@ -92,7 +92,7 @@
     name:
       - ShellCheck
       - entr
-      - the_silver_searcher
+      - ripgrep
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
@@ -129,7 +129,7 @@
       - tree
       - ruby-dev
       - shellcheck
-      - silversearcher-ag
+      - ripgrep
       - sqlite3
       - tmux
       - unixodbc-dev
@@ -156,7 +156,7 @@
       - pwgen
       - shellcheck
       - sqlite
-      - the_silver_searcher
+      - ripgrep
       - tree
       - tmux
       - neovim
