@@ -39,6 +39,7 @@
     name:
       - exfat-fuse
       - fonts-firacode
+      - fonts-cmu
       - network-manager-openvpn
       - network-manager-openvpn-gnome
       - ubuntu-restricted-extras
@@ -56,6 +57,7 @@
       - firefox
       - font-fira-mono
       - font-fira-code
+      - font-computer-modern
       - imageoptim
       - rectangle
       - viscosity
