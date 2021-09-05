@@ -16,12 +16,3 @@
     creates: "{{ home }}/.commonrc"
   tags:
   - dotfiles
-
-- name: Restore dconf configuration
-  shell: ./dconf && touch ~/.completed_initial_dconf_restore
-  args:
-    chdir: "{{ home }}/.dotfiles"
-    creates: "{{ home }}/.completed_initial_dconf_restore"
-  tags:
-  - dotfiles
-  when: should_dconf and (ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu")
