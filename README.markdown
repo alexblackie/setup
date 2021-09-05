@@ -3,17 +3,9 @@
 This is a repository of Ansible playbooks and roles that configure my laptops
 and workstations.
 
-## Prerequisites
-
-These playbooks support only the latest releases of:
-
-  - Fedora Workstation
-  - Ubuntu (LTS)
-  - macOS
-    - (Homebrew must be installed first.)
-
-Most tasks will probably work on RHEL/CentOS, but that is not tested nor
-officially supported.
+These playbooks support only the latest releases of **macOS** or **OpenSuse**
+(Tumbleweed). There are no prerequisites beyond Git and Ansible, except on
+macOS where Homebrew must be installed first.
 
 ## Running
 

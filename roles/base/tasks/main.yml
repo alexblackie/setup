@@ -10,33 +10,12 @@
   set_fact:
     home: "{{ lookup('env', 'HOME') }}"
 
-- name: Enable fastest mirror dnf plugin
-  become: yes
-  lineinfile:
-    line: fastestmirror=1
-    dest: /etc/dnf/dnf.conf
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Enable RPMFusion free
-  become: yes
-  dnf:
-    name: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts["distribution_major_version"] }}.noarch.rpm
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Enable RPMFusion non-free
-  become: yes
-  dnf:
-    name: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts["distribution_major_version"] }}.noarch.rpm
-    state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
 - name: Install OpenSSH
   become: true
-  apt:
+  package:
     name: openssh-server
     state: present
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: Enable sshd
   service:
@@ -44,19 +23,4 @@
     state: started
     enabled: yes
   become: yes
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Enable ssh
-  service:
-    name: ssh
-    state: started
-    enabled: yes
-  become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install fwupd for firmware update support
-  become: yes
-  dnf:
-    name: fwupd
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"

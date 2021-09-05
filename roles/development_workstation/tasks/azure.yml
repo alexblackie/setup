@@ -1,19 +1,5 @@
 ---
 
-- name: Add Azure CLI Yum repository
-  become: yes
-  yum_repository:
-    name: azure-cli
-    description: Azure CLI
-    baseurl: https://packages.microsoft.com/yumrepos/azure-cli
-    enabled: yes
-    gpgcheck: yes
-    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
-  when: ansible_facts["os_family"] == "RedHat"
-  tags:
-  - azure
-  - packages
-
 - name: Install Azure CLI
   become: yes
   package:

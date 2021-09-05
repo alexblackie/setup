@@ -1,13 +1,7 @@
 ---
 
-- name: Install dbus-tools for setting GNOME config programmatically
-  become: yes
-  dnf:
-    name: dbus-tools
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
-
 - name: Install workstation apps and tools
+  become: true
   package:
     name:
       - ffmpeg
@@ -18,33 +12,12 @@
       - virt-manager
       - virt-viewer
       - youtube-dl
-    state: present
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install RedHat-specific workstation apps and tools
-  dnf:
-    name:
       - NetworkManager-openvpn
       - NetworkManager-openvpn-gnome
       - fuse-exfat
-      - mozilla-fira-mono-fonts
+      - fira-code-fonts
     state: present
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install Ubuntu-specific workstation apps and tools
-  become: yes
-  apt:
-    name:
-      - exfat-fuse
-      - fonts-firacode
-      - fonts-cmu
-      - network-manager-openvpn
-      - network-manager-openvpn-gnome
-      - ubuntu-restricted-extras
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Suse"
 
 - name: Enable Homebrew fonts cask
   homebrew_tap:
@@ -75,9 +48,9 @@
 
 - import_tasks: iosevka.yml
 - import_tasks: kitty.yml
-- import_tasks: spotify.yml
 - import_tasks: signal.yml
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
+- import_tasks: lollypop.yml
 - import_tasks: gnome.yml
 - import_tasks: macos.yml

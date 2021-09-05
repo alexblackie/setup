@@ -5,7 +5,7 @@
   package:
     name: zsh
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: set default shell to zsh
   become: yes
@@ -13,13 +13,6 @@
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
   when: ansible_facts["os_family"] != "Darwin"
-
-- name: disable stupid ls colors
-  copy:
-    dest: /etc/profile.d/colorls.sh
-    content: ""
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Increase default user watches limit
   become: yes
@@ -40,22 +33,17 @@
 
 - name: Install C toolchain
   become: yes
-  dnf:
-    name: "@C Development Tools and Libraries"
+  zypper:
+    type: pattern
+    name: devel_basis
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Install C toolchain
-  become: yes
-  apt:
-    name: build-essential
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Suse"
 
 - name: Install some development tools and libraries
   become: yes
-  dnf:
+  package:
     name:
+      - gcc-c++
       - ImageMagick
       - ImageMagick-devel
       - autoconf
@@ -76,68 +64,21 @@
       - readline-devel
       - ruby-devel
       - sqlite-devel
-      - postgresql-client
+      - postgresql13
       - tmux
       - unixODBC-devel
       - neovim
       - whois
-      - wxBase3
+      - wxWidgets
       - wxGTK3-devel
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install some development tools and libraries
-  become: yes
-  dnf:
-    name:
       - ShellCheck
       - entr
       - ripgrep
+      - htop
+      - perf
+      - strace
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Install some development tools and libraries
-  become: yes
-  apt:
-    name:
-      - autoconf
-      - automake
-      - curl
-      - entr
-      - ethtool
-      - git
-      - git-doc
-      - imagemagick
-      - inotify-tools
-      - jq
-      - libffi-dev
-      - libgl1-mesa-dev
-      - libglu1-mesa-dev
-      - libmagickwand-dev
-      - libncurses5-dev
-      - libpng-dev
-      - libreadline-dev
-      - libsqlite3-dev
-      - libssl-dev
-      - libtool
-      - libwxgtk3.0-gtk3-dev
-      - libxslt-dev
-      - libyaml-dev
-      - nmap
-      - optipng
-      - pwgen
-      - tree
-      - ruby-dev
-      - shellcheck
-      - ripgrep
-      - sqlite3
-      - tmux
-      - unixodbc-dev
-      - neovim
-      - whois
-      - postgresql-client
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Suse"
 
 - name: Install some development tools and libraries
   homebrew:
@@ -166,47 +107,10 @@
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
-- name: Install system visibility tools
-  become: yes
-  dnf:
-    name:
-      - htop
-      - perf
-      - strace
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install system visibility tools
-  become: yes
-  apt:
-    name:
-      - dstat
-      - htop
-      - linux-tools-generic
-      - strace
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install gawk
-  become: yes
-  apt:
-    name: gawk
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Ensure we're using gawk
-  become: yes
-  alternatives:
-    name: awk
-    path: /usr/bin/gawk
-  when: ansible_facts["distribution"] == "Ubuntu"
-
 - import_tasks: redis.yml
 - import_tasks: fzy.yml
 - import_tasks: asdf.yml
-- import_tasks: python.yml
 - import_tasks: java.yml
-- import_tasks: redhat.yml
 - import_tasks: azure.yml
 - import_tasks: fd.yml
 - import_tasks: dotfiles.yml

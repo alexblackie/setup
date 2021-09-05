@@ -3,9 +3,9 @@
 - name: Install psutil for dconf integration
   become: yes
   package:
-    name: python3-psutil
+    name: python38-psutil
     state: present
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] != "Darwin"
   tags:
   - gnome
   - packages
@@ -35,6 +35,6 @@
       value: "false"
     - key: "/org/gnome/desktop/peripherals/touchpad/click-method"
       value: "'fingers'"
-  when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] != "Darwin"
   tags:
   - gnome

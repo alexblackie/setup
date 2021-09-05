@@ -1,18 +1,11 @@
 ---
 
 - name: Install redis
-  dnf:
+  become: true
+  package:
     name: redis
     state: present
-  become: yes
-  when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install redis
-  apt:
-    name: redis-server
-    state: present
-  become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Suse"
 
 - name: Install redis
   homebrew:

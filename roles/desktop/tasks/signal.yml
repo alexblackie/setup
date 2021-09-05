@@ -1,9 +1,9 @@
 ---
 
 - name: Install Signal
-  become: yes
-  snap:
-    name: signal-desktop
+  become: true
+  flatpak:
+    name: org.signal.Signal
     state: present
   when: ansible_facts["os_family"] != "Darwin"
 
