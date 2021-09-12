@@ -1,10 +1,22 @@
 ---
 
+# If packages installs fail due to weird conflicts, you might have to "change
+# vendor" or whatever:
+#     sudo zypper dist-upgrade --from packman --allow-vendor-change
+- name: Add packman repository
+  become: true
+  zypper_repository:
+    name: packman
+    repo: https://ftp.gwdg.de/pub/linux/misc/packman/suse/openSUSE_Tumbleweed/
+    priority: 90
+    state: present
+    auto_import_keys: true
+  when: ansible_facts["os_family"] == "Suse"
+
 - name: Install workstation apps and tools
   become: true
   package:
     name:
-      - ffmpeg
       - gimp
       - gnome-tweaks
       - mpv
@@ -16,6 +28,12 @@
       - NetworkManager-openvpn-gnome
       - fuse-exfat
       - fira-code-fonts
+      - ffmpeg
+      - gstreamer-plugins-good
+      - gstreamer-plugins-bad
+      - gstreamer-plugins-libav
+      - libavcodec-full
+      - vlc-codecs
     state: present
   when: ansible_facts["os_family"] == "Suse"
 
