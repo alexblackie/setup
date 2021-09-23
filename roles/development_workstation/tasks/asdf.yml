@@ -24,6 +24,7 @@
   - terraform
   - golang
   - maven
+  - hugo
   tags:
   - asdf
   - development_workstation
