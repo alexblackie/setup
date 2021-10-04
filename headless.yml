@@ -4,7 +4,6 @@
   vars:
     should_dconf: false
   roles:
-    - snap
     - base
     - development_workstation
     - docker
