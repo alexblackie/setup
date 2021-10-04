@@ -75,7 +75,6 @@
 
 - import_tasks: iosevka.yml
 - import_tasks: kitty.yml
-- import_tasks: spotify.yml
 - import_tasks: signal.yml
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
