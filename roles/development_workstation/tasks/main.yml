@@ -76,7 +76,7 @@
       - readline-devel
       - ruby-devel
       - sqlite-devel
-      - postgresql-client
+      - postgresql
       - tmux
       - unixODBC-devel
       - neovim
