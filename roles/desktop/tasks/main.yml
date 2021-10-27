@@ -25,8 +25,6 @@
 - name: Install RedHat-specific workstation apps and tools
   dnf:
     name:
-      - NetworkManager-openvpn
-      - NetworkManager-openvpn-gnome
       - fuse-exfat
       - mozilla-fira-mono-fonts
     state: present
@@ -39,8 +37,6 @@
     name:
       - exfat-fuse
       - fonts-firacode
-      - network-manager-openvpn
-      - network-manager-openvpn-gnome
       - ubuntu-restricted-extras
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
@@ -59,7 +55,6 @@
       - font-fira-code
       - imageoptim
       - rectangle
-      - viscosity
       - 1password
     state: present
   when: ansible_facts["os_family"] == "Darwin"
@@ -78,5 +73,6 @@
 - import_tasks: keybase.yml
 - import_tasks: nextcloud.yml
 - import_tasks: lollypop.yml
+- import_tasks: tailscale.yml
 - import_tasks: gnome.yml
 - import_tasks: macos.yml

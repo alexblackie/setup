@@ -1,0 +1,42 @@
+---
+
+- name: Add Tailscale repo key
+  become: true
+  apt_key:
+    url: https://pkgs.tailscale.com/stable/ubuntu/{{ ansible_facts["distribution_release"] }}.gpg
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - tailscale
+
+- name: Add Tailscale repo
+  become: true
+  apt_repository:
+    repo: deb https://pkgs.tailscale.com/stable/ubuntu {{ ansible_facts["distribution_release"] }} main
+    state: present
+    filename: keybase
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - tailscale
+
+- name: Add Tailscale repo
+  become: true
+  yum_repository:
+    name: tailscale
+    description: Tailscale
+    baseurl: "https://pkgs.tailscale.com/stable/fedora/$basearch"
+    enabled: true
+    repo_gpgcheck: true
+    gpgkey: "https://pkgs.tailscale.com/stable/fedora/repo.gpg"
+  when: ansible_facts["distribution"] == "Fedora"
+  tags:
+  - tailscale
+
+- name: Install Tailscale
+  become: true
+  package:
+    name: tailscale
+    state: present
+  when: ansible_facts["os_family"] != "Darwin"
+  tags:
+  - packages
+  - tailscale
