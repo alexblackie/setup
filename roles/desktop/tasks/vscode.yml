@@ -1,0 +1,21 @@
+---
+
+- name: Install Visual Studio Code
+  homebrew_cask:
+    name: visual-studio-code
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+  - packages
+  - vscode
+
+- name: Install Visual Studio Code
+  become: true
+  flatpak:
+    name: com.visualstudio.code
+    state: present
+  when: ansible_facts["os_family"] != "Darwin"
+  tags:
+  - packages
+  - flatpak
+  - vscode
