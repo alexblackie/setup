@@ -55,6 +55,7 @@
   homebrew_cask:
     name:
       - firefox
+      - microsoft-edge
       - font-fira-mono
       - font-fira-code
       - font-computer-modern
