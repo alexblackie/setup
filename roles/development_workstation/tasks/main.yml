@@ -83,6 +83,7 @@
       - whois
       - wxBase3
       - wxGTK3-devel
+      - rclone
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 
@@ -136,6 +137,7 @@
       - neovim
       - whois
       - postgresql-client
+      - rclone
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
@@ -163,6 +165,7 @@
       - wget
       - wxmac
       - postgresql
+      - rclone
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
