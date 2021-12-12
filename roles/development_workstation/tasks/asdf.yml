@@ -3,7 +3,7 @@
 - name: Install asdf version manager
   git:
     repo: https://github.com/asdf-vm/asdf.git
-    version: v0.8.0
+    version: v0.9.0
     dest: "{{ home }}/.asdf"
     update: yes
   tags:
