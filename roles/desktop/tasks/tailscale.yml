@@ -1,23 +1,5 @@
 ---
 
-- name: Add Tailscale repo key
-  become: true
-  apt_key:
-    url: https://pkgs.tailscale.com/stable/ubuntu/{{ ansible_facts["distribution_release"] }}.gpg
-  when: ansible_facts["distribution"] == "Ubuntu"
-  tags:
-  - tailscale
-
-- name: Add Tailscale repo
-  become: true
-  apt_repository:
-    repo: deb https://pkgs.tailscale.com/stable/ubuntu {{ ansible_facts["distribution_release"] }} main
-    state: present
-    filename: keybase
-  when: ansible_facts["distribution"] == "Ubuntu"
-  tags:
-  - tailscale
-
 - name: Add Tailscale repo
   become: true
   yum_repository:
@@ -27,7 +9,7 @@
     enabled: true
     repo_gpgcheck: true
     gpgkey: "https://pkgs.tailscale.com/stable/fedora/repo.gpg"
-  when: ansible_facts["distribution"] == "Fedora"
+  when: ansible_facts["os_family"] == "RedHat"
   tags:
   - tailscale
 
@@ -36,7 +18,9 @@
   package:
     name: tailscale
     state: present
-  when: ansible_facts["os_family"] != "Darwin"
+  when: ansible_facts["os_family"] == "RedHat"
   tags:
   - packages
   - tailscale
+
+# On macOS Tailscale comes from the App Store

@@ -1,25 +1,19 @@
-# Bootstart
+# `~/.bootstart`
 
-This is a repository of Ansible playbooks and roles that configure my laptops
-and workstations.
+While [my dotfiles][0] configure my development environment, that's only half
+of the story. This repository contains Ansible playbooks to configure the
+systems I use -- everything from headless VMs to workstation laptops.
 
-## Prerequisites
+Currently the supported targets are the latest releases of **macOS** and
+**Fedora Workstation**.
 
-These playbooks support only the latest releases of:
-
-  - Fedora Workstation
-  - Ubuntu (LTS)
-  - macOS
-    - (Homebrew must be installed first.)
-
-Most tasks will probably work on RHEL/CentOS, but that is not tested nor
-officially supported.
+[0]: https://github.com/alexblackie/dotfiles
 
 ## Running
 
-Run these playbooks as an unprivileged user (with `sudo` access). Pass
-`--ask-become-pass` to have Ansible prompt for `sudo` authentication before
-running.
+Run these playbooks as an unprivileged user. If `sudo` password authentication
+is needed, pass `--ask-become-pass` to have Ansible prompt for authentication
+before it begins.
 
 ```
 $ ansible-playbook --ask-become-pass workstation.yml
@@ -27,7 +21,7 @@ $ ansible-playbook --ask-become-pass workstation.yml
 
 There are two playbooks available:
 
-  - `workstation.yml` for desktop/laptop workstations (GUI tools included);
+  - `workstation.yml` for desktop/laptop workstations (GUI tools included), and
   - `headless.yml` for headless Linux installs (CLI tools only).
 
 ## License

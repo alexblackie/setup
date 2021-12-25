@@ -1,23 +1,22 @@
 ---
 
 - name: Install JDK
+  become: true
   dnf:
     name:
       - java-latest-openjdk
       - java-latest-openjdk-devel
     state: present
-  become: yes
   when: ansible_facts["os_family"] == "RedHat"
   tags:
   - packages
   - java
 
 - name: Install JDK
-  apt:
-    name: default-jdk
+  homebrew_cask:
+    name: oracle-jdk
     state: present
-  become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Darwin"
   tags:
   - packages
   - java

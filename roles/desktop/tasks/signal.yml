@@ -1,7 +1,7 @@
 ---
 
 - name: Install Signal
-  become: yes
+  become: true
   flatpak:
     name: org.signal.Signal
     state: present

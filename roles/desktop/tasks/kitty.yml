@@ -12,10 +12,3 @@
     name: kitty
     state: present
   when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install kitty
-  become: true
-  apt:
-    name: kitty
-    state: present
-  when: ansible_facts["os_family"] == "Debian"

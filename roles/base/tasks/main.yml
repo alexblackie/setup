@@ -25,14 +25,7 @@
     - https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts["distribution_major_version"] }}.noarch.rpm
     disable_gpg_check: true
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
-
-- name: Install OpenSSH
-  become: true
-  apt:
-    name: openssh-server
-    state: present
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts["os_family"] == "RedHat"
 
 - name: Enable sshd
   service:
@@ -41,14 +34,6 @@
     enabled: yes
   become: yes
   when: ansible_facts["os_family"] == "RedHat"
-
-- name: Enable ssh
-  service:
-    name: ssh
-    state: started
-    enabled: yes
-  become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install fwupd for firmware update support
   become: yes
