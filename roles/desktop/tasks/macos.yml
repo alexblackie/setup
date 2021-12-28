@@ -245,3 +245,12 @@
   when: ansible_facts["os_family"] == "Darwin"
   tags:
     - tweaks
+
+- name: Disable "wallpaper window tinting"
+  osx_defaults:
+    key: AppleReduceDesktopTinting
+    type: bool
+    value: true
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
