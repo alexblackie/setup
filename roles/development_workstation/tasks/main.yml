@@ -83,6 +83,7 @@
       - htop
       - perf
       - strace
+      - exa
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 
@@ -111,6 +112,7 @@
       - wxmac
       - postgresql
       - rclone
+      - exa
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
