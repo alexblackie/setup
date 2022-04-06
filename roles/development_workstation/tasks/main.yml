@@ -64,7 +64,6 @@
       - nmap
       - openssl-devel
       - optipng
-      - tree
       - pwgen
       - readline-devel
       - ruby-devel
@@ -105,7 +104,6 @@
       - shellcheck
       - sqlite
       - ripgrep
-      - tree
       - tmux
       - neovim
       - wget
