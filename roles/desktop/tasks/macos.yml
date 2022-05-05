@@ -254,3 +254,12 @@
   when: ansible_facts["os_family"] == "Darwin"
   tags:
     - tweaks
+
+- name: Move windows with cmd+ctrl+click anywhere
+  osx_defaults:
+    key: NSWindowShouldDragOnGesture
+    type: bool
+    value: true
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - tweaks
