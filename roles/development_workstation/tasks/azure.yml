@@ -19,7 +19,7 @@
   package:
     name: azure-cli
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"
   tags:
   - azure
   - packages

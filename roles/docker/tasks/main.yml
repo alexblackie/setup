@@ -1,6 +1,16 @@
 ---
 
 - name: Install Docker
+  apt:
+    name: docker.io
+    state: present
+  become: yes
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - packages
+  - docker
+
+- name: Install Docker
   homebrew_cask:
     name: docker
     state: present
@@ -9,13 +19,43 @@
   - packages
   - docker
 
+- name: Ensure presence of docker group
+  group:
+    name: docker
+    state: present
+  become: yes
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - docker
+
+- name: Add local user to docker group
+  user:
+    name: "{{ local_user }}"
+    groups: docker
+    append: yes
+  become: yes
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - docker
+
+- name: Enable and start docker
+  service:
+    name: docker
+    enabled: yes
+    state: started
+  become: yes
+  when: ansible_facts["distribution"] == "Ubuntu"
+  tags:
+  - services
+  - docker
+
 - name: Install podman
-  become: true
   dnf:
     name:
       - podman
       - podman-docker
     state: present
+  become: yes
   when: ansible_facts["os_family"] == "RedHat"
   tags:
   - packages

@@ -7,6 +7,5 @@
     - flatpak
     - base
     - desktop
-    - virtualization
     - development_workstation
     - docker

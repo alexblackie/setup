@@ -4,8 +4,8 @@ While [my dotfiles][0] configure my development environment, that's only half
 of the story. This repository contains Ansible playbooks to configure the
 systems I use -- everything from headless VMs to workstation laptops.
 
-Currently the supported targets are the latest releases of **macOS** and
-**Fedora Workstation**.
+Currently the supported targets are the latest releases of **macOS**, **Ubuntu
+LTS**, and **Fedora Workstation**.
 
 [0]: https://github.com/alexblackie/dotfiles
 

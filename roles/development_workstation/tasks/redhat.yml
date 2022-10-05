@@ -1,0 +1,10 @@
+---
+
+- name: Install tools for RPM development
+  become: yes
+  dnf:
+    name:
+      - redhat-rpm-config
+      - rpm-build
+      - pkgconfig
+  when: ansible_facts["os_family"] == "RedHat"

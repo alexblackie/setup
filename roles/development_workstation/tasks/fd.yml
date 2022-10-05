@@ -12,3 +12,15 @@
     name: fd
     state: present
   when: ansible_facts["os_family"] == "Darwin"
+
+- name: Check for fd symlinked exec
+  stat:
+    path: /usr/bin/fd
+  register: fdfind
+  when: ansible_facts["distribution"] == "Ubuntu"
+  changed_when: false
+
+- name: Ensure fd is fd on Ubuntu
+  become: true
+  command: ln -s /usr/bin/fdfind /usr/bin/fd
+  when: ansible_facts["distribution"] == "Ubuntu" and not fdfind.stat.exists

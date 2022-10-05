@@ -1,32 +1,32 @@
 ---
 
-- name: Install ZSH
-  become: true
+- name: install zsh
+  become: yes
   package:
     name: zsh
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["os_family"] == "RedHat"
 
-- name: Set default shell to ZSH
-  become: true
+- name: set default shell to zsh
+  become: yes
   user:
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"
 
-- name: Disable default ls colouring
-  become: true
+- name: disable stupid ls colors
   copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
+  become: yes
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Increase default user watches limit
-  become: true
+  become: yes
   lineinfile:
     line: "fs.inotify.max_user_watches=524288"
     dest: /etc/sysctl.conf
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: Create directory for third-party software sources
   file:
@@ -39,14 +39,21 @@
     state: directory
 
 - name: Install C toolchain
-  become: true
+  become: yes
   dnf:
     name: "@C Development Tools and Libraries"
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: Install C toolchain
+  become: yes
+  apt:
+    name: build-essential
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install some development tools and libraries
-  become: true
+  become: yes
   dnf:
     name:
       - ImageMagick
@@ -76,6 +83,13 @@
       - wxBase3
       - wxGTK3-devel
       - rclone
+    state: present
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Install some development tools and libraries
+  become: yes
+  dnf:
+    name:
       - ShellCheck
       - entr
       - ripgrep
@@ -84,7 +98,51 @@
       - strace
       - exa
     state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["distribution"] == "Fedora"
+
+- name: Install some development tools and libraries
+  become: yes
+  apt:
+    name:
+      - autoconf
+      - automake
+      - curl
+      - entr
+      - ethtool
+      - git
+      - git-doc
+      - imagemagick
+      - inotify-tools
+      - jq
+      - libffi-dev
+      - libgl1-mesa-dev
+      - libglu1-mesa-dev
+      - libmagickwand-dev
+      - libncurses5-dev
+      - libpng-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - libssl-dev
+      - libtool
+      - libwxgtk3.0-gtk3-dev
+      - libxslt-dev
+      - libyaml-dev
+      - nmap
+      - optipng
+      - pwgen
+      - tree
+      - ruby-dev
+      - shellcheck
+      - ripgrep
+      - sqlite3
+      - tmux
+      - unixodbc-dev
+      - neovim
+      - whois
+      - postgresql-client
+      - rclone
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install some development tools and libraries
   homebrew:
@@ -114,11 +172,47 @@
     state: present
   when: ansible_facts["os_family"] == "Darwin"
 
+- name: Install system visibility tools
+  become: yes
+  dnf:
+    name:
+      - htop
+      - perf
+      - strace
+    state: present
+  when: ansible_facts["os_family"] == "RedHat"
+
+- name: Install system visibility tools
+  become: yes
+  apt:
+    name:
+      - dstat
+      - htop
+      - linux-tools-generic
+      - strace
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+
+- name: Install gawk
+  become: yes
+  apt:
+    name: gawk
+    state: present
+  when: ansible_facts["distribution"] == "Ubuntu"
+
+- name: Ensure we're using gawk
+  become: yes
+  alternatives:
+    name: awk
+    path: /usr/bin/gawk
+  when: ansible_facts["distribution"] == "Ubuntu"
+
 - import_tasks: redis.yml
 - import_tasks: fzy.yml
 - import_tasks: asdf.yml
 - import_tasks: python.yml
 - import_tasks: java.yml
+- import_tasks: redhat.yml
 - import_tasks: azure.yml
 - import_tasks: fd.yml
 - import_tasks: dotfiles.yml
