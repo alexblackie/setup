@@ -1,8 +1,8 @@
 ---
 
 - name: Add Azure CLI Yum repository
-  become: yes
-  yum_repository:
+  become: true
+  ansible.builtin.yum_repository:
     name: azure-cli
     description: Azure CLI
     baseurl: https://packages.microsoft.com/yumrepos/azure-cli
@@ -14,9 +14,29 @@
   - azure
   - packages
 
+- name: Add Microsoft signing key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    state: present
+  when: ansible_facts["os_family"] == "Debian"
+  tags:
+  - azure
+  - packages
+
+- name: Add Azure CLI repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: deb https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts["distribution_release"] }} main
+    state: present
+  when: ansible_facts["os_family"] == "Debian"
+  tags:
+  - azure
+  - packages
+
 - name: Install Azure CLI
-  become: yes
-  package:
+  become: true
+  ansible.builtin.package:
     name: azure-cli
     state: present
   when: ansible_facts["os_family"] != "Darwin"
@@ -25,7 +45,7 @@
   - packages
 
 - name: Install Azure CLI
-  homebrew:
+  community.general.homebrew:
     name: azure-cli
     state: present
   when: ansible_facts["os_family"] == "Darwin"
