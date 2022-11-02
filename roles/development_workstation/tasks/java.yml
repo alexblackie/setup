@@ -17,7 +17,7 @@
     name: default-jdk
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   tags:
   - packages
   - java

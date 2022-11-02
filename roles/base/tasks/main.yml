@@ -27,10 +27,13 @@
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
-- name: Install OpenSSH
+- name: Install base system software
   become: true
   apt:
-    name: openssh-server
+    name:
+      - openssh-server
+      - gnupg
+      - apt-transport-https
     state: present
   when: ansible_facts["os_family"] == "Debian"
 
@@ -48,7 +51,7 @@
     state: started
     enabled: yes
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Install fwupd for firmware update support
   become: yes

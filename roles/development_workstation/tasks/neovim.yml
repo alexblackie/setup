@@ -1,0 +1,48 @@
+---
+
+- name: Install neovim
+  community.general.homebrew:
+    name: neovim
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+
+- name: Ensure neovim dependencies are installed
+  become: true
+  ansible.builtin.apt:
+    name:
+    - ninja-build
+    - gettext
+    - libtool
+    - libtool-bin
+    - autoconf
+    - automake
+    - cmake
+    - g++
+    - pkg-config
+    - unzip
+    - curl
+    - doxygen
+    state: present
+  when: ansible_facts["os_family"] != "Darwin"
+
+- name: Clone neovim
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim.git
+    dest: "{{ third_party_src }}/neovim"
+    version: v0.8.0
+  when: ansible_facts["os_family"] != "Darwin"
+
+- name: Compile neovim
+  ansible.builtin.shell: make CMAKE_BUILD_TYPE=Release
+  args:
+    chdir: "{{ third_party_src }}/neovim"
+    creates: /usr/local/bin/neovim
+  when: ansible_facts["os_family"] != "Darwin"
+
+- name: Install neovim
+  become: true
+  ansible.builtin.shell: make install CMAKE_INSTALL_PREFIX=/usr/local
+  args:
+    chdir: "{{ third_party_src }}/neovim"
+    creates: /usr/local/bin/neovim
+  when: ansible_facts["os_family"] != "Darwin"

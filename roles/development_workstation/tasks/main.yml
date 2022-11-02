@@ -5,7 +5,7 @@
   package:
     name: zsh
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu" or ansible_facts["os_family"] == "RedHat"
+  when: ansible_facts["os_family"] != "Darwin"
 
 - name: set default shell to zsh
   become: yes
@@ -78,7 +78,6 @@
       - postgresql
       - tmux
       - unixODBC-devel
-      - neovim
       - whois
       - wxBase3
       - wxGTK3-devel
@@ -137,12 +136,11 @@
       - sqlite3
       - tmux
       - unixodbc-dev
-      - neovim
       - whois
       - postgresql-client
       - rclone
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Install some development tools and libraries
   homebrew:
@@ -163,7 +161,6 @@
       - sqlite
       - ripgrep
       - tmux
-      - neovim
       - wget
       - wxmac
       - postgresql
@@ -188,9 +185,20 @@
     name:
       - dstat
       - htop
-      - linux-tools-generic
       - strace
     state: present
+  when: ansible_facts["os_family"] == "Debian"
+
+- name: Install perf
+  become: yes
+  apt:
+    name: linux-perf
+  when: ansible_facts["distribution"] == "Debian"
+
+- name: Install perf
+  become: yes
+  apt:
+    name: linux-tools-generic
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install gawk
@@ -198,15 +206,16 @@
   apt:
     name: gawk
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
 
 - name: Ensure we're using gawk
   become: yes
   alternatives:
     name: awk
     path: /usr/bin/gawk
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
 
+- import_tasks: neovim.yml
 - import_tasks: redis.yml
 - import_tasks: fzy.yml
 - import_tasks: asdf.yml

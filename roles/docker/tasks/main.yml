@@ -5,7 +5,7 @@
     name: docker.io
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   tags:
   - packages
   - docker
@@ -24,7 +24,7 @@
     name: docker
     state: present
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   tags:
   - docker
 
@@ -34,7 +34,7 @@
     groups: docker
     append: yes
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   tags:
   - docker
 
@@ -44,7 +44,7 @@
     enabled: yes
     state: started
   become: yes
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   tags:
   - services
   - docker

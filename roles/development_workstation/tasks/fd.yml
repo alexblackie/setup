@@ -17,10 +17,13 @@
   stat:
     path: /usr/bin/fd
   register: fdfind
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["os_family"] == "Debian"
   changed_when: false
 
-- name: Ensure fd is fd on Ubuntu
+- name: Ensure fd is fd on Debian
   become: true
-  command: ln -s /usr/bin/fdfind /usr/bin/fd
-  when: ansible_facts["distribution"] == "Ubuntu" and not fdfind.stat.exists
+  file:
+    path: /usr/bin/fd
+    src: /usr/bin/fdfind
+    state: link
+  when: ansible_facts["os_family"] == "Debian" and not fdfind.stat.exists
