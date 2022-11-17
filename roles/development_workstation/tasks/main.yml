@@ -119,6 +119,7 @@
       - libmagickwand-dev
       - libncurses5-dev
       - libpng-dev
+      - libpq-dev
       - libreadline-dev
       - libsqlite3-dev
       - libssl-dev
