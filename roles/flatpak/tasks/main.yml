@@ -1,20 +1,19 @@
 ---
-
 - name: Install Flatpak
   become: true
-  package:
+  ansible.builtin.package:
     name: flatpak
     state: present
   tags:
-  - flatpak
-  - packages
+    - flatpak
+    - packages
 
 - name: Add Flathub remote
   become: true
-  flatpak_remote:
+  community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
   tags:
-  - flatpak
-  - packages
+    - flatpak
+    - packages

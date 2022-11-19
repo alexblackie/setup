@@ -1,8 +1,7 @@
 ---
-
 - name: Install Python and some libs
   become: true
-  dnf:
+  ansible.builtin.dnf:
     name:
       - python3
       - python3-devel
@@ -12,7 +11,7 @@
 
 - name: Install Python and some libs
   become: true
-  apt:
+  ansible.builtin.apt:
     name:
       - python3
       - python3-dev

@@ -1,8 +1,7 @@
 ---
-
 - name: Install tools for RPM development
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name:
       - redhat-rpm-config
       - rpm-build

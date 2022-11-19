@@ -1,10 +1,9 @@
 ---
-
 - name: Install Lollypop
   become: true
-  flatpak:
+  community.general.flatpak:
     name: org.gnome.Lollypop
     state: present
   tags:
-  - flatpak
-  - packages
+    - flatpak
+    - packages

@@ -1,57 +1,59 @@
 ---
-
-- name: install zsh
-  become: yes
-  package:
+- name: Install zsh
+  become: true
+  ansible.builtin.package:
     name: zsh
     state: present
 
-- name: set default shell to zsh
-  become: yes
-  user:
+- name: Set default shell to zsh
+  become: true
+  ansible.builtin.user:
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
 
-- name: disable stupid ls colors
-  copy:
+- name: Disable stupid ls colors
+  become: true
+  ansible.builtin.copy:
     dest: /etc/profile.d/colorls.sh
     content: ""
-  become: yes
+    mode: 0644
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Increase default user watches limit
-  become: yes
-  lineinfile:
-    line: "fs.inotify.max_user_watches=524288"
+  become: true
+  ansible.builtin.lineinfile:
+    line: fs.inotify.max_user_watches=524288
     dest: /etc/sysctl.conf
 
 - name: Create directory for third-party software sources
-  file:
+  ansible.builtin.file:
     path: "{{ third_party_src }}"
     state: directory
+    mode: 0755
 
 - name: Create local bin directory
-  file:
+  ansible.builtin.file:
     path: "{{ home }}/bin"
     state: directory
+    mode: 0755
 
 - name: Install C toolchain
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name: "@C Development Tools and Libraries"
     state: present
   when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install C toolchain
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: build-essential
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install some development tools and libraries
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name:
       - ImageMagick
       - ImageMagick-devel
@@ -83,8 +85,8 @@
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install some development tools and libraries
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name:
       - ShellCheck
       - entr
@@ -97,8 +99,8 @@
   when: ansible_facts["distribution"] == "Fedora"
 
 - name: Install some development tools and libraries
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name:
       - autoconf
       - automake
@@ -141,8 +143,8 @@
   when: ansible_facts["os_family"] == "Debian"
 
 - name: Install system visibility tools
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name:
       - htop
       - perf
@@ -151,8 +153,8 @@
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install system visibility tools
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name:
       - dstat
       - htop
@@ -161,38 +163,38 @@
   when: ansible_facts["os_family"] == "Debian"
 
 - name: Install perf
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: linux-perf
   when: ansible_facts["distribution"] == "Debian"
 
 - name: Install perf
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: linux-tools-generic
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install gawk
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: gawk
     state: present
   when: ansible_facts["os_family"] == "Debian"
 
 - name: Ensure we're using gawk
-  become: yes
-  alternatives:
+  become: true
+  community.general.system.alternatives:
     name: awk
     path: /usr/bin/gawk
   when: ansible_facts["os_family"] == "Debian"
 
-- import_tasks: neovim.yml
-- import_tasks: redis.yml
-- import_tasks: fzy.yml
-- import_tasks: asdf.yml
-- import_tasks: python.yml
-- import_tasks: java.yml
-- import_tasks: redhat.yml
-- import_tasks: azure.yml
-- import_tasks: fd.yml
-- import_tasks: dotfiles.yml
+- ansible.builtin.import_tasks: neovim.yml
+- ansible.builtin.import_tasks: redis.yml
+- ansible.builtin.import_tasks: fzy.yml
+- ansible.builtin.import_tasks: asdf.yml
+- ansible.builtin.import_tasks: python.yml
+- ansible.builtin.import_tasks: java.yml
+- ansible.builtin.import_tasks: redhat.yml
+- ansible.builtin.import_tasks: azure.yml
+- ansible.builtin.import_tasks: fd.yml
+- ansible.builtin.import_tasks: dotfiles.yml

@@ -1,21 +1,20 @@
 ---
-
 - name: Install nextcloud client
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: nextcloud-desktop
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - nextcloud
-  - packages
+    - nextcloud
+    - packages
 
 - name: Install nextcloud client
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name: nextcloud-client
     state: present
   when: ansible_facts["distribution"] == "Fedora"
   tags:
-  - nextcloud
-  - packages
+    - nextcloud
+    - packages

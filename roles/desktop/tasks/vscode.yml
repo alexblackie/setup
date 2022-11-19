@@ -1,11 +1,10 @@
 ---
-
 - name: Install Visual Studio Code
   become: true
-  flatpak:
+  community.general.flatpak:
     name: com.visualstudio.code
     state: present
   tags:
-  - packages
-  - flatpak
-  - vscode
+    - packages
+    - flatpak
+    - vscode

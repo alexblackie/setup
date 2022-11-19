@@ -1,0 +1,18 @@
+---
+
+on:
+  push:
+    - master
+
+jobs:
+  lint:
+    uses: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pip
+      - run: pip install ansible-lint
+
+      - run: ansible-lint

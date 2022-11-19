@@ -1,3 +1,2 @@
 ---
-
 third_party_src: "{{ home }}/vendor"

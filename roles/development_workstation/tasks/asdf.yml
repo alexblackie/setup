@@ -1,30 +1,29 @@
 ---
-
 - name: Install asdf version manager
-  git:
+  ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
     version: v0.10.2
     dest: "{{ home }}/.asdf"
-    update: yes
+    update: true
   tags:
-  - asdf
-  - development_workstation
+    - asdf
+    - development_workstation
 
 - name: Install plugins for asdf
-  command: "{{ home }}/.asdf/bin/asdf plugin-add {{ item }}"
+  ansible.builtin.command: "{{ home }}/.asdf/bin/asdf plugin-add {{ item }}"
   args:
     creates: "{{ home }}/.asdf/plugins/{{ item }}"
   with_items:
-  - erlang
-  - elixir
-  - ruby
-  - nodejs
-  - kubectl
-  - helm
-  - terraform
-  - golang
-  - maven
-  - hugo
+    - erlang
+    - elixir
+    - ruby
+    - nodejs
+    - kubectl
+    - helm
+    - terraform
+    - golang
+    - maven
+    - hugo
   tags:
-  - asdf
-  - development_workstation
+    - asdf
+    - development_workstation

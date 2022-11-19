@@ -1,41 +1,40 @@
 ---
-
 - name: Add Tailscale repo key
   become: true
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://pkgs.tailscale.com/stable/ubuntu/{{ ansible_facts["distribution_release"] }}.gpg
   when: ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - tailscale
+    - tailscale
 
 - name: Add Tailscale repo
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb https://pkgs.tailscale.com/stable/ubuntu {{ ansible_facts["distribution_release"] }} main
     state: present
     filename: keybase
   when: ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - tailscale
+    - tailscale
 
 - name: Add Tailscale repo
   become: true
-  yum_repository:
+  ansible.builtin.yum_repository:
     name: tailscale
     description: Tailscale
-    baseurl: "https://pkgs.tailscale.com/stable/fedora/$basearch"
+    baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
     enabled: true
     repo_gpgcheck: true
-    gpgkey: "https://pkgs.tailscale.com/stable/fedora/repo.gpg"
+    gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
   when: ansible_facts["distribution"] == "Fedora"
   tags:
-  - tailscale
+    - tailscale
 
 - name: Install Tailscale
   become: true
-  package:
+  ansible.builtin.package:
     name: tailscale
     state: present
   tags:
-  - packages
-  - tailscale
+    - packages
+    - tailscale

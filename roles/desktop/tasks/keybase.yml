@@ -1,40 +1,39 @@
 ---
-
 - name: Add Keybase repo
-  become: yes
-  yum_repository:
+  become: true
+  ansible.builtin.yum_repository:
     name: keybase
     description: Keybase
     baseurl: https://prerelease.keybase.io/rpm/x86_64
-    enabled: yes
-    gpgcheck: yes
+    enabled: true
+    gpgcheck: true
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Add keybase repo id
-  become: yes
-  apt_key:
+  become: true
+  ansible.builtin.apt_key:
     url: https://keybase.io/docs/server_security/code_signing_key.asc
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Add Keybase repo
-  become: yes
-  apt_repository:
+  become: true
+  ansible.builtin.apt_repository:
     repo: deb http://prerelease.keybase.io/deb stable main
     state: present
     filename: keybase
   when: ansible_facts["distribution"] == "Ubuntu"
 
 - name: Install Keybase
-  become: yes
-  dnf:
+  become: true
+  ansible.builtin.dnf:
     name: keybase
     state: present
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install Keybase
-  become: yes
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: keybase
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"

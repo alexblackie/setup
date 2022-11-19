@@ -1,13 +1,12 @@
 ---
-
 - name: Install fd
   become: true
-  package:
+  ansible.builtin.package:
     name: fd-find
     state: present
 
 - name: Check for fd symlinked exec
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/fd
   register: fdfind
   when: ansible_facts["os_family"] == "Debian"
@@ -15,7 +14,7 @@
 
 - name: Ensure fd is fd on Debian
   become: true
-  file:
+  ansible.builtin.file:
     path: /usr/bin/fd
     src: /usr/bin/fdfind
     state: link

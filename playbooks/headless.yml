@@ -1,6 +1,6 @@
 ---
-
-- hosts: localhost
+- name: Configure headless development environment
+  hosts: localhost
   vars:
     should_dconf: false
   roles:

@@ -1,18 +1,17 @@
 ---
-
 - name: Clone dotfiles
-  git:
+  ansible.builtin.git:
     repo: https://github.com/alexblackie/dotfiles.git
     dest: "{{ home }}/.dotfiles"
-    accept_hostkey: yes
-    update: no
+    accept_hostkey: true
+    update: false
   tags:
-  - dotfiles
+    - dotfiles
 
 - name: Install dotfiles
-  shell: FORCE=1 ./install
+  ansible.builtin.command: ./install
   args:
     chdir: "{{ home }}/.dotfiles"
     creates: "{{ home }}/.commonrc"
   tags:
-  - dotfiles
+    - dotfiles

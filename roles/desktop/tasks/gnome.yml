@@ -1,40 +1,39 @@
 ---
-
 - name: Install psutil for dconf integration
-  become: yes
-  package:
+  become: true
+  ansible.builtin.package:
     name: python3-psutil
     state: present
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - gnome
-  - packages
+    - gnome
+    - packages
 
 - name: Set various GNOME dconf settings
-  dconf:
+  community.general.dconf:
     key: "{{ item.key }}"
     value: "{{ item.value }}"
   with_items:
-    - key: "/org/gnome/desktop/input-sources/xkb-options"
+    - key: /org/gnome/desktop/input-sources/xkb-options
       value: "['caps:escape', 'compose:rctrl']"
-    - key: "/org/gnome/desktop/wm/preferences/resize-with-right-button"
+    - key: /org/gnome/desktop/wm/preferences/resize-with-right-button
       value: "true"
-    - key: "/org/gnome/desktop/interface/clock-show-date"
+    - key: /org/gnome/desktop/interface/clock-show-date
       value: "true"
-    - key: "/org/gnome/desktop/interface/clock-show-weekday"
+    - key: /org/gnome/desktop/interface/clock-show-weekday
       value: "true"
-    - key: "/org/gnome/desktop/wm/preferences/button-layout"
+    - key: /org/gnome/desktop/wm/preferences/button-layout
       value: "':minimize,maximize,close'"
-    - key: "/org/gnome/software/allow-updates"
+    - key: /org/gnome/software/allow-updates
       value: "false"
-    - key: "/org/gnome/software/download-updates"
+    - key: /org/gnome/software/download-updates
       value: "false"
-    - key: "/org/gnome/terminal/legacy/default-show-menubar"
+    - key: /org/gnome/terminal/legacy/default-show-menubar
       value: "false"
-    - key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
+    - key: /org/gnome/settings-daemon/plugins/power/ambient-enabled
       value: "false"
-    - key: "/org/gnome/desktop/peripherals/touchpad/click-method"
+    - key: /org/gnome/desktop/peripherals/touchpad/click-method
       value: "'fingers'"
   when: ansible_facts["os_family"] == "RedHat" or ansible_facts["distribution"] == "Ubuntu"
   tags:
-  - gnome
+    - gnome

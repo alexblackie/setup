@@ -1,23 +1,22 @@
 ---
-
 - name: Install JDK
-  dnf:
+  ansible.builtin.dnf:
     name:
       - java-latest-openjdk
       - java-latest-openjdk-devel
     state: present
-  become: yes
+  become: true
   when: ansible_facts["os_family"] == "RedHat"
   tags:
-  - packages
-  - java
+    - packages
+    - java
 
 - name: Install JDK
-  apt:
+  ansible.builtin.apt:
     name: default-jdk
     state: present
-  become: yes
+  become: true
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - packages
-  - java
+    - packages
+    - java

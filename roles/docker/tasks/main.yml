@@ -1,53 +1,52 @@
 ---
-
 - name: Install Docker
-  apt:
+  become: true
+  ansible.builtin.apt:
     name: docker.io
     state: present
-  become: yes
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - packages
-  - docker
+    - packages
+    - docker
 
 - name: Ensure presence of docker group
-  group:
+  ansible.builtin.group:
     name: docker
     state: present
-  become: yes
+  become: true
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - docker
+    - docker
 
 - name: Add local user to docker group
-  user:
+  ansible.builtin.user:
     name: "{{ local_user }}"
     groups: docker
-    append: yes
-  become: yes
+    append: true
+  become: true
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - docker
+    - docker
 
 - name: Enable and start docker
-  service:
+  ansible.builtin.service:
     name: docker
-    enabled: yes
+    enabled: true
     state: started
-  become: yes
+  become: true
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - services
-  - docker
+    - services
+    - docker
 
 - name: Install podman
-  dnf:
+  ansible.builtin.dnf:
     name:
       - podman
       - podman-docker
     state: present
-  become: yes
+  become: true
   when: ansible_facts["os_family"] == "RedHat"
   tags:
-  - packages
-  - docker
+    - packages
+    - docker

@@ -1,18 +1,17 @@
 ---
-
 - name: Add Azure CLI Yum repository
   become: true
   ansible.builtin.yum_repository:
     name: azure-cli
     description: Azure CLI
     baseurl: https://packages.microsoft.com/yumrepos/azure-cli
-    enabled: yes
-    gpgcheck: yes
+    enabled: true
+    gpgcheck: true
     gpgkey: https://packages.microsoft.com/keys/microsoft.asc
   when: ansible_facts["os_family"] == "RedHat"
   tags:
-  - azure
-  - packages
+    - azure
+    - packages
 
 - name: Add Microsoft signing key
   become: true
@@ -21,8 +20,8 @@
     state: present
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - azure
-  - packages
+    - azure
+    - packages
 
 - name: Add Azure CLI repository
   become: true
@@ -31,8 +30,8 @@
     state: present
   when: ansible_facts["os_family"] == "Debian"
   tags:
-  - azure
-  - packages
+    - azure
+    - packages
 
 - name: Install Azure CLI
   become: true
@@ -40,5 +39,5 @@
     name: azure-cli
     state: present
   tags:
-  - azure
-  - packages
+    - azure
+    - packages

@@ -1,0 +1,12 @@
+---
+exclude_paths:
+  - .github/
+
+skip_list:
+  # Yeah, we're not going to redundantly name every single `import_tasks` just
+  # to satisfy some lint rule.
+  - name[missing]
+
+  # We clone a lot of git repos from their master/main branch intentionally
+  # (such as with dotfiles) so this is a non-issue.
+  - latest[git]
