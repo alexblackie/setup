@@ -1,4 +1,4 @@
-# `~/.bootstart`
+# `~/.setup`
 
 While [my dotfiles][0] configure my development environment, that's only half
 of the story. This repository contains Ansible playbooks to configure the
