@@ -22,20 +22,14 @@
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim.git
     dest: "{{ third_party_src }}/neovim"
-    version: v0.8.0
+    version: stable
+    update: true
+    force: true
   when: ansible_facts["os_family"] == "Debian"
 
-- name: Compile neovim
-  ansible.builtin.command: make CMAKE_BUILD_TYPE=Release
+- name: Compile and install neovim
+  ansible.builtin.command: make install CMAKE_INSTALL_PREFIX={{ home }}/.local CMAKE_BUILD_TYPE=RelWithDebInfo
   args:
     chdir: "{{ third_party_src }}/neovim"
-    creates: /usr/local/bin/neovim
-  when: ansible_facts["os_family"] == "Debian"
-
-- name: Install neovim
-  become: true
-  ansible.builtin.command: make install CMAKE_INSTALL_PREFIX=/usr/local
-  args:
-    chdir: "{{ third_party_src }}/neovim"
-    creates: /usr/local/bin/neovim
+    creates: "{{ home }}/.local/bin/nvim"
   when: ansible_facts["os_family"] == "Debian"
