@@ -1,12 +1,14 @@
 ---
+name: Ansible Lint
 
 on:
   push:
-    - master
+  pull_request:
+    branches: [main]
 
 jobs:
   lint:
-    uses: ubuntu-20.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
