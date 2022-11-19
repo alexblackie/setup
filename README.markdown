@@ -27,7 +27,7 @@ is needed, pass `--ask-become-pass` to have Ansible prompt for authentication
 before it begins.
 
 ```
-$ ansible-playbook --ask-become-pass playbooks/workstation.yml
+$ ansible-playbook --ask-become-pass workstation.yml
 ```
 
 ## License
