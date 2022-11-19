@@ -20,9 +20,3 @@
     name: fzy
     state: present
   when: ansible_facts["os_family"] == "Debian"
-
-- name: Install fzy
-  homebrew:
-    name: fzy
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"

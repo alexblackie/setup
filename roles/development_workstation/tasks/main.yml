@@ -5,14 +5,12 @@
   package:
     name: zsh
     state: present
-  when: ansible_facts["os_family"] != "Darwin"
 
 - name: set default shell to zsh
   become: yes
   user:
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
-  when: ansible_facts["os_family"] != "Darwin"
 
 - name: disable stupid ls colors
   copy:
@@ -26,7 +24,6 @@
   lineinfile:
     line: "fs.inotify.max_user_watches=524288"
     dest: /etc/sysctl.conf
-  when: ansible_facts["os_family"] != "Darwin"
 
 - name: Create directory for third-party software sources
   file:
@@ -142,33 +139,6 @@
       - rclone
     state: present
   when: ansible_facts["os_family"] == "Debian"
-
-- name: Install some development tools and libraries
-  homebrew:
-    name:
-      - autoconf
-      - curl
-      - entr
-      - findutils
-      - git
-      - gnupg
-      - htop
-      - imagemagick
-      - jq
-      - nmap
-      - optipng
-      - pwgen
-      - shellcheck
-      - sqlite
-      - ripgrep
-      - tmux
-      - wget
-      - wxmac
-      - postgresql
-      - rclone
-      - exa
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Install system visibility tools
   become: yes

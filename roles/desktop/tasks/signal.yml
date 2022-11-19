@@ -5,10 +5,3 @@
   flatpak:
     name: org.signal.Signal
     state: present
-  when: ansible_facts["os_family"] != "Darwin"
-
-- name: Install Signal
-  homebrew_cask:
-    name: signal
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"

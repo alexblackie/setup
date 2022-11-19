@@ -4,10 +4,21 @@ While [my dotfiles][0] configure my development environment, that's only half
 of the story. This repository contains Ansible playbooks to configure the
 systems I use -- everything from headless VMs to workstation laptops.
 
-Currently the supported targets are the latest releases of **macOS**, **Ubuntu
-LTS**, and **Fedora Workstation**.
-
 [0]: https://github.com/alexblackie/dotfiles
+
+## Supported Targets
+
+There are two primary modes:
+
+1. **Workstation** provides full coverage including GUI apps and desktop shell configuration.
+2. **Headless** provides full development environment support, perfect for headless VMs.
+
+Support varies based on the operating system:
+
+- **Ubuntu Desktop** (LTS) and **Fedora Workstation** support **Workstation**
+- **Debian** has **headless** support.
+- **macOS** is **not supported** but does have its own little playbook to set
+  some global preferences to make the base experience less ass.
 
 ## Running
 
@@ -18,11 +29,6 @@ before it begins.
 ```
 $ ansible-playbook --ask-become-pass workstation.yml
 ```
-
-There are two playbooks available:
-
-  - `workstation.yml` for desktop/laptop workstations (GUI tools included), and
-  - `headless.yml` for headless Linux installs (CLI tools only).
 
 ## License
 

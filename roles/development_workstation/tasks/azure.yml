@@ -39,16 +39,6 @@
   ansible.builtin.package:
     name: azure-cli
     state: present
-  when: ansible_facts["os_family"] != "Darwin"
-  tags:
-  - azure
-  - packages
-
-- name: Install Azure CLI
-  community.general.homebrew:
-    name: azure-cli
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
   tags:
   - azure
   - packages

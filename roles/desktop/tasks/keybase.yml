@@ -38,9 +38,3 @@
     name: keybase
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Install Keybase
-  homebrew_cask:
-    name: keybase
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"

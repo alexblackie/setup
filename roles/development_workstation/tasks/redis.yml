@@ -13,9 +13,3 @@
     name: redis-server
     state: present
   when: ansible_facts["os_family"] == "Debian"
-
-- name: Install redis
-  homebrew:
-    name: redis
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"

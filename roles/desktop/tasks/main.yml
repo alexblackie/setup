@@ -41,33 +41,6 @@
     state: present
   when: ansible_facts["distribution"] == "Ubuntu"
 
-- name: Enable Homebrew fonts cask
-  homebrew_tap:
-    name: Homebrew/homebrew-cask-fonts
-  when: ansible_facts["os_family"] == "Darwin"
-
-- name: Install workstation GUI apps and related dependencies
-  homebrew_cask:
-    name:
-      - firefox
-      - microsoft-edge
-      - font-fira-mono
-      - font-fira-code
-      - imageoptim
-      - rectangle
-      - 1password
-      - dash
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-
-- name: Install workstation CLI tools
-  homebrew:
-    name:
-      - ffmpeg
-      - youtube-dl
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-
 - import_tasks: iosevka.yml
 - import_tasks: kitty.yml
 - import_tasks: vscode.yml

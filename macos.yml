@@ -1,0 +1,254 @@
+---
+
+# MacOS is not a fully-supported target, as I primarily use it as a psuedo thin
+# client to a Linux VM which houses my development environment. Since I don't
+# have Homebrew or anything on the host MacOS system, the only thing we can
+# really do is set some preferences.
+
+- hosts: localhost
+  tasks:
+  - name: Always expand save dialogues' file browser
+    osx_defaults:
+      key: NSNavPanelExpandedStateForSaveMode
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Disable autocorrect
+    osx_defaults:
+      key: NSAutomaticSpellingCorrectionEnabled
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Disable touchbar typing suggestions
+    osx_defaults:
+      key: NSAutomaticTextCompletionEnabled
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Show all file extensions in Finder
+    osx_defaults:
+      key: AppleShowAllExtensions
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Show status bar in Finder.app
+    osx_defaults:
+      domain: com.apple.finder
+      key: ShowStatusBar
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Don't warn when changing a file extension
+    osx_defaults:
+      domain: com.apple.finder
+      key: FXEnableExtensionChangeWarning
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Enable devtools in Safari
+    osx_defaults:
+      domain: com.apple.Safari
+      key: IncludeInternalDebugMenu
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Enable devtools in all webkits
+    osx_defaults:
+      key: WebKitDeveloperExtras
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Make time machine shut up
+    osx_defaults:
+      domain: com.apple.TimeMachine
+      key: DoNotOfferNewDisksForBackup
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Enable tab to all controls
+    osx_defaults:
+      key: AppleKeyboardUIMode
+      type: int
+      value: 3
+    tags:
+      - tweaks
+
+  - name: Don't spew .DS_Store files into my network mounts
+    osx_defaults:
+      domain: com.apple.desktopservices
+      key: DSDontWriteNetworkStores
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Disable recent apps in Dock
+    osx_defaults:
+      domain: com.apple.dock
+      key: show-recents
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Disable quick note hot corner
+    osx_defaults:
+      domain: com.apple.dock
+      key: wvous-br-corner
+      type: int
+      value: 1
+    tags:
+      - tweaks
+
+  - name: Only show scrollbars when scrolling
+    osx_defaults:
+      key: AppleShowScrollBars
+      type: string
+      value: WhenScrolling
+    tags:
+      - tweaks
+
+  - name: Show date in clock
+    osx_defaults:
+      domain: com.apple.menuextra.clock
+      key: DateFormat
+      type: string
+      value: "EEE d MMM HH:mm"
+    tags:
+      - tweaks
+
+  - name: Disable inserting a period on double-space
+    osx_defaults:
+      key: NSAutomaticPeriodSubstitutionEnabled
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Don't save to iCloud by default
+    osx_defaults:
+      key: NSDocumentSaveNewDocumentsToCloud
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Don't rearrange spaces based on most-recent-used
+    osx_defaults:
+      domain: com.apple.dock
+      key: mru-spaces
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Disable auto-brightness adjustment
+    osx_defaults:
+      domain: com.apple.BezelServices
+      key: dAuto
+      type: bool
+      value: false
+    tags:
+      - tweaks
+
+  - name: Enable 4-fingers-vertical to access mission control
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadFourFingerVertSwipeGesture
+      type: int
+      value: 2
+    tags:
+      - tweaks
+      - threefingerdrag
+
+  - name: Enable 4-fingers-horizontal to switch spaces
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadFourFingerHorizSwipeGesture
+      type: int
+      value: 2
+    tags:
+      - tweaks
+      - threefingerdrag
+
+  - name: Disable three-fingers-up to access mission control
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadThreeFingerVertSwipeGesture
+      type: int
+      value: 0
+    tags:
+      - tweaks
+      - threefingerdrag
+
+  - name: Disable three-fingers-horizontal to switch spaces
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadThreeFingerHorizSwipeGesture
+      type: int
+      value: 0
+    tags:
+      - tweaks
+      - threefingerdrag
+
+  - name: Enable three-finger drag on internal trackpad
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: TrackpadThreeFingerDrag
+      type: int
+      value: 1
+    tags:
+      - tweaks
+      - threefingerdrag
+
+  - name: Disable tap-to-click on internal trackpad
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: Clicking
+      type: int
+      value: 0
+    tags:
+      - tweaks
+
+  - name: Ensure drag locking is disabled
+    osx_defaults:
+      domain: com.apple.AppleMultitouchTrackpad
+      key: Dragging
+      type: int
+      value: 0
+    tags:
+      - tweaks
+
+  - name: Disable "wallpaper window tinting"
+    osx_defaults:
+      key: AppleReduceDesktopTinting
+      type: bool
+      value: true
+    tags:
+      - tweaks
+
+  - name: Move windows with cmd+ctrl+click anywhere
+    osx_defaults:
+      key: NSWindowShouldDragOnGesture
+      type: bool
+      value: true
+    tags:
+      - tweaks

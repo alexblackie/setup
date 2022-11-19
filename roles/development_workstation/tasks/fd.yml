@@ -5,13 +5,6 @@
   package:
     name: fd-find
     state: present
-  when: ansible_facts["os_family"] != "Darwin"
-
-- name: Install fd
-  homebrew:
-    name: fd
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
 
 - name: Check for fd symlinked exec
   stat:
