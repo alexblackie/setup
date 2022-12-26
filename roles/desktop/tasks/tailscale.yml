@@ -25,6 +25,8 @@
     baseurl: https://pkgs.tailscale.com/stable/fedora/$basearch
     enabled: true
     repo_gpgcheck: true
+    # boourns
+    gpgcheck: false
     gpgkey: https://pkgs.tailscale.com/stable/fedora/repo.gpg
   when: ansible_facts["distribution"] == "Fedora"
   tags:
