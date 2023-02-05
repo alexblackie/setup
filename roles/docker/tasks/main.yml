@@ -34,7 +34,7 @@
     enabled: true
     state: started
   become: true
-  when: ansible_facts["os_family"] == "Debian"
+  when: skip_services is not defined and ansible_facts["os_family"] == "Debian"
   tags:
     - services
     - docker
