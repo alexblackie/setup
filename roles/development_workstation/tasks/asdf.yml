@@ -24,6 +24,7 @@
     - golang
     - maven
     - hugo
+    - rust
   tags:
     - asdf
     - development_workstation
