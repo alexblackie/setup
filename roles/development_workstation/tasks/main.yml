@@ -68,6 +68,7 @@
       - libyaml-devel
       - ncurses-devel
       - nmap
+      - openssl
       - openssl-devel
       - optipng
       - pwgen
