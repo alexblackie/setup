@@ -184,7 +184,7 @@
 
 - name: Ensure we're using gawk
   become: true
-  community.general.system.alternatives:
+  community.general.alternatives:
     name: awk
     path: /usr/bin/gawk
   when: ansible_facts["os_family"] == "Debian"
