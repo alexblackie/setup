@@ -10,6 +10,7 @@
       ansible.builtin.get_url:
         url: https://download.docker.com/linux/debian/gpg
         dest: /etc/apt/trusted.gpg.d/docker.asc
+        mode: "0644"
 
     - name: Add Docker repository
       ansible.builtin.apt_repository:
@@ -25,7 +26,7 @@
   become: true
   ansible.builtin.yum_repository:
     name: docker-ce
-    description: "Docker CE Stable - $basearch"
+    description: Docker CE Stable - $basearch
     baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
     enabled: true
     gpgcheck: true
