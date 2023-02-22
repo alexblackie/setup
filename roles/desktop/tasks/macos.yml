@@ -5,151 +5,151 @@
     - tweaks
   block:
     - name: Always expand save dialogues' file browser
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSNavPanelExpandedStateForSaveMode
         type: bool
         value: true
 
     - name: Disable autocorrect
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSAutomaticSpellingCorrectionEnabled
         type: bool
         value: false
 
     - name: Disable touchbar typing suggestions
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSAutomaticTextCompletionEnabled
         type: bool
         value: false
 
     - name: Show all file extensions in Finder
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: AppleShowAllExtensions
         type: bool
         value: true
 
     - name: Show status bar in Finder.app
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.finder
         key: ShowStatusBar
         type: bool
         value: true
 
     - name: Don't warn when changing a file extension
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.finder
         key: FXEnableExtensionChangeWarning
         type: bool
         value: false
 
     - name: Enable devtools in Safari
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.Safari
         key: IncludeInternalDebugMenu
         type: bool
         value: true
 
     - name: Enable devtools in all webkits
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: WebKitDeveloperExtras
         type: bool
         value: true
 
     - name: Make time machine shut up
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.TimeMachine
         key: DoNotOfferNewDisksForBackup
         type: bool
         value: true
 
     - name: Enable tab to all controls
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: AppleKeyboardUIMode
         type: int
         value: 3
 
     - name: Don't spew .DS_Store files into my network mounts
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.desktopservices
         key: DSDontWriteNetworkStores
         type: bool
         value: true
 
     - name: Disable recent apps in Dock
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: show-recents
         type: bool
         value: false
 
     - name: Disable quick note hot corner
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: wvous-br-corner
         type: int
         value: 1
 
     - name: Only show scrollbars when scrolling
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: AppleShowScrollBars
         type: string
         value: WhenScrolling
 
     - name: Show date in clock
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.menuextra.clock
         key: DateFormat
         type: string
         value: EEE d MMM HH:mm
 
     - name: Disable inserting a period on double-space
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSAutomaticPeriodSubstitutionEnabled
         type: bool
         value: false
 
     - name: Don't save to iCloud by default
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSDocumentSaveNewDocumentsToCloud
         type: bool
         value: false
 
     - name: Don't rearrange spaces based on most-recent-used
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.dock
         key: mru-spaces
         type: bool
         value: false
 
     - name: Disable auto-brightness adjustment
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.BezelServices
         key: dAuto
         type: bool
         value: false
 
     - name: Disable tap-to-click on internal trackpad
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: Clicking
         type: int
         value: 0
 
     - name: Ensure drag locking is disabled
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: Dragging
         type: int
         value: 0
 
     - name: Disable "wallpaper window tinting"
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: AppleReduceDesktopTinting
         type: bool
         value: true
 
     - name: Move windows with cmd+ctrl+click anywhere
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         key: NSWindowShouldDragOnGesture
         type: bool
         value: true
@@ -161,35 +161,35 @@
     - threefingerdrag
   block:
     - name: Enable 4-fingers-vertical to access mission control
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadFourFingerVertSwipeGesture
         type: int
         value: 2
 
     - name: Enable 4-fingers-horizontal to switch spaces
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadFourFingerHorizSwipeGesture
         type: int
         value: 2
 
     - name: Disable three-fingers-up to access mission control
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadThreeFingerVertSwipeGesture
         type: int
         value: 0
 
     - name: Disable three-fingers-horizontal to switch spaces
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadThreeFingerHorizSwipeGesture
         type: int
         value: 0
 
     - name: Enable three-finger drag on internal trackpad
-      community.general.system.osx_defaults:
+      community.general.osx_defaults:
         domain: com.apple.AppleMultitouchTrackpad
         key: TrackpadThreeFingerDrag
         type: int
