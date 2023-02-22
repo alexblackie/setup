@@ -1,0 +1,15 @@
+---
+# We need to `become` for package installs on Linux, but not on macOS, so we
+# "become" ourselves to treat it as a no-op.
+become_user: "{{ user }}"
+
+workstation_general_packages:
+  - ffmpeg
+  - homebrew/cask/mpv
+  - youtube-dl
+  - homebrew/cask/firefox
+  - homebrew/cask/dash
+
+kitty_package: homebrew/cask/kitty
+keybase_package: homebrew/cask/keybase
+nextcloud_client_package: homebrew/cask/nextcloud

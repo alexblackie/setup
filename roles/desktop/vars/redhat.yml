@@ -1,0 +1,16 @@
+---
+workstation_general_packages:
+  - ffmpeg
+  - mpv
+  - youtube-dl
+  - fuse-exfat
+  - gimp
+  - gnome-tweaks
+  - mozilla-fira-mono-fonts
+  - powertop
+  - virt-manager
+  - virt-viewer
+
+kitty_package: kitty
+keybase_package: keybase
+nextcloud_client_package: nextcloud-client

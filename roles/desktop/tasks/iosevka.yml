@@ -5,3 +5,10 @@
     src: https://github.com/be5invis/Iosevka/releases/download/v7.2.3/ttc-iosevka-7.2.3.zip
     dest: /usr/share/fonts
     remote_src: true
+  when: ansible_system == "Linux"
+
+- name: Install Iosevka font
+  community.general.package:
+    name: homebrew/cask-fonts/font-iosevka
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"

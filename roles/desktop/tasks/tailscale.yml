@@ -13,12 +13,14 @@
   when: ansible_facts["distribution"] == "Fedora"
   tags:
     - tailscale
+    - packages
 
 - name: Install Tailscale
   become: true
   ansible.builtin.package:
     name: tailscale
     state: present
+  when: ansible_facts["distribution"] == "Fedora"
   tags:
     - packages
     - tailscale

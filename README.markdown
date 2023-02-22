@@ -15,10 +15,11 @@ There are two primary modes:
 
 Support varies based on the operating system:
 
-- **Fedora Workstation** supports **Workstation** and **Headless**
+- **macOS** and **Fedora** have full support for all modes.
 - **Debian** (stable/sid) supports **Headless**
-- **macOS** is **not supported** but does have its own little playbook to set
-  some global preferences to make the base experience less ass.
+
+Note that for macOS, Homebrew is required to be installed prior to the
+playbook's execution.
 
 ## Running
 

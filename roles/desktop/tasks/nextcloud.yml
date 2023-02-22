@@ -1,10 +1,9 @@
 ---
-- name: Install nextcloud client
+- name: Install Nextcloud client
   become: true
-  ansible.builtin.dnf:
-    name: nextcloud-client
+  ansible.builtin.package:
+    name: "{{ nextcloud_client_package }}"
     state: present
-  when: ansible_facts["distribution"] == "Fedora"
   tags:
     - nextcloud
     - packages

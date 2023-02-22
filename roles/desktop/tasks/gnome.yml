@@ -1,9 +1,12 @@
 ---
-- name: Install psutil for dconf integration
+- name: Install tools for automating GNOME configuration
   become: true
   ansible.builtin.package:
-    name: python3-psutil
+    name:
+      - python3-psutil
+      - dbus-tools
     state: present
+  when: ansible_system == "Linux"
   tags:
     - gnome
     - packages

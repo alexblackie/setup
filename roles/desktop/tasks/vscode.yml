@@ -4,7 +4,16 @@
   community.general.flatpak:
     name: com.visualstudio.code
     state: present
+  when: ansible_facts["os_family"] == "RedHat"
   tags:
     - packages
-    - flatpak
     - vscode
+
+- name: Install Visual Studio Code
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - vscode
+    - packages
