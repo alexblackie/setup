@@ -26,12 +26,6 @@
     state: directory
     mode: 0755
 
-- name: Create local bin directory
-  ansible.builtin.file:
-    path: "{{ home }}/bin"
-    state: directory
-    mode: 0755
-
 - name: Ensure we're using gawk
   become: true
   community.general.alternatives:
