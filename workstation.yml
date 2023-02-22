@@ -1,8 +1,6 @@
 ---
 - name: Configure GUI Development Workstation
   hosts: localhost
-  vars:
-    should_dconf: true
   roles:
     - flatpak
     - base
