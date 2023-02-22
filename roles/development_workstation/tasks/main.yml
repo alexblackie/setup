@@ -198,4 +198,5 @@
 - ansible.builtin.import_tasks: redhat.yml
 - ansible.builtin.import_tasks: azure.yml
 - ansible.builtin.import_tasks: fd.yml
+- ansible.builtin.import_tasks: go-task.yml
 - ansible.builtin.import_tasks: dotfiles.yml

@@ -1,0 +1,25 @@
+---
+
+- name: Install go-task
+  become: true
+  tags:
+    - packages
+    - go-task
+  block:
+    - name: Install go-task
+      ansible.builtin.package:
+        name: go-task
+        state: present
+      when: ansible_facts["os_family"] == "RedHat"
+
+    - name: Install go-task
+      ansible.builtin.apt:
+        name: "https://github.com/go-task/task/releases/download/v3.20.0/task_linux_arm64.deb"
+        state: present
+      when: ansible_facts["os_family"] == "Debian" and ansible_architecture == "arm64"
+
+    - name: Install go-task
+      ansible.builtin.apt:
+        name: "https://github.com/go-task/task/releases/download/v3.20.0/task_linux_amd64.deb"
+        state: present
+      when: ansible_facts["os_family"] == "Debian" and ansible_architecture == "x86_64"
