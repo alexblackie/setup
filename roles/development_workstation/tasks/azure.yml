@@ -15,9 +15,9 @@
 
 - name: Add Microsoft signing key
   become: true
-  ansible.builtin.apt_key:
+  ansible.builtin.get_url:
     url: https://packages.microsoft.com/keys/microsoft.asc
-    state: present
+    dest: /etc/apt/trusted.gpg.d/microsoft.asc
   when: ansible_facts["os_family"] == "Debian"
   tags:
     - azure
@@ -26,7 +26,10 @@
 - name: Add Azure CLI repository
   become: true
   ansible.builtin.apt_repository:
-    repo: deb https://packages.microsoft.com/repos/azure-cli/ {{ ansible_facts["distribution_release"] }} main
+    repo: >
+      deb [signed-by=/etc/apt/trusted.gpg.d/microsoft.asc]
+      https://packages.microsoft.com/repos/azure-cli/
+      {{ ansible_facts["distribution_release"] }} main
     state: present
   when: ansible_facts["os_family"] == "Debian"
   tags:
