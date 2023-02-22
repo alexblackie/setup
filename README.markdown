@@ -15,8 +15,8 @@ There are two primary modes:
 
 Support varies based on the operating system:
 
-- **Ubuntu Desktop** (LTS) and **Fedora Workstation** support **Workstation**
-- **Debian** has **headless** support.
+- **Fedora Workstation** supports **Workstation** and **Headless**
+- **Debian** (stable/sid) supports **Headless**
 - **macOS** is **not supported** but does have its own little playbook to set
   some global preferences to make the base experience less ass.
 

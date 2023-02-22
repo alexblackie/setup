@@ -49,7 +49,7 @@
   ansible.builtin.apt:
     name: build-essential
     state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
+  when: ansible_facts["distribution"] == "Debian"
 
 - name: Install some development tools and libraries
   become: true

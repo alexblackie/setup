@@ -1,22 +1,4 @@
 ---
-- name: Add Tailscale repo key
-  become: true
-  ansible.builtin.apt_key:
-    url: https://pkgs.tailscale.com/stable/ubuntu/{{ ansible_facts["distribution_release"] }}.gpg
-  when: ansible_facts["distribution"] == "Ubuntu"
-  tags:
-    - tailscale
-
-- name: Add Tailscale repo
-  become: true
-  ansible.builtin.apt_repository:
-    repo: deb https://pkgs.tailscale.com/stable/ubuntu {{ ansible_facts["distribution_release"] }} main
-    state: present
-    filename: keybase
-  when: ansible_facts["distribution"] == "Ubuntu"
-  tags:
-    - tailscale
-
 - name: Add Tailscale repo
   become: true
   ansible.builtin.yum_repository:

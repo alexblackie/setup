@@ -10,30 +10,9 @@
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
   when: ansible_facts["os_family"] == "RedHat"
 
-- name: Add keybase repo id
-  become: true
-  ansible.builtin.apt_key:
-    url: https://keybase.io/docs/server_security/code_signing_key.asc
-  when: ansible_facts["distribution"] == "Ubuntu"
-
-- name: Add Keybase repo
-  become: true
-  ansible.builtin.apt_repository:
-    repo: deb http://prerelease.keybase.io/deb stable main
-    state: present
-    filename: keybase
-  when: ansible_facts["distribution"] == "Ubuntu"
-
 - name: Install Keybase
   become: true
   ansible.builtin.dnf:
     name: keybase
     state: present
   when: ansible_facts["os_family"] == "RedHat"
-
-- name: Install Keybase
-  become: true
-  ansible.builtin.apt:
-    name: keybase
-    state: present
-  when: ansible_facts["distribution"] == "Ubuntu"
