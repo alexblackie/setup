@@ -1,13 +1,34 @@
 ---
-- name: Install Docker
+- name: Install Docker on Debian
   become: true
-  ansible.builtin.apt:
-    name: docker.io
-    state: present
   when: ansible_facts["os_family"] == "Debian"
   tags:
-    - packages
     - docker
+    - packages
+  block:
+    - name: Add Docker repository signing key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/debian/gpg
+        dest: /etc/apt/trusted.gpg.d/docker.asc
+
+    - name: Add Docker repository
+      ansible.builtin.apt_repository:
+        repo: >
+          deb [signed-by=/etc/apt/trusted.gpg.d/docker.asc]
+            https://download.docker.com/linux/debian
+            {{ ansible_facts["distribution_release"] }}
+            stable
+        state: present
+        filename: docker
+
+    - name: Install Docker
+      ansible.builtin.package:
+        name:
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
 
 - name: Install Docker on Fedora
   become: true
