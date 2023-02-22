@@ -1,6 +1,6 @@
 ---
 - name: Include OS-specific vars
-  ansible.builtin.include_vars: '{{ ansible_facts["os_family"] }}.yml'
+  ansible.builtin.include_vars: '{{ ansible_facts["os_family"] | lower }}.yml'
 
 - name: Install development tools and libraries
   become: "{{ elevate_for_package_installation }}"
