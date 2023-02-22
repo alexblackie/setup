@@ -1,9 +1,9 @@
 ---
-- name: Include platform-specific vars
-  ansible.builtin.include_vars: '{{ ansible_facts["os_family"] | lower }}.yml'
+- name: Include OS-specific vars
+  ansible.builtin.include_vars: '{{ ansible_facts["os_family"] }}.yml'
 
 - name: Install development tools and libraries
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: "{{ development_packages }}"
     state: present
@@ -13,12 +13,14 @@
   ansible.builtin.user:
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
+  when: ansible_system == "Linux"
 
 - name: Increase default user watches limit
   become: true
   ansible.builtin.lineinfile:
     line: fs.inotify.max_user_watches=524288
     dest: /etc/sysctl.conf
+  when: ansible_system == "Linux"
 
 - name: Create directory for third-party software sources
   ansible.builtin.file:

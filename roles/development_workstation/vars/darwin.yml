@@ -1,0 +1,35 @@
+---
+development_packages:
+  - autoconf
+  - entr
+  - findutils
+  - gnupg
+  - htop
+  - imagemagick
+  - jq
+  - nmap
+  - optipng
+  - pwgen
+  - shellcheck
+  - sqlite
+  - ripgrep
+  - tmux
+  - wget
+  - postgresql@14
+  - rclone
+  - exa
+  - gawk
+
+fd_package: fd
+
+java_package: openjdk@17
+
+neovim_dependencies:
+  - ninja
+  - libtool
+  - cmake
+  - pkg-config
+  - gettext
+
+python_packages:
+  - python3

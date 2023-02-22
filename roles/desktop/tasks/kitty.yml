@@ -1,7 +1,19 @@
 ---
 - name: Install kitty
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: kitty
     state: present
   when: ansible_facts["os_family"] == "RedHat"
+  tags:
+    - kitty
+    - packages
+
+- name: Install Kitty
+  community.general.homebrew_cask:
+    name: kitty
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - kitty
+    - packages

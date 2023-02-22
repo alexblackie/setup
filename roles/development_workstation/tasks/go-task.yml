@@ -1,7 +1,7 @@
 ---
 
 - name: Install go-task
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   tags:
     - packages
     - go-task
@@ -10,7 +10,7 @@
       ansible.builtin.package:
         name: go-task
         state: present
-      when: ansible_facts["os_family"] == "RedHat"
+      when: ansible_facts["os_family"] in ["RedHat", "Darwin"]
 
     - name: Install go-task
       ansible.builtin.apt:

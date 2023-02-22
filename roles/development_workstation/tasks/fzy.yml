@@ -14,8 +14,8 @@
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Install fzy
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: fzy
     state: present
-  when: ansible_facts["os_family"] == "Debian"
+  when: ansible_facts["os_family"] in ["Debian", "Darwin"]

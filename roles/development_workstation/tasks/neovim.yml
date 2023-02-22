@@ -1,6 +1,6 @@
 ---
 - name: Ensure neovim dependencies are installed
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: "{{ neovim_dependencies }}"
     state: present

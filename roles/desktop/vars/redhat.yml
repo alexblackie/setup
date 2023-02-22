@@ -1,0 +1,15 @@
+---
+workstation_fonts_dir: /usr/share/fonts
+workstation_fonts_dir_protected: true
+
+workstation_general_packages:
+  - ffmpeg
+  - mpv
+  - youtube-dl
+  - fuse-exfat
+  - gimp
+  - gnome-tweaks
+  - mozilla-fira-mono-fonts
+  - powertop
+  - virt-manager
+  - virt-viewer

@@ -1,7 +1,7 @@
 ---
 - name: Install tools for RPM development
-  become: true
-  ansible.builtin.dnf:
+  become: "{{ elevate_for_package_installation }}"
+  ansible.builtin.package:
     name:
       - redhat-rpm-config
       - rpm-build

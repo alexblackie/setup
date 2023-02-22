@@ -37,7 +37,7 @@
     - packages
 
 - name: Install Azure CLI
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: azure-cli
     state: present

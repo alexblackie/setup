@@ -9,10 +9,25 @@
     gpgcheck: true
     gpgkey: https://keybase.io/docs/server_security/code_signing_key.asc
   when: ansible_facts["os_family"] == "RedHat"
+  tags:
+    - keybase
+    - packages
 
 - name: Install Keybase
   become: true
-  ansible.builtin.dnf:
+  ansible.builtin.package:
     name: keybase
     state: present
   when: ansible_facts["os_family"] == "RedHat"
+  tags:
+    - keybase
+    - packages
+
+- name: Install Keybase
+  community.general.homebrew_cask:
+    name: keybase
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - keybase
+    - packages

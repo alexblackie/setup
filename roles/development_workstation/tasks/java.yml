@@ -1,6 +1,6 @@
 ---
 - name: Install JDK
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: "{{ java_package }}"
     state: present

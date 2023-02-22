@@ -1,6 +1,6 @@
 ---
 - name: Install fd
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: "{{ fd_package }}"
     state: present

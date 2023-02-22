@@ -1,0 +1,3 @@
+---
+elevate_for_package_installation: "{{ ansible_system == 'Linux' }}"
+elevate_for_flatpak_installation: true
