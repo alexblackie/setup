@@ -1,0 +1,64 @@
+---
+development_packages:
+  - zsh
+  - "@C Development Tools and Libraries"
+  - ImageMagick
+  - ImageMagick-devel
+  - autoconf
+  - automake
+  - git
+  - inotify-tools
+  - jq
+  - libffi-devel
+  - libtool
+  - libxslt-devel
+  - libyaml-devel
+  - ncurses-devel
+  - nmap
+  - openssl
+  - openssl-devel
+  - optipng
+  - pwgen
+  - readline-devel
+  - ruby-devel
+  - sqlite-devel
+  - postgresql
+  - tmux
+  - unixODBC-devel
+  - whois
+  - wxBase3
+  - wxGTK3-devel
+  - rclone
+  - ShellCheck
+  - entr
+  - ripgrep
+  - htop
+  - perf
+  - strace
+  - exa
+  - htop
+  - perf
+  - strace
+
+java_package:
+  - java-latest-openjdk
+  - java-latest-openjdk-devel
+
+neovim_dependencies:
+  - ninja-build
+  - libtool
+  - autoconf
+  - automake
+  - cmake
+  - gcc
+  - gcc-c++
+  - make
+  - pkgconfig
+  - unzip
+  - patch
+  - gettext
+
+python_packages:
+  - python3
+  - python3-devel
+  - python3-pip

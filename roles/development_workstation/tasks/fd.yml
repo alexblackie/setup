@@ -2,7 +2,7 @@
 - name: Install fd
   become: true
   ansible.builtin.package:
-    name: fd-find
+    name: "{{ fd_package }}"
     state: present
 
 - name: Check for fd symlinked exec

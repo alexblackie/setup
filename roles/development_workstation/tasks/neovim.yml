@@ -1,41 +1,12 @@
 ---
 - name: Ensure neovim dependencies are installed
   become: true
-  ansible.builtin.apt:
-    name:
-      - ninja-build
-      - gettext
-      - libtool
-      - libtool-bin
-      - autoconf
-      - automake
-      - cmake
-      - g++
-      - pkg-config
-      - unzip
-      - curl
-      - doxygen
+  ansible.builtin.package:
+    name: "{{ neovim_dependencies }}"
     state: present
-  when: ansible_facts["os_family"] == "Debian"
-
-- name: Ensure neovim dependencies are installed
-  become: true
-  ansible.builtin.dnf:
-    name:
-      - ninja-build
-      - libtool
-      - autoconf
-      - automake
-      - cmake
-      - gcc
-      - gcc-c++
-      - make
-      - pkgconfig
-      - unzip
-      - patch
-      - gettext
-    state: present
-  when: ansible_facts["os_family"] == "RedHat"
+  tags:
+    - packages
+    - neovim
 
 - name: Clone neovim
   ansible.builtin.git:
@@ -44,9 +15,13 @@
     version: stable
     update: true
     force: true
+  tags:
+    - neovim
 
 - name: Compile and install neovim
   ansible.builtin.command: make install CMAKE_INSTALL_PREFIX={{ home }}/.local CMAKE_BUILD_TYPE=RelWithDebInfo
   args:
     chdir: "{{ third_party_src }}/neovim"
     creates: "{{ home }}/.local/bin/nvim"
+  tags:
+    - neovim

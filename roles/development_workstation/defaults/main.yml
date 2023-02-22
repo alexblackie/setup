@@ -1,2 +1,5 @@
 ---
 third_party_src: "{{ home }}/vendor"
+
+fd_package: fd-find
+redis_package: redis
