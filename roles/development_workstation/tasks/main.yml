@@ -14,14 +14,6 @@
     name: "{{ local_user }}"
     shell: /usr/bin/zsh
 
-- name: Disable stupid ls colors
-  become: true
-  ansible.builtin.copy:
-    dest: /etc/profile.d/colorls.sh
-    content: ""
-    mode: 0644
-  when: ansible_facts["os_family"] == "RedHat"
-
 - name: Increase default user watches limit
   become: true
   ansible.builtin.lineinfile:
