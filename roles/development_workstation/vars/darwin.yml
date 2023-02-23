@@ -19,6 +19,9 @@ development_packages:
   - rclone
   - exa
   - gawk
+  - wxwidgets
+  - unixodbc
+  - fop
 
 fd_package: fd
 
