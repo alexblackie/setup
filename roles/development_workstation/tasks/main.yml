@@ -35,10 +35,10 @@
     path: /usr/bin/gawk
   when: ansible_facts["os_family"] == "Debian"
 
+- ansible.builtin.import_tasks: rtx.yml
 - ansible.builtin.import_tasks: neovim.yml
 - ansible.builtin.import_tasks: redis.yml
 - ansible.builtin.import_tasks: fzy.yml
-- ansible.builtin.import_tasks: asdf.yml
 - ansible.builtin.import_tasks: python.yml
 - ansible.builtin.import_tasks: java.yml
 - ansible.builtin.import_tasks: redhat.yml

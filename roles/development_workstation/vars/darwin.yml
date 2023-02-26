@@ -24,8 +24,8 @@ development_packages:
   - fop
 
 fd_package: fd
-
 java_package: openjdk@17
+rtx_package: jdxcode/tap/rtx
 
 neovim_dependencies:
   - ninja
