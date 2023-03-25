@@ -1,5 +1,6 @@
 ---
 - name: Add rtx yum repository
+  become: true
   ansible.builtin.yum_repository:
     name: rtx
     description: rtx
@@ -12,6 +13,7 @@
     - rtx
 
 - name: Add rtx apt repository
+  become: true
   when: ansible_facts["os_family"] == "Debian"
   tags:
     - rtx
@@ -39,6 +41,7 @@
         state: present
 
 - name: Install rtx
+  become: true
   ansible.builtin.package:
     name: "{{ rtx_package }}"
     state: present
