@@ -41,7 +41,7 @@
         state: present
 
 - name: Install rtx
-  become: true
+  become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
     name: "{{ rtx_package }}"
     state: present
