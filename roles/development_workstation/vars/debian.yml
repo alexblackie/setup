@@ -43,6 +43,7 @@ development_packages:
   - strace
   - linux-perf
   - gawk
+  - zsh
 
 java_package: default-jdk
 
