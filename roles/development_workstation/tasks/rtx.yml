@@ -26,6 +26,13 @@
         mode: "0644"
 
     - name: Add rtx apt repository
+      when: ansible_architecture == "aarch64"
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/trusted.gpg.d/rtx.asc arch=arm64] https://rtx.pub/deb stable main
+        state: present
+
+    - name: Add rtx apt repository
+      when: ansible_architecture != "aarch64"
       ansible.builtin.apt_repository:
         repo: deb [signed-by=/etc/apt/trusted.gpg.d/rtx.asc arch={{ ansible_architecture }}] https://rtx.pub/deb stable main
         state: present
