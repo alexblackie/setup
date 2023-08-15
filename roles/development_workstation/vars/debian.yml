@@ -41,7 +41,6 @@ development_packages:
   - dstat
   - htop
   - strace
-  - linux-perf
   - gawk
   - zsh
 
