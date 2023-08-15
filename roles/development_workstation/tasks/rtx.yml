@@ -63,7 +63,7 @@
     - erlang
     - elixir
     - ruby
-    - nodejs
+    - 'nodejs http://github.com/jdxcode/rtx-nodejs.git#master'
     - kubectl
     - terraform
     - golang
