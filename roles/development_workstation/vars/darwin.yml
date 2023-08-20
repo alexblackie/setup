@@ -22,6 +22,7 @@ development_packages:
   - wxwidgets
   - unixodbc
   - fop
+  - libyaml
 
 fd_package: fd
 java_package: openjdk@17
