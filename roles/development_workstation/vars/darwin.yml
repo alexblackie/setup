@@ -17,7 +17,6 @@ development_packages:
   - wget
   - postgresql@14
   - rclone
-  - exa
   - gawk
   - wxwidgets
   - unixodbc

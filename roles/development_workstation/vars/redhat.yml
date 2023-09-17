@@ -35,7 +35,6 @@ development_packages:
   - htop
   - perf
   - strace
-  - exa
   - htop
   - perf
   - strace
