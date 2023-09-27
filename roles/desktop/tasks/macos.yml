@@ -42,13 +42,6 @@
         type: bool
         value: false
 
-    - name: Enable devtools in Safari
-      community.general.osx_defaults:
-        domain: com.apple.Safari
-        key: IncludeInternalDebugMenu
-        type: bool
-        value: true
-
     - name: Enable devtools in all webkits
       community.general.osx_defaults:
         key: WebKitDeveloperExtras
