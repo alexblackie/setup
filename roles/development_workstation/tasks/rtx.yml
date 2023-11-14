@@ -54,21 +54,3 @@
     state: present
   tags:
     - rtx
-
-- name: Install plugins for rtx
-  ansible.builtin.command: rtx plugins install {{ item }}
-  args:
-    creates: "{{ home }}/.local/share/rtx/plugins/{{ item }}"
-  with_items:
-    - erlang
-    - elixir
-    - ruby
-    - 'nodejs http://github.com/jdxcode/rtx-nodejs.git#master'
-    - kubectl
-    - terraform
-    - golang
-    - maven
-    - hugo
-    - rust
-  tags:
-    - rtx
