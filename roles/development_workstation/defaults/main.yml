@@ -3,4 +3,4 @@ third_party_src: "{{ home }}/vendor"
 
 fd_package: fd-find
 redis_package: redis
-rtx_package: rtx
+mise_package: mise

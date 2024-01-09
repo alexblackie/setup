@@ -1,0 +1,46 @@
+---
+- name: Add mise yum repository
+  become: true
+  ansible.builtin.yum_repository:
+    name: mise
+    description: mise-en-place
+    baseurl: https://mise.jdx.dev/rpm
+    enabled: true
+    gpgcheck: true
+    gpgkey: http://mise.jdx.dev/gpg-key.pub
+  when: ansible_facts["os_family"] == "RedHat"
+  tags:
+    - mise
+
+- name: Add mise apt repository
+  become: true
+  when: ansible_facts["os_family"] == "Debian"
+  tags:
+    - mise
+  block:
+    - name: Fetch mise repo signing key
+      ansible.builtin.get_url:
+        url: https://mise.jdx.dev/gpg-key.pub
+        dest: /etc/apt/trusted.gpg.d/mise.asc
+        checksum: sha256:bf3bedf8b33a9486ba1a2f488b3fc59c6080b7a06fb7e5d3deac3ffa6aaaf2e2
+        mode: "0644"
+
+    - name: Add mise apt repository
+      when: ansible_architecture == "aarch64"
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/trusted.gpg.d/mise.asc arch=arm64] https://mise.jdx.dev/deb stable main
+        state: present
+
+    - name: Add mise apt repository
+      when: ansible_architecture != "aarch64"
+      ansible.builtin.apt_repository:
+        repo: deb [signed-by=/etc/apt/trusted.gpg.d/mise.asc arch={{ ansible_architecture }}] https://mise.jdx.dev/deb stable main
+        state: present
+
+- name: Install mise
+  become: "{{ elevate_for_package_installation }}"
+  ansible.builtin.package:
+    name: "{{ mise_package }}"
+    state: present
+  tags:
+    - mise
