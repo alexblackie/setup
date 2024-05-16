@@ -38,6 +38,7 @@ development_packages:
   - htop
   - perf
   - strace
+  - tree
 
 java_package:
   - java-latest-openjdk

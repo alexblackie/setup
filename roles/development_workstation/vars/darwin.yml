@@ -22,6 +22,7 @@ development_packages:
   - unixodbc
   - fop
   - libyaml
+  - tree
 
 fd_package: fd
 java_package: openjdk@21
