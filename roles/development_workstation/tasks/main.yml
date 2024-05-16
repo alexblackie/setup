@@ -40,7 +40,6 @@
 - ansible.builtin.import_tasks: fzy.yml
 - ansible.builtin.import_tasks: python.yml
 - ansible.builtin.import_tasks: java.yml
-- ansible.builtin.import_tasks: redhat.yml
 - ansible.builtin.import_tasks: azure.yml
 - ansible.builtin.import_tasks: fd.yml
 - ansible.builtin.import_tasks: go-task.yml
