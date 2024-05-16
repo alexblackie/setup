@@ -1,9 +1,0 @@
----
-- name: Install redis
-  become: "{{ elevate_for_package_installation }}"
-  ansible.builtin.package:
-    name: "{{ redis_package }}"
-    state: present
-  tags:
-    - packages
-    - redis

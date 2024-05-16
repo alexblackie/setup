@@ -37,7 +37,6 @@
 
 - ansible.builtin.import_tasks: mise.yml
 - ansible.builtin.import_tasks: neovim.yml
-- ansible.builtin.import_tasks: redis.yml
 - ansible.builtin.import_tasks: fzy.yml
 - ansible.builtin.import_tasks: python.yml
 - ansible.builtin.import_tasks: java.yml
