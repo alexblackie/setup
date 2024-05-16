@@ -14,6 +14,7 @@
 - ansible.builtin.import_tasks: signal.yml
 - ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: nextcloud.yml
+- ansible.builtin.import_tasks: lollypop.yml
 - ansible.builtin.import_tasks: tailscale.yml
 - ansible.builtin.import_tasks: doppler.yml
 - ansible.builtin.import_tasks: obsidian.yml
