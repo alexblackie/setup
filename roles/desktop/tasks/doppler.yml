@@ -1,0 +1,10 @@
+---
+
+- name: Install Doppler
+  community.general.homebrew_cask:
+    name: doppler
+    state: present
+  when: ansible_facts["os_family"] == "Darwin"
+  tags:
+    - doppler
+    - packages

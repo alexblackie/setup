@@ -15,7 +15,7 @@
 - ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: nextcloud.yml
 - ansible.builtin.import_tasks: tailscale.yml
-- ansible.builtin.import_tasks: plexamp.yml
+- ansible.builtin.import_tasks: doppler.yml
 - ansible.builtin.import_tasks: obsidian.yml
 - ansible.builtin.import_tasks: 1password.yml
 
