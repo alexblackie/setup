@@ -8,6 +8,7 @@
     name: "{{ workstation_general_packages }}"
     state: present
 
+- ansible.builtin.import_tasks: arc.yml
 - ansible.builtin.import_tasks: iosevka.yml
 - ansible.builtin.import_tasks: kitty.yml
 - ansible.builtin.import_tasks: sublime_text.yml
