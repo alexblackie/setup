@@ -40,7 +40,7 @@
 - name: Install mise
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ mise_package }}"
+    name: "{{ dev_mise_package }}"
     state: present
   tags:
     - mise

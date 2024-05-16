@@ -1,5 +1,5 @@
 ---
-development_packages:
+dev_packages:
   - zsh
   - "@C Development Tools and Libraries"
   - ImageMagick
@@ -40,11 +40,11 @@ development_packages:
   - strace
   - tree
 
-java_package:
+dev_java_package:
   - java-latest-openjdk
   - java-latest-openjdk-devel
 
-neovim_dependencies:
+dev_neovim_dependencies:
   - ninja-build
   - libtool
   - autoconf
@@ -58,7 +58,7 @@ neovim_dependencies:
   - patch
   - gettext
 
-python_packages:
+dev_python_packages:
   - python3
   - python3-devel
   - python3-pip

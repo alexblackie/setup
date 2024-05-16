@@ -2,7 +2,7 @@
 - name: Ensure neovim dependencies are installed
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ neovim_dependencies }}"
+    name: "{{ dev_neovim_dependencies }}"
     state: present
   tags:
     - packages
@@ -11,7 +11,7 @@
 - name: Clone neovim
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim.git
-    dest: "{{ third_party_src }}/neovim"
+    dest: "{{ dev_third_party_src }}/neovim"
     version: stable
     update: true
     force: true
@@ -21,7 +21,7 @@
 - name: Compile and install neovim
   ansible.builtin.command: make install CMAKE_INSTALL_PREFIX={{ home }}/.local CMAKE_BUILD_TYPE=RelWithDebInfo
   args:
-    chdir: "{{ third_party_src }}/neovim"
+    chdir: "{{ dev_third_party_src }}/neovim"
     creates: "{{ home }}/.local/bin/nvim"
   tags:
     - neovim

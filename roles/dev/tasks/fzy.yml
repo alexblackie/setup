@@ -2,14 +2,14 @@
 - name: Clone fzy
   ansible.builtin.git:
     repo: https://github.com/jhawthorn/fzy.git
-    dest: "{{ third_party_src }}/fzy"
+    dest: "{{ dev_third_party_src }}/fzy"
   when: ansible_facts["os_family"] == "RedHat"
 
 - name: Compile and install fzy
   ansible.builtin.shell: make && make install
   become: true
   args:
-    chdir: "{{ third_party_src }}/fzy"
+    chdir: "{{ dev_third_party_src }}/fzy"
     creates: /usr/local/bin/fzy
   when: ansible_facts["os_family"] == "RedHat"
 

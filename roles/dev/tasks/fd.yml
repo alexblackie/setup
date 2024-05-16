@@ -2,7 +2,7 @@
 - name: Install fd
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ fd_package }}"
+    name: "{{ dev_fd_package }}"
     state: present
 
 - name: Check for fd symlinked exec

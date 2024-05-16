@@ -1,5 +1,5 @@
 ---
-development_packages:
+dev_packages:
   - autoconf
   - entr
   - findutils
@@ -24,16 +24,16 @@ development_packages:
   - libyaml
   - tree
 
-fd_package: fd
-java_package: openjdk@21
-rtx_package: jdxcode/tap/rtx
+dev_fd_package: fd
+dev_java_package: openjdk@21
+dev_rtx_package: jdxcode/tap/rtx
 
-neovim_dependencies:
+dev_neovim_dependencies:
   - ninja
   - libtool
   - cmake
   - pkg-config
   - gettext
 
-python_packages:
+dev_python_packages:
   - python3

@@ -5,7 +5,7 @@
 - name: Install development tools and libraries
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ development_packages }}"
+    name: "{{ dev_packages }}"
     state: present
 
 - name: Set default shell to zsh

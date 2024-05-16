@@ -1,8 +1,8 @@
 ---
-workstation_fonts_dir: /usr/share/fonts
-workstation_fonts_dir_protected: true
+desktop_fonts_dir: /usr/share/fonts
+desktop_fonts_dir_protected: true
 
-workstation_general_packages:
+desktop_general_packages:
   - mpv
   - fuse-exfat
   - gimp

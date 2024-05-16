@@ -2,7 +2,7 @@
 - name: Install Python
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ python_packages }}"
+    name: "{{ dev_python_packages }}"
     state: present
   tags:
     - packages

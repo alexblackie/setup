@@ -1,5 +1,5 @@
 ---
-workstation_fonts_dir: "{{ home }}/Library/Fonts"
-workstation_fonts_dir_protected: false
+desktop_fonts_dir: "{{ home }}/Library/Fonts"
+desktop_fonts_dir_protected: false
 
-workstation_general_packages: []
+desktop_general_packages: []

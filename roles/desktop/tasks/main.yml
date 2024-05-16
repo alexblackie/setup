@@ -5,7 +5,7 @@
 - name: Install workstation apps and tools
   become: "{{ elevate_for_package_installation }}"
   ansible.builtin.package:
-    name: "{{ workstation_general_packages }}"
+    name: "{{ desktop_general_packages }}"
     state: present
 
 # Cross-platform Software

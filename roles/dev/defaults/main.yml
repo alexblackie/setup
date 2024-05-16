@@ -1,6 +1,6 @@
 ---
-third_party_src: "{{ home }}/vendor"
+dev_third_party_src: "{{ home }}/vendor"
 
-fd_package: fd-find
-redis_package: redis
-mise_package: mise
+dev_fd_package: fd-find
+dev_redis_package: redis
+dev_mise_package: mise
