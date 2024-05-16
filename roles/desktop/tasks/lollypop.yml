@@ -1,9 +1,11 @@
 ---
 - name: Install Lollypop
   become: true
+  when: ansible_facts["os_family"] != "Darwin"
   community.general.flatpak:
     name: org.gnome.Lollypop
     state: present
   tags:
     - flatpak
     - packages
+    - lollypop
