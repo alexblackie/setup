@@ -3,5 +3,5 @@
   hosts: localhost
   roles:
     - base
-    - development_workstation
+    - dev
     - docker

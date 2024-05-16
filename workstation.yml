@@ -5,5 +5,5 @@
     - flatpak
     - base
     - desktop
-    - development_workstation
+    - dev
     - docker
