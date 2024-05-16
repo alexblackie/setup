@@ -8,15 +8,6 @@
     name: "{{ workstation_general_packages }}"
     state: present
 
-- name: Install macOS apps
-  community.general.homebrew_cask:
-    name:
-      - mpv
-      - firefox
-      - dash
-    state: present
-  when: ansible_facts["os_family"] == "Darwin"
-
 - ansible.builtin.import_tasks: iosevka.yml
 - ansible.builtin.import_tasks: kitty.yml
 - ansible.builtin.import_tasks: sublime_text.yml
