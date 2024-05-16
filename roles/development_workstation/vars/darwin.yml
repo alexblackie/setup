@@ -15,7 +15,7 @@ development_packages:
   - ripgrep
   - tmux
   - wget
-  - postgresql@14
+  - postgresql@16
   - rclone
   - gawk
   - wxwidgets
@@ -24,7 +24,7 @@ development_packages:
   - libyaml
 
 fd_package: fd
-java_package: openjdk@17
+java_package: openjdk@21
 rtx_package: jdxcode/tap/rtx
 
 neovim_dependencies:
