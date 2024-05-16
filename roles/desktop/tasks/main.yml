@@ -8,18 +8,24 @@
     name: "{{ workstation_general_packages }}"
     state: present
 
-- ansible.builtin.import_tasks: arc.yml
+# Cross-platform Software
 - ansible.builtin.import_tasks: iosevka.yml
 - ansible.builtin.import_tasks: kitty.yml
 - ansible.builtin.import_tasks: sublime_text.yml
 - ansible.builtin.import_tasks: signal.yml
 - ansible.builtin.import_tasks: keybase.yml
 - ansible.builtin.import_tasks: nextcloud.yml
-- ansible.builtin.import_tasks: lollypop.yml
-- ansible.builtin.import_tasks: tailscale.yml
-- ansible.builtin.import_tasks: doppler.yml
 - ansible.builtin.import_tasks: obsidian.yml
 - ansible.builtin.import_tasks: 1password.yml
 
+# Linux Apps
+- ansible.builtin.import_tasks: lollypop.yml
+- ansible.builtin.import_tasks: tailscale.yml
+
+# MacOS Apps
+- ansible.builtin.import_tasks: arc.yml
+- ansible.builtin.import_tasks: doppler.yml
+
+# Platform-specific config
 - ansible.builtin.import_tasks: gnome.yml
 - ansible.builtin.import_tasks: macos.yml
