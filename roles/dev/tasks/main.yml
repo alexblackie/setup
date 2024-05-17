@@ -24,7 +24,7 @@
 
 - name: Create directory for third-party software sources
   ansible.builtin.file:
-    path: "{{ third_party_src }}"
+    path: "{{ dev_third_party_src }}"
     state: directory
     mode: "0755"
 
