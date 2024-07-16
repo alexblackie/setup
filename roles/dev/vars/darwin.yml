@@ -37,3 +37,5 @@ dev_neovim_dependencies:
 
 dev_python_packages:
   - python3
+
+dev_awscli_package: awscli

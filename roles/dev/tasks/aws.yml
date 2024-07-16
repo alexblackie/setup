@@ -1,0 +1,9 @@
+---
+- name: Install AWS CLI
+  become: "{{ elevate_for_package_installation }}"
+  ansible.builtin.package:
+    name: "{{ dev_awscli_package }}"
+    state: present
+  tags:
+    - packages
+    - aws

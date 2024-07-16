@@ -62,3 +62,5 @@ dev_python_packages:
   - python3
   - python3-devel
   - python3-pip
+
+dev_awscli_package: awscli2
