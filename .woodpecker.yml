@@ -1,0 +1,12 @@
+---
+
+when:
+  - branch: main
+    event: push
+
+steps:
+  - name: lint
+    image: python:3.12
+    commands:
+      - pip install -r requirements.txt
+      - ansible-lint
