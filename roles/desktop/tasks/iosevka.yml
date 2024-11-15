@@ -2,6 +2,6 @@
 - name: Download Iosevka font
   become: "{{ desktop_fonts_dir_protected }}"
   ansible.builtin.unarchive:
-    src: https://github.com/be5invis/Iosevka/releases/download/v7.2.3/ttc-iosevka-7.2.3.zip
+    src: https://github.com/be5invis/Iosevka/releases/download/v32.0.1/SuperTTC-Iosevka-32.0.1.zip
     dest: "{{ desktop_fonts_dir }}"
     remote_src: true
