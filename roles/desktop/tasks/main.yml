@@ -21,7 +21,6 @@
 - ansible.builtin.import_tasks: tailscale.yml
 
 # MacOS Apps
-- ansible.builtin.import_tasks: arc.yml
 - ansible.builtin.import_tasks: doppler.yml
 
 # Platform-specific config
