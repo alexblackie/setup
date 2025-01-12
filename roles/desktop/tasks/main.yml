@@ -11,6 +11,7 @@
 # Cross-platform Software
 - ansible.builtin.import_tasks: iosevka.yml
 - ansible.builtin.import_tasks: kitty.yml
+- ansible.builtin.import_tasks: ghostty.yml
 - ansible.builtin.import_tasks: signal.yml
 - ansible.builtin.import_tasks: nextcloud.yml
 - ansible.builtin.import_tasks: obsidian.yml
